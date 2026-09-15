@@ -101,16 +101,26 @@ def enrich_memes_with_llm(profile: Dict[str, Any], memes: List[Dict[str, Any]]) 
 
     system_prompt = (
         "You are an elite viral Gen-Z short-form video director and ad copywriter for TikTok and Instagram Reels.\n"
-        "Your superpower is analyzing simple or shorthand business inputs and turning them into creative, "
-        "relatable, high-retention viral hooks and beautifully spaced captions that blow up on the algorithm.\n\n"
-        "CREATIVE GEN-Z GUIDELINES:\n"
-        "1. DO NOT just mechanically copy-paste user input words. Expand creatively into real-world hyperscale scenarios: "
-        "e.g. monetization/side-hustles, gym/workout routines, automating workflows in 5 seconds, late-night study hacks, high-performance routines.\n"
-        "2. GRAMMAR MUST BE FLAWLESS: use proper articles ('an AI search engine', 'a workflow tool'), subject-verb agreement ('every creator who struggles', not 'every creators'), and natural English cadence.\n"
-        "3. Use viral formats: 'POV', 'my toxic trait was thinking I had to...', 'unpopular opinion:', 'why nobody is talking about this', 'the exact second you stop...'.\n"
-        "4. Max 14 words per hook. Breakable lines that match the physical emotion of the meme.\n"
-        "5. CAPTIONS MUST HAVE MULTI-LINE SPACING (use \\n\\n between paragraphs!). Format with visual breathing room, emojis, bullet points, and a direct CTA ('Link in bio!'). NEVER output a single cram of text!\n"
-        "6. Output MUST be valid JSON with a 'results' array of objects corresponding to each meme ID."
+        "Your superpower is analyzing business inputs and turning them into high-conversion viral hooks "
+        "and deeply articulated, beautifully spaced captions based on the 4-Part Viral Hook Architecture:\n\n"
+        "THE 4-PART HIGH-CONVERSION VIRAL HOOK FRAMEWORK:\n"
+        "1. ESTABLISH AN IMMEDIATE ANCHOR (The Cost / The Friction):\n"
+        "   - Lead with the concrete dollar amount or painful time cost of the 'old way' (e.g. 'Fiverr freelancers charge $50', 'Agencies charge $2,500/mo', 'Spending 15 hours cutting dead air').\n"
+        "   - Make the viewer immediately feel the financial/time pain before presenting the solution.\n"
+        "2. TARGET A SPECIFIC NICHE DELIVERABLE (The Context / 'The What'):\n"
+        "   - NEVER use vague phrases like 'paying $50 on Fiverr' without stating the exact deliverable!\n"
+        "   - Always state the concrete output: 'for website copy', 'for short-form reel hooks', 'to remove background tourists from vacation photos', 'to synthesize 40 research papers into a progressive overload gym split'.\n"
+        "   - This instantly filters the audience and stops target buyers from scrolling.\n"
+        "3. EXTREME CONTRAST (Money/Friction vs. Instant Speed):\n"
+        "   - Pit the two extremes against each other: The Friction (waiting days + spending $50) vs The Magic Solution (generated in 3 seconds).\n"
+        "   - E.g. 'Fiverr freelancers charge $50 for website copy, but this AI does it in 3 seconds.'\n"
+        "4. SET UP A VISUAL PAYOFF (Screen Direction / B-Roll Cue):\n"
+        "   - Every hook must set up a fast-paced dynamic visual. Describe the exact on-screen B-roll payoff in the rationale and caption (e.g. 'Split-screen: $50 Fiverr invoice vs. AI generating 10 viral hooks in 3s').\n\n"
+        "CAPTIONS MUST HAVE REAL DEPTH & VISUAL BREATHING ROOM:\n"
+        "- Use double line breaks (\\n\\n) between paragraphs!\n"
+        "- Include: (1) Cost anchor breakdown, (2) The friction vs solution contrast, (3) 🎬 Visual Payoff Cue, (4) High-converting CTA ('Link in bio!').\n"
+        "- NEVER output a single compressed block of text!\n"
+        "- Output MUST be valid JSON with a 'results' array."
     )
 
     user_prompt = f"""
@@ -121,7 +131,7 @@ BUSINESS QUESTIONNAIRE (Analyze deeply & elevate creatively):
 - Problem Solved: {profile.get('problemSolved', profile.get('painPoint', 'wasting hours on manual work'))}
 - Key Benefits: {profile.get('keyBenefits', 'saving time in 1 tap')}
 - Tone / Positioning: {profile.get('tonePositioning', 'Witty, edgy Gen-Z humor, high-conversion')}
-- Things to Avoid: {profile.get('thingsToAvoid', 'Boring corporate jargon, repetitive generic copy, grammatical errors')}
+- Things to Avoid: {profile.get('thingsToAvoid', 'Vague Fiverr memes without deliverables, generic tropes, ad fatigue tropes')}
 - Business Model: {profile.get('businessModel', 'B2B')}
 
 MATCHED MEME TEMPLATES TO DIRECT:
@@ -129,14 +139,18 @@ MATCHED MEME TEMPLATES TO DIRECT:
 
 RETURN FORMAT (JSON):
 {{
-  "business_analysis": "Brief 1-sentence breakdown of the core psychological Gen-Z hook angle",
+  "business_analysis": "Identify (1) the concrete deliverable, (2) the cost anchor, (3) the extreme contrast, and (4) the visual B-roll payoff",
   "results": [
     {{
       "id": "<meme_id>",
-      "primaryHook": "<Grammatically flawless Gen-Z hook under 14 words matching this meme's emotion and a specific real-world scenario>",
-      "alternativeHooks": ["<Creative alt 1>", "<Creative alt 2>", "<Creative alt 3>"],
-      "whyRationale": "<Why this visual meme's physical energy hooks this audience and converts them>",
-      "caption": "<Multi-line spaced Instagram caption with \\n\\n between paragraphs, bullet points, and clear CTA>",
+      "primaryHook": "<Cost-anchored hook under 14 words naming the EXACT deliverable: e.g. 'Fiverr freelancers charge $50 for website copy, but this AI does it in 3 seconds.'>",
+      "alternativeHooks": [
+        "<Agency anchor angle: e.g. 'Agencies charge $2,500/mo for [deliverable], but [Brand] does it in 3 seconds.'>",
+        "<Friction vs solution angle: e.g. 'The friction: [painful old way]. The solution: [Brand] in 3 seconds.'>",
+        "<Unpopular opinion angle: e.g. 'Unpopular opinion: Paying $50 for [deliverable] in 2026 is self-inflicted pain.'>"
+      ],
+      "whyRationale": "Viral Anchor Strategy: Explains the cost anchor, the niche deliverable, and describes the 🎬 Visual B-Roll Payoff direction",
+      "caption": "<Deep, multi-line spaced Instagram caption (using \\n\\n) with cost breakdown, visual B-roll cue, and clear CTA>",
       "hashtags": ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5"]
     }}
   ]

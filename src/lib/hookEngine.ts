@@ -164,143 +164,219 @@ function formatBenefitStatement(benefit: string): string {
 }
 
 // Hyperscale Gen-Z Hook & Multi-line Spaced Caption Director
+interface NicheDeliverableContext {
+  deliverable: string;
+  costAnchor: string;
+  agencyAnchor: string;
+  frictionAnchor: string;
+  timeAnchor: string;
+  visualBrollCue: string;
+}
+
+function resolveNicheDeliverable(
+  business: BusinessProfile,
+  rawProduct: string,
+  rawProblem: string
+): NicheDeliverableContext {
+  const brand = business.companyName || business.name || 'SyncFlow AI';
+  const prod = rawProduct.toLowerCase();
+  const prob = rawProblem.toLowerCase();
+  const cats = (business.categories || []).map((c) => c.toLowerCase()).join(' ');
+  const combined = `${prod} ${prob} ${cats} ${business.productService?.toLowerCase() || ''}`;
+
+  // 1. Short-Form Video, Reels, Shorts, Subtitles, Memes (e.g. SyncFlow AI)
+  if (
+    combined.includes('reel') ||
+    combined.includes('video') ||
+    combined.includes('short') ||
+    combined.includes('meme') ||
+    combined.includes('clip') ||
+    combined.includes('hook') ||
+    combined.includes('tiktok')
+  ) {
+    return {
+      deliverable: 'short-form reel copy and viral hooks',
+      costAnchor: 'Fiverr freelancers charge $50 per reel script',
+      agencyAnchor: 'Agencies charge $2,500/mo to edit 9:16 short-form reels',
+      frictionAnchor: 'spending 15 hours editing reels that get 200 views',
+      timeAnchor: '3 seconds',
+      visualBrollCue:
+        'Split screen: $50 Fiverr order invoice vs. high-speed screen capture of SyncFlow AI generating 10 viral hooks in 3 seconds.',
+    };
+  }
+
+  // 2. AI Search Engine, Research, Multi-Tab Synthesis (e.g. Google AI, research tools)
+  if (
+    combined.includes('search') ||
+    combined.includes('paper') ||
+    combined.includes('research') ||
+    combined.includes('engine') ||
+    combined.includes('google')
+  ) {
+    return {
+      deliverable: 'synthesizing 40 research papers into a custom gym split',
+      costAnchor: 'Consultants charge $150/hr for competitive research summaries',
+      agencyAnchor: 'Agencies charge $3,000/mo for manual industry market research',
+      frictionAnchor: 'opening 35 browser tabs and reading through SEO spam for 4 hours',
+      timeAnchor: '0.2 seconds',
+      visualBrollCue:
+        'Fast-motion screencast: 35 chaotic Chrome tabs collapsing into a single, clean 5-point executive summary in 0.2s.',
+    };
+  }
+
+  // 3. Photo Editing, Object Removal, Retouching
+  if (
+    combined.includes('photo') ||
+    combined.includes('retouch') ||
+    combined.includes('tourist') ||
+    combined.includes('photobomb') ||
+    combined.includes('background') ||
+    combined.includes('photoshop')
+  ) {
+    return {
+      deliverable: 'removing background tourists from vacation photos',
+      costAnchor: 'Photoshop retouchers charge $40 to clean a single photo',
+      agencyAnchor: 'Design agencies charge $500 to batch-retouch product photos',
+      frictionAnchor: 'spending 4 hours manual lasso-tooling in Photoshop',
+      timeAnchor: '1 tap',
+      visualBrollCue:
+        'Interactive swipe slider: A crowded vacation landmark photo instantly erasing every stranger into a pristine private shoot in 1 tap.',
+    };
+  }
+
+  // 4. Copywriting, Landing Pages, Website Copy
+  if (
+    combined.includes('copy') ||
+    combined.includes('writing') ||
+    combined.includes('landing') ||
+    combined.includes('email') ||
+    combined.includes('page')
+  ) {
+    return {
+      deliverable: 'high-converting website landing page copy',
+      costAnchor: 'Fiverr freelancers charge $50 for website copy',
+      agencyAnchor: 'Copywriters charge $1,500 per landing page',
+      frictionAnchor: 'staring at a blank Google Doc for 6 hours',
+      timeAnchor: '3 seconds',
+      visualBrollCue:
+        'Time-lapse screen capture: A blank landing page wireframe auto-filling headline, subhead, bullet points, and CTA in 3 seconds.',
+    };
+  }
+
+  // 5. Study, Notes, Lectures, Exams
+  if (
+    combined.includes('note') ||
+    combined.includes('lecture') ||
+    combined.includes('study') ||
+    combined.includes('exam') ||
+    combined.includes('student')
+  ) {
+    return {
+      deliverable: 'exam study guides and flashcards from 3-hour audio lectures',
+      costAnchor: 'Tutors charge $60/hr to break down college lecture notes',
+      agencyAnchor: 'Test-prep companies charge $200 for semester study summaries',
+      frictionAnchor: 're-watching a 3-hour monotonous lecture at 2x speed at midnight',
+      timeAnchor: '15 seconds',
+      visualBrollCue:
+        'Split capture: A 3-hour lecture audio waveform instantly synthesizing into color-coded bullet points and exam flashcards.',
+    };
+  }
+
+  // 6. General High-Conversion SaaS / E-commerce / Automation
+  const cleanDeliverable = cleanClause(rawProduct, 5) || 'automated customer workflows';
+  return {
+    deliverable: cleanDeliverable,
+    costAnchor: `Freelancers charge $50/hr for ${cleanDeliverable}`,
+    agencyAnchor: `Agencies charge $2,500/mo for manual ${cleanDeliverable}`,
+    frictionAnchor: `spending 14 hours a week manually dealing with ${cleanClause(rawProblem, 5)}`,
+    timeAnchor: '3 seconds',
+    visualBrollCue:
+      `High-contrast before/after: 10 manual spreadsheet tabs vs. ${brand} executing the entire workflow in 3 seconds.`,
+  };
+}
+
 function generateHooksForMeme(
   meme: RawMemeItem,
   business: BusinessProfile,
   index: number
 ): { primaryHook: string; alternativeHooks: string[]; rationale: string; caption: string } {
-  const brand = business.companyName || business.name || 'Marketing Engine';
+  const brand = business.companyName || business.name || 'SyncFlow AI';
   const rawProblem = normalizeSmashedWords(business.problemSolved || 'hours of tedious manual work');
   const rawBenefit = normalizeSmashedWords(business.keyBenefits || 'finishing in 30 seconds');
   const rawProduct = normalizeSmashedWords(business.productService || 'AI workflow engine');
-  const rawCategory = (business.category || business.categories?.[0] || '').toLowerCase();
   const rawAudience = (business.audience || 'creators and founders').toLowerCase();
 
   const action = meme.actions?.[0] || 'reacting';
   const mood = (meme.mood_and_vibe || 'viral').toLowerCase();
 
-  const shortProblem = cleanClause(rawProblem, 6).toLowerCase();
   const shortBenefit = formatBenefitStatement(cleanClause(rawBenefit, 6));
   const productWithArticle = withArticle(cleanClause(rawProduct, 6));
   const singularAudience = toSingularAudience(rawAudience);
   const pluralAudience = toPluralAudience(rawAudience);
 
-  // Detect domain for ultra-creative, scenario-based hyperscale hooks (Monetization, Gym, Workflows, College, etc.)
-  const isSearchOrAI =
-    rawProduct.includes('search') ||
-    rawCategory.includes('search') ||
-    rawProduct.includes('engine') ||
-    rawProduct.includes('ai') ||
-    brand.toLowerCase().includes('google') ||
-    brand.toLowerCase().includes('googel') ||
-    brand.toLowerCase().includes('search');
+  // Extract Niche Context & Immediate Cost Anchors
+  const ctx = resolveNicheDeliverable(business, rawProduct, rawProblem);
 
-  const isPhotoOrVideo =
-    rawCategory.includes('photo') ||
-    rawCategory.includes('video') ||
-    rawProduct.includes('photo') ||
-    rawProduct.includes('video') ||
-    rawProblem.includes('photobomb') ||
-    rawProblem.includes('tourist') ||
-    rawProblem.includes('edit');
+  // 4-Part High-Conversion Hook Architecture:
+  // 1. Immediate Cost Anchor ($50 on Fiverr, $2,500/mo agency)
+  // 2. Concrete Deliverable (website copy, short-form reel copy, etc.)
+  // 3. Extreme Contrast (Friction vs. 3-Second Magic Solution)
+  // 4. Sets up Visual B-Roll Payoff
+  const creativeHooks: string[] = [
+    // Angle 1: Direct Cost Anchor (Fiverr $50 vs 3-second AI)
+    `Fiverr freelancers charge $50 for ${ctx.deliverable}, but ${brand} does it in ${ctx.timeAnchor}.`,
 
-  const isStudyOrNotes =
-    rawCategory.includes('note') ||
-    rawProduct.includes('note') ||
-    rawProblem.includes('lecture') ||
-    rawAudience.includes('student') ||
-    rawProblem.includes('study');
+    // Angle 2: Agency Anchor ($2,500/mo vs instant automated software)
+    `${ctx.agencyAnchor}, while ${brand} generates 10 viral variations in ${ctx.timeAnchor} flat.`,
 
-  // Creative Pool of Hyperscale Hooks tailored to real scenarios
-  let creativeHooks: string[] = [];
+    // Angle 3: The Extreme Contrast (Friction vs Magic)
+    `The friction: ${ctx.frictionAnchor}.\nThe solution: ${brand} in ${ctx.timeAnchor}.`,
 
-  if (isSearchOrAI) {
-    // Creative real-world angles: Monetization, Workout split, Instant workflows, College research
-    creativeHooks = [
-      `POV: using ${brand} to turn 40 science papers into my exact gym split in 4 seconds`,
-      `me watching people open 35 Google tabs while ${brand} found the exact answer in 0.2s`,
-      `how people are lowkey using ${brand} to automate $5k/mo research workflows while sleeping`,
-      `my gym buddy asked how I optimized our progressive overload so fast...\nI just used ${brand} 🤫`,
-      `unpopular opinion: digging through 50 links in 2026 is self-inflicted pain when ${brand} exists`,
-      `the exact second you stop ${shortProblem} forever because ${brand} ${shortBenefit}`,
-      `POV: you ask ${brand} one question and it connects your entire workflow instantly`,
-      `every ${singularAudience} still doing this manually is literally funding their competitors`,
-      `me showing my team how ${brand} ${shortBenefit} in 30 seconds instead of 4 hours`,
-      `my toxic trait was thinking I had to search manually when ${brand} is literally free`,
-      `why ${pluralAudience} are obsessed with ${brand}: it's ${productWithArticle} that actually works`,
-      `how it feels walking into the presentation knowing ${brand} organized everything 🕺`,
-    ];
-  } else if (isPhotoOrVideo) {
-    creativeHooks = [
-      `POV: a tourist almost ruined my favorite vacation photo until ${brand} erased them in 1 tap`,
-      `no bc why does ${brand} look better than 4 hours in Photoshop 💀`,
-      `my friend said "you can't fix blurry lighting without losing quality"...\nwatch what ${brand} does:`,
-      `gatekeeping ${brand} from my group chat because my photos look like Vogue now`,
-      `unpopular opinion: bad photos aren't the problem in 2026, not using ${brand} is`,
-      `me watching people pay $50 on Fiverr while I use ${brand} in 3 seconds:`,
-      `${brand} ${shortBenefit} — so you never stress over ${shortProblem} again`,
-      `POV: you finally found ${productWithArticle} that edits photos like magic`,
-    ];
-  } else if (isStudyOrNotes) {
-    creativeHooks = [
-      `POV: everyone else is on hour 5 of panic while ${brand} summarized the entire syllabus`,
-      `my toxic trait was thinking I'd actually re-watch a 3-hour lecture 😭`,
-      `the professor said "this won't be on the slides" so I let ${brand} cook`,
-      `gatekeeping ${brand} because my GPA just jumped two whole letter grades`,
-      `how ${brand} turned 4 weeks of lecture chaos into bullet points while I made coffee`,
-      `every ${singularAudience} who struggles with ${shortProblem} needs ${brand} right now`,
-    ];
-  } else {
-    // General high-conversion SaaS / Business
-    creativeHooks = [
-      `POV: you finally stopped ${shortProblem} because ${brand} ${shortBenefit}`,
-      `showing this to my team tomorrow so they finally let us automate our workflow with ${brand}`,
-      `unpopular opinion: working 14 hours a day isn't a flex when ${brand} does it in 2 minutes`,
-      `every ${singularAudience} needs to know: ${brand} is ${productWithArticle} that ${shortBenefit}`,
-      `me after ${brand} solved ${shortProblem} before my morning coffee was even ready ☕`,
-      `how ${pluralAudience} are scaling 10x faster in 2026: they stopped ${shortProblem} and switched to ${brand}`,
-      `imagine if ${shortProblem} just... wasn't a problem anymore.\nthat's ${brand}.`,
-      `when ${brand} ${shortBenefit} and you realize you were doing it the hard way for months`,
-    ];
-  }
+    // Angle 4: Curiosity / Why Pay More
+    `Why pay $50 for ${ctx.deliverable} when ${brand} creates 15 tested angles in ${ctx.timeAnchor}?`,
+
+    // Angle 5: Unpopular Opinion with Cost Anchor
+    `Unpopular opinion: Paying $50 for ${ctx.deliverable} in 2026 is self-inflicted pain when ${brand} exists.`,
+
+    // Angle 6: Direct Competitive Advantage
+    `Every ${singularAudience} still paying for ${ctx.deliverable} manually is literally funding their competitors.`,
+
+    // Angle 7: The Breakthrough Moment
+    `The exact second you stop ${ctx.frictionAnchor} because ${brand} ${shortBenefit}.`,
+
+    // Angle 8: High-Value POV with Concrete Deliverable
+    `POV: you unlock ${brand} and generate ${ctx.deliverable} in ${ctx.timeAnchor} instead of 4 hours.`,
+  ];
 
   // Emotion/physical meme adjustments
   if (mood.includes('cry') || action.includes('cry') || action.includes('sad')) {
-    creativeHooks.unshift(`me realizing I wasted months on ${shortProblem} when ${brand} ${shortBenefit} this whole time 😭`);
+    creativeHooks.unshift(`me realizing I paid $50 on Fiverr for ${ctx.deliverable} when ${brand} does it in ${ctx.timeAnchor} 😭`);
   } else if (mood.includes('dance') || action.includes('dance') || action.includes('celebrat')) {
-    creativeHooks.unshift(`how it feels when ${brand} ${shortBenefit} and you're finally free 🕺`);
-  } else if (mood.includes('angry') || mood.includes('frustrat')) {
-    creativeHooks.unshift(`still dealing with ${shortProblem} in 2026?? ${brand} ${shortBenefit} — no more excuses.`);
+    creativeHooks.unshift(`how it feels when ${brand} delivers ${ctx.deliverable} in ${ctx.timeAnchor} and saves you $2,500 🕺`);
   } else if (mood.includes('type') || action.includes('typing')) {
-    creativeHooks.unshift(`me prompting ${brand} to ${shortBenefit} in 10 seconds flat:`);
+    creativeHooks.unshift(`me prompting ${brand} to generate ${ctx.deliverable} in ${ctx.timeAnchor} flat:`);
   }
 
   const primaryHook = creativeHooks[index % creativeHooks.length];
   const alternativeHooks = creativeHooks.filter((h) => h !== primaryHook).slice(0, 3);
 
-  // Creative Gen-Z Multi-line Spaced Captions (Distinct formatting per archetype with real breathing room)
+  // Deep, Multi-line Spaced Captions with Concrete Context and Visual Payoffs
   const captions = [
-    // Format 1: The "Breakdown & Feature Value" Ad
-    `POV: You just unlocked the ultimate cheat code for ${pluralAudience}. 🤯\n\nMost people spend hours on ${shortProblem}, but ${brand} does it in seconds:\n⚡ Instant intelligent workflows\n🎯 Zero manual clutter\n🚀 ${shortBenefit}\n\nIf you haven't tested ${brand} yet, you're playing life on hard mode.\n\n👉 Try it free at the link in bio!`,
+    // Format 1: The "Cost Anchor & Extreme Contrast" Breakdown
+    `Fiverr freelancers charge $50 for ${ctx.deliverable}, but ${brand} does it in ${ctx.timeAnchor}. 🤯\n\nHere is the exact breakdown:\n❌ Old Way: $50 to $2,500/mo, 3–5 day turnaround, zero retention guarantee\n✅ ${brand}: 1 tap, ${ctx.timeAnchor} output, optimized for 70%+ average watch time\n\n🎬 Visual Payoff Cue:\n${ctx.visualBrollCue}\n\nStop playing life on hard mode besties.\n\n👉 Test ${brand} free at the link in bio!`,
 
-    // Format 2: The "Real-world Side Hustle / Hack" Story
-    `real talk: why is nobody talking about this workflow yet??\n\nInstead of wasting half your day on ${shortProblem}, you can let ${brand} handle the heavy lifting.\n\nPeople are literally using this to automate research, plan workout splits, and build $5k/mo side workflows in record time.\n\nDrop a 🔥 if you need this setup, or tap the link in bio to try it free!`,
+    // Format 2: The "Friction vs Magic Solution" Story
+    `real talk: why is everyone still doing ${ctx.deliverable} the hard way??\n\n${ctx.agencyAnchor}.\n\nMeanwhile, creators using ${brand} are generating 15 tested hooks and scheduling directly to Instagram before their morning coffee is even brewed.\n\n⚡ Deliverable: ${ctx.deliverable}\n⚡ Turnaround: ${ctx.timeAnchor}\n⚡ Cost: Free to start\n\n🎬 On-screen cue:\n${ctx.visualBrollCue}\n\nDrop a 🔥 if you need this setup, or tap the link in bio!`,
 
     // Format 3: The "Unpopular Opinion" Hook
-    `unpopular opinion: if you're still doing ${shortProblem} manually in 2026, you're choosing to suffer. 💀\n\n${brand} is ${productWithArticle} that ${shortBenefit}.\n\nSave this post so you don't forget when you need it 📌\n\nLink in bio to get instant access 👇`,
+    `unpopular opinion: paying $50 for ${ctx.deliverable} in 2026 is an unnecessary tax on your business. 💀\n\n${brand} is ${productWithArticle} that ${shortBenefit} in ${ctx.timeAnchor}.\n\n🎬 Visual cue:\n${ctx.visualBrollCue}\n\nSave this post so you don't forget when you need it 📌\n\nLink in bio to get instant access 👇`,
 
     // Format 4: The "Before vs After" Transformation
-    `before ${brand}:\n❌ Stressed out\n❌ Hours wasted on ${shortProblem}\n❌ Overwhelmed with 50 open tabs\n\nafter ${brand}:\n✅ Done in 30 seconds\n✅ ${shortBenefit}\n✅ Free time back\n\nWork smarter, not harder besties. Link in bio! ✨`,
-
-    // Format 5: The "Lifestyle / Gym / High-Performance" Angle
-    `My favorite productivity hack right now:\n\nWhether it's optimizing research, generating exact workout splits, or handling ${shortProblem}—${brand} pulls the exact result in 2 clicks.\n\nStop burning your energy on tedious tasks.\n\n⚡ Tap the link in bio to see it in action!`,
-
-    // Format 6: The "Quick Punch" Minimalist Drop
-    `the exact moment you realize ${brand} ${shortBenefit} in literally one tap.\n\ngoodbye ${shortProblem}, hello freedom 🚀\n\nlink in bio to start free!`,
+    `before ${brand}:\n❌ Stressed out\n❌ ${ctx.frictionAnchor}\n❌ Waiting 4 days for a freelancer\n\nafter ${brand}:\n✅ Done in ${ctx.timeAnchor}\n✅ ${shortBenefit}\n✅ 10 viral variations tested in real-time\n\n🎬 Visual B-Roll:\n${ctx.visualBrollCue}\n\nWork smarter, not harder. Link in bio! ✨`,
   ];
 
   const caption = captions[index % captions.length];
-  const rationale = `Viral Strategy: ${brand} positions against "${shortProblem}" by framing ${shortBenefit} through the visual emotion of ${action} (${mood}).`;
+  const rationale = `Viral Anchor Strategy: Leads with "${ctx.costAnchor}" to anchor immediate financial friction, specifies "${ctx.deliverable}" to filter the target audience, and contrasts with "${ctx.timeAnchor}" speed.\n\n🎬 Visual B-Roll Direction:\n${ctx.visualBrollCue}`;
 
   return { primaryHook, alternativeHooks, rationale, caption };
 }
@@ -311,11 +387,10 @@ function generateCarouselSlides(
   business: BusinessProfile,
   primaryHook: string
 ): CarouselSlide[] {
-  const brand = business.companyName || business.name || 'our tool';
+  const brand = business.companyName || business.name || 'SyncFlow AI';
   const rawProblem = normalizeSmashedWords(business.problemSolved || 'hours of tedious manual work');
-  const rawBenefit = normalizeSmashedWords(business.keyBenefits || 'finishing in 30 seconds');
-  const shortProblem = cleanClause(rawProblem, 6).toLowerCase();
-  const shortBenefit = formatBenefitStatement(cleanClause(rawBenefit, 6));
+  const rawProduct = normalizeSmashedWords(business.productService || 'AI workflow engine');
+  const ctx = resolveNicheDeliverable(business, rawProduct, rawProblem);
   const pluralAudience = toPluralAudience((business.audience || 'creators').toLowerCase());
 
   const videoId = meme.video_id || '';
@@ -328,11 +403,11 @@ function generateCarouselSlides(
       },
       {
         image_url: '/videos/photo_005_crying_peace_sign.jpg',
-        hook: `me pretending I'm totally fine while doing ${shortProblem} manually until 4 AM ✌️😭`,
+        hook: `me pretending I'm totally fine while ${ctx.frictionAnchor} until 4 AM ✌️😭`,
       },
       {
         image_url: '/videos/frames/raw_53_f1.jpg',
-        hook: `the exact second you switch to ${brand} and ${shortBenefit} in 30 seconds ✨`,
+        hook: `the exact second you switch to ${brand} and generate ${ctx.deliverable} in ${ctx.timeAnchor} ✨`,
       },
     ];
   }
@@ -345,7 +420,7 @@ function generateCarouselSlides(
       },
       {
         image_url: '/videos/photo_004_crying_girl_tears.jpg',
-        hook: `behind the scenes when I realized everyone else uses ${brand} to ${shortBenefit} 😭`,
+        hook: `behind the scenes when I realized people spend $50 on Fiverr for ${ctx.deliverable} 😭`,
       },
       {
         image_url: '/videos/frames/raw_21_f1.jpg',
@@ -362,11 +437,11 @@ function generateCarouselSlides(
       },
       {
         image_url: '/videos/photo_004_crying_girl_tears.jpg',
-        hook: `realizing manual work took 5 hours and the deadline is in 10 minutes 💀`,
+        hook: `realizing manual work took 5 hours and the client deadline is in 10 minutes 💀`,
       },
       {
         image_url: '/videos/frames/raw_30_f1.jpg',
-        hook: `how ${pluralAudience} scale 10x with ${brand}: automate it once and chill 📈`,
+        hook: `how ${pluralAudience} scale 10x with ${brand}: automate ${ctx.deliverable} in ${ctx.timeAnchor} and chill 📈`,
       },
     ];
   }
@@ -379,11 +454,11 @@ function generateCarouselSlides(
     },
     {
       image_url: '/videos/photo_005_crying_peace_sign.jpg',
-      hook: `trying to convince myself that manual ${shortProblem} is building character ✌️`,
+      hook: `trying to convince myself that ${ctx.frictionAnchor} is building character ✌️`,
     },
     {
       image_url: '/videos/frames/raw_53_f1.jpg',
-      hook: `or you could just let ${brand} ${shortBenefit} in 30 seconds ✨`,
+      hook: `or you could just let ${brand} generate ${ctx.deliverable} in ${ctx.timeAnchor} ✨`,
     },
   ];
 }
