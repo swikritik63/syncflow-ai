@@ -299,12 +299,6 @@ export default function App() {
   };
 
   const confirmSchedule = () => {
-    if (!isPro && scheduledPosts.length >= 3) {
-      setIsScheduleModalOpen(false);
-      setIsPaywallOpen(true);
-      return;
-    }
-
     if (activeMeme) {
       const newPost: ScheduledPost = {
         id: `sched_${Date.now()}`,

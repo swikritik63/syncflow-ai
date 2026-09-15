@@ -70,15 +70,8 @@ export function ScheduleModal({
   }, [meme, business]);
 
   if (!isOpen || !meme) return null;
-
-  const freeLimitReached = !isPro && currentScheduledCount >= 3;
-
+ 
   const handleConfirm = async (mode: 'calendar' | 'instagram') => {
-    if (freeLimitReached) {
-      onOpenPaywall();
-      return;
-    }
-
     const slot = PEAK_TIMES[selectedSlotIndex];
     const newPost: ScheduledPost = {
       id: `sched_${Date.now()}`,
@@ -294,35 +287,27 @@ export function ScheduleModal({
             </div>
           </div>
 
-          {/* RevenueCat Free Tier Limit Banner */}
-          {freeLimitReached ? (
-            <div
-              onClick={onOpenPaywall}
-              className="p-3 bg-gradient-to-r from-emerald-500/20 to-teal-600/10 border border-emerald-500/30 rounded-2xl flex items-center justify-between cursor-pointer hover:border-emerald-500/50 transition-all"
-            >
-              <div className="flex items-center gap-2">
-                <Crown className="w-5 h-5 text-emerald-400" />
-                <div>
-                  <p className="text-xs font-bold text-emerald-300">Free Tier Limit (3/3)</p>
-                  <p className="text-[10px] text-neutral-300">Upgrade to Pro for unlimited scheduled reels</p>
-                </div>
+          {/* RevenueCat Pro & Demo Status Banner */}
+          <div className="p-3 bg-neutral-800/50 border border-neutral-750 rounded-2xl flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Crown className="w-4 h-4 text-emerald-400" />
+              <div>
+                <p className="text-xs font-bold text-white">
+                  {isPro ? '⭐ SyncFlow Pro Active' : '✨ Shipaton 2026 Demo Mode'}
+                </p>
+                <p className="text-[10px] text-neutral-400">
+                  {isPro ? 'Unlimited HD exports & automated queues' : 'Full Instagram publishing unlocked for demo'}
+                </p>
               </div>
-              <ChevronRight className="w-4 h-4 text-emerald-400" />
             </div>
-          ) : (
-            <div className="p-2.5 bg-neutral-800/40 rounded-xl border border-neutral-800 flex items-center justify-between">
-              <span className="text-[11px] text-neutral-400">
-                Account: <strong className="text-white">@swikritik483</strong> • {currentScheduledCount} of 3 scheduled
-              </span>
-              <button
-                type="button"
-                onClick={onOpenPaywall}
-                className="text-[11px] text-emerald-400 hover:text-emerald-300 font-semibold"
-              >
-                Pro Plan →
-              </button>
-            </div>
-          )}
+            <button
+              type="button"
+              onClick={onOpenPaywall}
+              className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition-colors"
+            >
+              {isPro ? 'Manage' : 'View Paywall →'}
+            </button>
+          </div>
         </div>
 
         {/* Footer Action Buttons */}
