@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "business-marketing_engine",
+    "slug": "business-marketing_engine",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.business.marketing.engine"
+    },
+    "android": {
+      "package": "com.business.marketing.engine",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0A",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png"
+      }
+    }
+  }
+}

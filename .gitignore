@@ -39,3 +39,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python & AI RAG
+**/__pycache__/
+*.py[cod]
+*$py.class
+video_rag/chroma_db/
+.venv/
+venv/
+
+# Scratch duplicate folder (assets are in public/videos/)
+/videos/

@@ -1,0 +1,62 @@
+================================================================================
+HOOKFORGE PRO: GEMINI GEM KNOWLEDGE BASE & FEW-SHOT REFERENCE
+================================================================================
+
+Upload this file directly to the "Knowledge" section of your Gemini Gem.
+This provides the Gem with domain vocabulary and gold-standard output examples.
+
+--------------------------------------------------------------------------------
+1. PRODUCT & NICHE CATEGORIES
+--------------------------------------------------------------------------------
+When classifying categories and search keywords, use specific terms like:
+- Tech & Workspace: coding, desk setup, mechanical keyboard, mobile app, photo editor, dark mode, developer tools, productivity, laptop.
+- Lifestyle & E-Commerce: coffee pour, morning routine, cafe aesthetic, urban walk, packaging, luxury streetwear, minimalist lifestyle.
+- Fitness & Sports: running, marathon training, gym workout, athletic apparel, sports hydration, smartwatch pacing, outdoor sunrise.
+
+--------------------------------------------------------------------------------
+2. CINEMATOGRAPHY & LIGHTING VOCABULARY
+--------------------------------------------------------------------------------
+- Camera Movement: smooth forward push, tracking shot, orbital pan, handheld kinetic, drone flyover, static locked-off, macro tilt-up.
+- Lighting Styles: golden hour sunset, soft natural daylight, neon ambient backlight, high-key studio, moody chiaroscuro, warm tungsten.
+- Pacing: calm and meditative, steady commercial rhythm, rapid-fire montage, energetic.
+
+--------------------------------------------------------------------------------
+3. GOLD-STANDARD FEW-SHOT EXAMPLES (MATCHING EXACT SCHEMA)
+--------------------------------------------------------------------------------
+
+### EXAMPLE 1: TECH & WORKSPACE (15s)
+{
+  "video_id": "tech_desk_01.mp4",
+  "duration": "15s",
+  "category": "Tech & Workspace",
+  "detailed_description": "The video opens with a smooth forward tracking shot gliding across a clean, minimalist wooden desk setup in a dimly lit room. Warm amber backlight softly illuminates a mechanical keyboard with custom keycaps as fingers fluidly type. Next to the keyboard, an iPhone rests on a matte black stand with its screen glowing brightly, showing a responsive mobile app interface. In the background, a curved monitor displays lines of clean code, while a steaming ceramic coffee mug adds a cozy, productive atmosphere. The camera slowly racks focus from the keyboard to the phone screen, finishing on an aesthetic close-up of a finger tapping an action button on the display.",
+  "objects_and_elements": ["mechanical keyboard", "smartphone on stand", "curved monitor", "steaming coffee mug", "wooden desk", "ambient LED light"],
+  "actions": ["typing on keyboard", "camera pushing forward", "rack focus to phone", "finger tapping screen"],
+  "mood_and_vibe": "focused, aesthetic, cozy, modern, productive",
+  "search_keywords": ["photo sharing app", "desk setup", "coding", "mobile app", "photo editor", "night productivity", "mechanical keyboard", "workspace aesthetic"]
+}
+
+### EXAMPLE 2: LIFESTYLE & COFFEE COMMUTE (30s)
+{
+  "video_id": "lifestyle_coffee_02.mp4",
+  "duration": "30s",
+  "category": "Lifestyle & E-Commerce",
+  "detailed_description": "The clip begins with early morning sunlight streaming through a cafe window, illuminating dust motes in a warm golden glow. A barista in an olive linen apron slowly pours frothed oat milk into a ceramic cup, forming a delicate latte art rosette in slow motion. The scene smoothly cuts to a young professional picking up the cup, stepping out onto a bustling sunlit European cobblestone street with sunglasses and a minimalist leather bag. The camera tracks alongside them as they walk confidently, check a notification on their smartphone with a subtle smile, and take a sip. The pacing is relaxed yet intentional, conveying freedom, urban sophistication, and morning clarity.",
+  "objects_and_elements": ["ceramic coffee cup", "latte art", "linen apron", "cobblestone street", "smartphone", "sunglasses"],
+  "actions": ["pouring latte art in slow motion", "walking through city street", "checking phone notification", "taking a sip"],
+  "mood_and_vibe": "aspirational, peaceful, warm, sophisticated, refreshing",
+  "search_keywords": ["coffee brand", "morning routine", "city commute", "lifestyle app", "aesthetic morning", "mindful productivity", "mobile app"]
+}
+
+### EXAMPLE 3: FITNESS & HIGH-ENERGY MOVEMENT (45s)
+{
+  "video_id": "fitness_runner_03.mp4",
+  "duration": "45s",
+  "category": "Fitness & Sports",
+  "detailed_description": "A high-octane cinematic sequence capturing an athlete running at dawn along an open coastal highway. The opening frame shows a low-angle tracking shot close to the asphalt as carbon-plated running shoes strike the pavement with explosive cadence. Lens flare glints off the ocean horizon as the camera cranes upward, revealing the runner's determined facial expression and rhythmic breathing in the cool morning mist. Halfway through, the runner checks their wrist smartwatch displaying pacing metrics, increases speed into an all-out sprint, and crosses a scenic bridge. The camera movements are dynamic and kinetic, blending low-angle speed shots with wide drone perspectives that emphasize endurance and athletic breakthrough.",
+  "objects_and_elements": ["running shoes", "coastal highway", "smartwatch", "ocean sunrise", "fog and mist"],
+  "actions": ["sprinting on asphalt", "checking smartwatch", "camera crane up", "drone flyover"],
+  "mood_and_vibe": "intense, inspiring, high-energy, disciplined, cinematic",
+  "search_keywords": ["running app", "marathon training", "fitness tracker", "running shoes", "morning cardio", "athletic endurance"]
+}
+================================================================================

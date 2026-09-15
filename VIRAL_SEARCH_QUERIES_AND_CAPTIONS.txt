@@ -1,0 +1,769 @@
+================================================================================
+VIRAL VIDEO SEARCH QUERIES & CAPTION HOOK DIRECTORY (500+ ENTRIES)
+For Pinterest, TikTok, Instagram Reels & Video RAG Database Curation
+================================================================================
+
+HOW TO USE:
+1. Copy any search query into Pinterest or TikTok search bar (add "no text" or "9:16").
+2. Download the clean B-roll/reaction clip.
+3. Feed it to your Gemini Gem (`video-database-cataloger`).
+4. Pair it with the matching viral marketing caption.
+
+================================================================================
+CATEGORY 1: CRYING, FRUSTRATION, STRESS & BURNOUT (PROBLEM HOOKS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+1. crying at laptop aesthetic video 9:16 no text
+2. stressed person holding head aesthetic video
+3. crying in car aesthetic video vertical
+4. frustrated at computer screen aesthetic video
+5. existential dread at desk aesthetic video
+6. crying meme greenscreen 9:16
+7. tired person rubbing eyes at night aesthetic
+8. burying face in hands desk video
+9. pacing back and forth stressed aesthetic video
+10. screaming into pillow aesthetic video 9:16
+11. overwhelmed student crying at desk video
+12. staring blankly at ceiling existential video
+13. dramatic facepalm meme video vertical
+14. crying while typing on keyboard video
+15. burnout aesthetic video rain window
+16. late night work exhaustion aesthetic video
+17. laying on floor defeated aesthetic video
+18. dropping head on desk slow motion video
+19. hands shaking holding coffee cup video
+20. tears running down face aesthetic 9:16
+21. frustrated designer throwing pen video
+22. looking at calendar in panic video
+23. scrolling phone with sad expression video
+24. sitting in dark room glowing monitor sad
+25. rubbing temples headache desk video
+26. pulling hair out frustration aesthetic
+27. slamming laptop shut aesthetic video
+28. staring at empty bank account meme video
+29. clock ticking fast anxious aesthetic video
+30. waking up to 50 alarms panic video
+31. deep heavy sigh in dark room video
+32. crying in shower aesthetic 9:16 video
+33. looking out rainy window lonely video
+34. exhausted founder at whiteboard video
+35. staring at mountain of paperwork video
+36. deleting all files rage meme video
+37. sitting on curb looking lost video
+38. looking at watch running late panic video
+39. pacing in hallway anxiety video
+40. holding cold coffee cup looking exhausted video
+41. staring at endless spreadsheet crying video
+42. phone buzzing repeatedly stress video
+43. crying in office bathroom mirror video
+44. staring at error message screen video
+45. head resting against cold window train video
+46. staring into darkness sleepless video
+47. covering eyes in embarrassment video
+48. looking at to-do list crying meme video
+49. drowning in sticky notes aesthetic video
+50. throwing hands up in surrender video
+
+[MATCHING VIRAL CAPTION HOOKS]
+1. POV: You spent 45 hours doing this manually before finding {{business_name}}.
+2. Stop doing this to yourself. {{business_name}} fixes it in 1 tap.
+3. Tell me I'm not the only one who felt like this before finding {{business_name}}...
+4. Me realizing I wasted 3 years on {{pain_point}} when this app was right here.
+5. If your current workflow feels like this, delete your old tools today.
+6. The exact moment I decided I was done dealing with {{pain_point}}.
+7. You don't need to suffer through {{pain_point}} anymore.
+8. How I looked every Sunday night before automated {{business_name}}.
+9. The #1 mistake 99% of people make with {{category}}...
+10. Stop paying $200/mo for tools that make you feel like this.
+11. Why did nobody tell me {{business_name}} existed 6 months ago?!
+12. Me watching my competitors struggle while I use {{business_name}} 😂
+13. If you do {{pain_point}} manually in 2026, we need to talk.
+14. Friendly reminder: Life is too short to waste on {{pain_point}}.
+15. Throwing away my old spreadsheet because {{business_name}} just launched.
+16. That breaking point when you realize there has to be an easier way.
+17. I almost gave up until I found this 1-click solution.
+18. Watching my screen load for the 100th time today... never again.
+19. This is your sign to stop struggling with {{pain_point}}.
+20. Don't let {{pain_point}} ruin your week when {{business_name}} is free.
+
+================================================================================
+CATEGORY 2: SHOCK, DISBELIEF & "WAIT, WHAT?!" (CURIOSITY HOOKS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+51. shocked reaction meme video 9:16 no text
+52. jaw drop reaction video vertical
+53. staring at screen in disbelief meme video
+54. side eye meme video vertical no text
+55. confused dramatic reaction video 9:16
+56. squinting at phone screen meme video
+57. dropping phone in shock aesthetic video
+58. looking up from laptop wide eyed video
+59. checking glasses reaction meme video
+60. double take looking back reaction video
+61. spitting out drink laughing meme video
+62. dramatic zoom in on eyes shock video
+63. frozen in shock looking at screen video
+64. leaning into monitor closer reaction video
+65. pointing at screen in disbelief video
+66. mouth open stunned silence video
+67. rubbing eyes checking if it is real video
+68. smiling slowly turning into shock video
+69. whispering to friend in shock video
+70. looking around room to see if anyone saw that video
+71. checking receipt shock meme video
+72. turning phone to show camera shock video
+73. scratching head confused aesthetic video
+74. tilt head confused dog style human video
+75. eyebrows raised in shock aesthetic video
+76. looking over sunglasses disbelief video
+77. holding hands over mouth shock video
+78. tapping screen repeatedly confused video
+79. refreshing page in disbelief video
+80. checking bank balance shock meme video
+81. looking at clock in disbelief video
+82. dropping pen shock reaction video
+83. dramatic head turn meme video 9:16
+84. staring at notification speechless video
+85. shaking head in pure disbelief video
+86. squinting through binoculars funny meme video
+87. looking through magnifying glass meme video
+88. gasping dramatically aesthetic video
+89. checking if camera is recording shock video
+90. backing away slowly from desk shock video
+91. dropping jaw slow motion aesthetic video
+92. looking at stats spike shock video
+93. eyes going wide close-up macro video
+94. holding face in disbelief aesthetic video
+95. laughing in disbelief shaking head video
+96. checking email notification shock video
+97. looking up and down in disbelief video
+98. stunned reaction in crowded cafe video
+99. taking headphones off in disbelief video
+100. silent gasp dramatic lighting video
+
+[MATCHING VIRAL CAPTION HOOKS]
+21. Me checking if this app is actually free or if I'm dreaming...
+22. Wait... why did nobody tell me {{business_name}} does {{key_benefit}}?!
+23. I tested 10 paid alternatives, but this free tool blew all of them away.
+24. POV: You find the tool your competitors have been gatekeeping for years.
+25. This feature in {{business_name}} feels genuinely illegal to know.
+26. Me realizing I just did 4 hours of {{pain_point}} in literally 4 seconds.
+27. Check your phone right now before this tool goes viral and gets paywalled.
+28. Is anyone else shocked that {{business_name}} actually works this well?!
+29. The secret tech trick 90% of photographers will never tell you.
+30. Don't buy {{competitor}} until you see what {{business_name}} does.
+31. Me looking at my phone after {{business_name}} finished my entire workflow.
+32. You're telling me I could have avoided {{pain_point}} this whole time?!
+33. I thought this was an ad scam until I tried it myself...
+34. The reaction when a client asks how I delivered the project so fast.
+35. Stop scrolling: This 1 tool just made {{pain_point}} completely obsolete.
+36. I showed my boss {{business_name}} and he thought I hired an agency.
+37. If you own a smartphone, you need to see this right now.
+38. The moment you realize you'll never have to do {{pain_point}} again.
+39. Proof that work smarter, not harder actually exists.
+40. My honest reaction after testing {{business_name}} for 24 hours.
+
+================================================================================
+CATEGORY 3: RELIEF, EUPHORIA, FREEDOM & DANCING (PAYOFF HOOKS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+101. happy dancing in room aesthetic video 9:16
+102. deep relief sigh aesthetic video no text
+103. running outside arms open freedom video
+104. smiling at phone screen happy aesthetic video
+105. leaning back in chair hands behind head video
+106. spinning around in sunlit field video
+107. peaceful morning coffee terrace aesthetic video
+108. closing laptop with big smile video
+109. dancing down hallway celebrate video
+110. walking into sunset relaxed aesthetic video
+111. jumping into bed happy relief video
+112. cheering alone in office aesthetic video
+113. walking along beach relaxed b roll video
+114. sipping iced drink peaceful aesthetic video
+115. high five celebration slow motion video
+116. stretching at sunrise peaceful video
+117. laying back on grass looking at clouds video
+118. taking deep breath fresh air mountain video
+119. laughing with friends cafe aesthetic video
+120. walking through city with sunglasses confident video
+121. opening curtains bright sunshine happy video
+122. driving with windows down sunset video
+123. peaceful rain outside cozy room smiling video
+124. happy dance at desk aesthetic video
+125. throwing confetti in air slow motion video
+126. fist pump victory aesthetic video
+127. walking into luxury hotel lobby confident video
+128. stepping onto balcony city view relaxed video
+129. pouring champagne celebrating video
+130. smiling walking down street music playing video
+131. laughing looking at phone screen video
+132. closing office door walking away free video
+133. stretching arms in morning sunlight video
+134. riding bike sunset golden hour peaceful video
+135. relaxing by infinity pool aesthetic video
+136. high fiving coworker victory video
+137. smiling at camera confident founder video
+138. walking in autumn park peaceful video
+139. laying on hammock breeze aesthetic video
+140. tossing car keys happy relief video
+141. dancing kitchen cooking happy video
+142. closing notebook smiling done for day video
+143. laughing on phone call celebration video
+144. peaceful evening city lights balcony video
+145. walking dog in morning sun relaxed video
+146. popping bubble wrap satisfying relief video
+147. sliding down banister happy playful video
+148. clinking glasses toast celebration video
+149. walking barefoot on sand ocean video
+150. sighing with eyes closed peaceful glow video
+
+[MATCHING VIRAL CAPTION HOOKS]
+41. That feeling when you let {{business_name}} handle your entire workload.
+42. How it feels to close your laptop at 3 PM with everything done.
+43. My life before {{business_name}} vs. my life after {{business_name}}.
+44. The relief of knowing you never have to deal with {{pain_point}} again.
+45. POV: You automated {{pain_point}} and took Friday off.
+46. When your app actually does what you built it to do.
+47. Peace of mind hits different when you have the right tools.
+48. Me leaving the office knowing {{business_name}} is working in the background.
+49. Celebrating because {{key_benefit}} just became 10x easier.
+50. Life gets so much better when you stop doing things the hard way.
+51. What 6 hours of saved time looks like every single week.
+52. The pure joy of replacing 5 messy tools with 1 clean app.
+53. Waking up knowing {{business_name}} already handled the heavy lifting.
+54. That feeling when your side project finally takes off.
+55. No stress, no panic, just clean results with {{business_name}}.
+56. How I feel walking into the weekend with zero pending tasks.
+57. Freedom from {{pain_point}} is the greatest hack of 2026.
+58. When technology actually gives you your time back instead of taking it.
+59. 1 tap. Done. Time to go enjoy the sunshine.
+60. You deserve a workflow that feels this effortless.
+
+================================================================================
+CATEGORY 4: SNEAKY, SECRET GATEKEEPING & HACKS (UNFAIR ADVANTAGE HOOKS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+151. whispering to camera secret aesthetic video 9:16
+152. looking over shoulder sneaky aesthetic video
+153. sliding smartphone across table secret video
+154. hooded person typing on laptop cyber video
+155. smirk looking at camera knowing smile video
+156. passing secret note aesthetic video
+157. tapping temple thinking smart hack video
+158. closing door quietly secret meeting video
+159. unlocking secret safe aesthetic video
+160. looking through keyhole mystery video
+161. typing fast in terminal dark room video
+162. sliding USB drive into laptop video
+163. flipping through confidential file video
+164. wink at camera knowing secret video
+165. pointing finger to lips shh secret video
+166. walking down dark neon alleyway video
+167. putting on dark sunglasses cool hacker video
+168. revealing secret drawer desk aesthetic video
+169. typing secret code keypad video
+170. turning screen away from camera sneaky video
+171. shadowy silhouette typing desk video
+172. magnifying glass focusing on secret detail video
+173. glowing briefcase opening glow on face video
+174. inspecting secret document lamp light video
+175. quiet nod of approval knowing look video
+176. walking past security camera aesthetic video
+177. whispering in ear secret reaction video
+178. turning off room light leaving screen on video
+179. sliding credit card slick transition video
+180. tapping watch time is running out video
+181. hands opening glowing package aesthetic video
+182. pulling curtain back revealing secret video
+183. looking left and right before tapping screen video
+184. discreet handoff coffee shop video
+185. finger hovering over red button video
+186. sliding laptop into leather bag clean video
+187. smirk in rearview mirror night drive video
+188. checking reflection sunglasses aesthetic video
+189. neon sign buzzing in dark room video
+190. opening private incognito window video
+191. holding golden ticket aesthetic video
+192. adjusting tie in mirror secret agent video
+193. stepping into elevator closing doors video
+194. clicking secret switch aesthetic desk video
+195. typing command enter terminal video
+196. subtle head nod agreement cafe video
+197. secret door opening bookcase video
+198. looking down at city from penthouse video
+199. pulling up hood walking in night fog video
+200. smiling knowingly closing laptop video
+
+[MATCHING VIRAL CAPTION HOOKS]
+61. Don't let your boss catch you using {{business_name}}...
+62. The secret photographers gatekeep so they can charge $500/hour.
+63. I probably shouldn't be sharing this, but {{business_name}} is insane.
+64. Download this before the developers realize they should charge for it.
+65. The unfair advantage 7-figure creators use that nobody talks about.
+66. Stop gatekeeping: this is how top creators {{key_benefit}} in seconds.
+67. An app so good it feels like cheating.
+68. The secret tool that turned my workflow from amateur to agency-level.
+69. If you know about {{business_name}}, keep it quiet. It's our secret.
+70. Why 99% of people are doing {{pain_point}} the slow way.
+71. The shortcut industry insiders don't want you to discover.
+72. How I secretly automated my entire job with {{business_name}}.
+73. This 1 cheat code saved me 15 hours of manual work this week.
+74. The hidden feature in {{business_name}} that changes everything.
+75. What pros use behind the scenes while everyone else struggles.
+76. Shh... don't tell the big agencies how cheap this is.
+77. You didn't hear it from me, but {{business_name}} is the real deal.
+78. The secret hack to {{key_benefit}} without touching Photoshop.
+79. How to look like a 10-person team when it's just you and your phone.
+80. Save this video before it gets taken down.
+
+================================================================================
+CATEGORY 5: AESTHETIC TECH & MODERN WORKSPACE B-ROLL (SAAS & APPS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+201. aesthetic desk setup video no text 9:16
+202. typing on mechanical keyboard aesthetic b roll
+203. dark mode desk setup purple ambient video
+204. using iphone aesthetic hand close up video
+205. night coding aesthetic b roll glowing monitor
+206. minimalist office desk video no text 9:16
+207. cyberpunk neon desk setup video vertical
+208. wooden desk warm lamp aesthetic video
+209. curved ultrawide monitor setup video b roll
+210. macro close up fingers typing on keycaps video
+211. smartphone on stand notifications glowing video
+212. clean cable management desk aesthetic video
+213. ipad pro apple pencil drawing aesthetic video
+214. steaming coffee mug beside laptop desk video
+215. focus rack from keyboard to phone screen video
+216. ambient led light bar on monitor video
+217. code scrolling on vertical monitor video
+218. dual monitor minimalist developer desk video
+219. aesthetic mouse gliding on desk mat video
+220. noise cancelling headphones resting on desk video
+221. smart home lights turning on aesthetic video
+222. aesthetic lo fi desk rain outside window video
+223. tapping phone screen clean ui interaction video
+224. swiping photo gallery on tablet aesthetic video
+225. minimalist white desk setup natural daylight video
+226. macbook opening apple logo glowing video
+227. designer stylus tapping glass screen video
+228. aesthetic tech unboxing knife cutting tape video
+229. modern studio lighting equipment b roll video
+230. camera gimbal smooth pan across tech setup video
+231. neon clock on desk glowing numbers video
+232. clicking wireless mouse slow motion video
+233. hand adjusting volume knob audio interface video
+234. mechanical keyboard sound visual aesthetic video
+235. dark room glowing rgb light bars video
+236. modern loft apartment workspace drone video
+237. aesthetic desk plant succulent beside laptop video
+238. sunlight shifting across wooden desk timelapse video
+239. taking notes in leather journal beside laptop video
+240. plugging in usb c cable smooth click video
+241. aesthetic wireframe 3d render on screen video
+242. putting on airpods max headphones desk video
+243. clean glass desk futuristic aesthetic video
+244. ambient light reflecting on matte laptop video
+245. minimalist desk organization drawer opening video
+246. tapping smartwatch screen modern tech video
+247. dark mode code editor typing fast video
+248. aesthetic studio speakers playing audio vibration video
+249. dual phone comparison side by side desk video
+250. overhead top down desk layout aesthetic video
+
+[MATCHING VIRAL CAPTION HOOKS]
+81. Built for people who care about clean design and fast results.
+82. If your desk looks like this, {{business_name}} was made for you.
+83. The cleanest photo and video tool on the market right now.
+84. Why productivity geeks are obsessing over {{business_name}}.
+85. The aesthetic tool that matches your aesthetic workspace.
+86. Software so smooth you actually enjoy using it.
+87. Engineered for creators who don't compromise on speed.
+88. The 1 app currently installed on my home screen dock.
+89. How to elevate your digital workflow in 2026.
+90. Minimalist interface. Maximum creative power.
+91. Turn your smartphone into a full-scale creative studio.
+92. For the creators working quietly at 2 AM.
+93. This is what modern software should feel like.
+94. Why bloated software is dying and lightweight apps are winning.
+95. The daily tool behind my entire content production.
+96. Simple on the surface. Unstoppable under the hood.
+97. Designed for speed. Built for precision.
+98. Say goodbye to laggy legacy apps.
+99. The tech upgrade you didn't know your phone needed.
+100. Professional quality in the palm of your hand.
+
+================================================================================
+CATEGORY 6: LUXURY, URBAN COMMUTE & COFFEE AESTHETIC (E-COMMERCE & BRAND)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+251. pouring iced coffee aesthetic video no text
+252. city night drive pov aesthetic video 9:16
+253. walking in rain with umbrella aesthetic video
+254. morning routine aesthetic b roll no text
+255. luxury aesthetic video b roll 9:16
+256. unboxing luxury packaging aesthetic video
+257. tokyo street night aesthetic rain video
+258. pulling espresso shot golden crema video
+259. matcha powder whisking slow motion video
+260. walking in european city cobblestone street video
+261. vintage sports car dashboard night drive video
+262. sunrise over skyscraper skyline drone video
+263. pouring sparkling water lime ice aesthetic video
+264. putting on luxury watch wrist close up video
+265. sunglasses reflection city lights video
+266. leather jacket walking through subway video
+267. high end perfume bottle mist slow motion video
+268. aesthetic bakery croissant fresh out of oven video
+269. city rooftop golden hour wine glass video
+270. stepping out of luxury car heels pavement video
+271. walking into modern glass skyscraper video
+272. aesthetic cafe interior sunlight shadows video
+273. opening black luxury embossed box video
+274. pouring oat milk swirling into coffee video
+275. rain droplets on car windshield night lights video
+276. tailored suit walking down avenue video
+277. vintage camera clicking shutter lens video
+278. passport and boarding pass airport aesthetic video
+279. driving through coastal tunnel ocean view video
+280. minimal jewelry reflecting sun close up video
+281. city traffic lights blur bokeh aesthetic video
+282. picking up iced matcha latte cafe counter video
+283. modern art gallery walking through white room video
+284. silk fabric billowing slow motion aesthetic video
+285. luxury hotel bedroom morning sunlight video
+286. putting fountain pen to thick paper video
+287. walking through mist morning pine forest video
+288. glass kettle boiling herbal tea aesthetic video
+289. neon sign reflection wet asphalt city video
+290. luxury sneaker box opening crisp tissue paper video
+291. checking mechanical watch winding crown video
+292. sunset reflecting on ocean horizon cruise video
+293. cutting into fresh loaf sourdough bread video
+294. city crosswalk crowd slow motion aesthetic video
+295. driving across golden gate bridge fog video
+296. aesthetic pottery wheel shaping clay video
+297. lighting luxury scented candle match flare video
+298. looking down spiral staircase architectural video
+299. holding iced drink condensation dripping video
+300. walking into moody speakeasy bar video
+
+[MATCHING VIRAL CAPTION HOOKS]
+101. Stop compromising on quality. {{business_name}} is the standard.
+102. The aesthetic upgrade your brand has been waiting for.
+103. How to make your everyday business look like a luxury brand.
+104. For those who appreciate craftsmanship and fine details.
+105. Transform your daily routine with {{business_name}}.
+106. Premium results without the premium agency price tag.
+107. When quality speaks for itself, you don't need to shout.
+108. An experience designed for the discerning creator.
+109. Elevate every single visual your customers see.
+110. The secret behind effortless luxury aesthetics.
+111. High standards aren't expensive—bad tools are.
+112. Why luxury brands obsess over this 1 detail.
+113. Experience the difference of true refinement.
+114. For the people who notice the subtle touches.
+115. From ordinary photos to magazine-cover quality in seconds.
+116. Tasteful, intentional, and undeniably effective.
+117. How modern entrepreneurs build timeless brands.
+118. Give your audience an experience they will never forget.
+119. The gold standard for modern digital presentation.
+120. When your visuals match the quality of your ambition.
+
+================================================================================
+CATEGORY 7: FITNESS, KINETIC ENERGY & ADRENALINE (SPORTS & HIGH DOPAMINE)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+301. running shoes slow motion aesthetic video 9:16
+302. cinematic gym workout b roll no text
+303. running at sunrise coastal road aesthetic video
+304. chalk powder clap gym slow motion video
+305. athlete tying shoelaces intense focus video
+306. jumping rope hyper speed kinetic video
+307. barbell lift drop chalk dust dramatic lighting
+308. running in rain dark street intense video
+309. boxing heavy bag punch sweat flying video
+310. sprinter leaving blocks explosive start video
+311. mountain trail runner ridge line drone video
+312. water splash drinking from bottle athlete video
+313. heart rate monitor smartwatch glowing pulse video
+314. pull ups back muscles dramatic shadow video
+315. stretching on track morning mist video
+316. runner exhaling steam cold morning dawn video
+317. kettlebell swing explosive hip snap video
+318. sprinting up stadium stairs sunrise video
+319. swimmer diving into crystal blue water video
+320. basketball swoosh net slow motion aesthetic
+321. battle ropes wave motion gym floor video
+322. cyclist racing down winding mountain pass video
+323. athlete looking in mirror breathing heavy video
+324. carbon plate running shoe flex slow motion video
+325. foam rolling recovery athlete aesthetic video
+326. gripping barbell knurling close up video
+327. runner crossing bridge city skyline sunrise video
+328. shadowboxing in warehouse moody shafts of light
+329. dropping weights walking away victorious video
+330. wiping sweat with towel deep breath video
+331. sprinting through forest trail morning light video
+332. gym timer countdown 3 2 1 buzzer video
+333. track athlete putting in earbuds focus video
+334. deadlift lockout chalk cloud slow motion video
+335. running alongside train tracks dawn video
+336. cold plunge immersion ice water breath video
+337. adjusting running vest water bottle video
+338. cyclist clipping shoes into pedals snap video
+339. runner silhouette against ocean sunrise video
+340. boxing hand wraps wrapping knuckles tight video
+341. explosive box jump slow motion landing video
+342. marathon crowd cheering runner sprint video
+343. athlete drinking electrolytes sun flare video
+344. sprinting past camera dust kicking up video
+345. heavy breathing chest rising falling video
+346. runner checking pace watch road highway video
+347. gym floor slam ball bounce slow motion video
+348. athlete untying shoes exhausted smiling video
+349. running through mist coastal cliffs drone video
+350. looking back at distance conquered peak video
+
+[MATCHING VIRAL CAPTION HOOKS]
+121. Discipline beats motivation every single time.
+122. The tool athletes and high performers use to stay ahead.
+123. Stop making excuses. {{business_name}} removes all friction.
+124. When you want results, you need tools that keep up with your pace.
+125. Built for speed. Engineered for endurance.
+126. How to break your personal best without burning out.
+127. No shortcuts to the top—just better execution with {{business_name}}.
+128. For the people who put in the work while everyone else is sleeping.
+129. Push past your limits. Let {{business_name}} handle the rest.
+130. High energy. Zero compromise.
+131. The exact companion for your daily grind.
+132. When you take your goals seriously, your tools should too.
+133. Track, optimize, and dominate every single day.
+134. Results don't lie. Neither does {{business_name}}.
+135. Ready to level up? Start right here.
+136. Consistency is the cheat code. This is the catalyst.
+137. How champions stay organized and focused.
+138. The difference between wishing and doing.
+139. Every rep counts. Every second matters.
+140. Fuel your drive with {{business_name}}.
+
+================================================================================
+CATEGORY 8: SATISFYING, HYPNOTIC LOOPS & ASMR (VIRAL ALGORITHM MAGNETS)
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+351. satisfying kinetic loop video no text 9:16
+352. peeling protective film screen satisfying video
+353. cutting kinetic sand knife slice asmr video
+354. smooth 3d fluid simulation loop aesthetic video
+355. laser engraving metal satisfying pattern video
+356. paint mixing swirling colors aesthetic loop video
+357. dropping ball in marble run satisfying video
+358. clean soap carving curls falling asmr video
+359. satisfying power washer cleaning concrete video
+360. ice cube cracking into crystal water video
+361. smooth pottery trimming clay shaving video
+362. peeling dried paint off palette satisfying video
+363. hydraulic press crushing colored slime video
+364. domino rally falling in perfect symmetry video
+365. glass cutting clean break satisfying line video
+366. pouring honey thick golden swirl slow motion
+367. mechanical gear clockwork rotating loop video
+368. slicing fresh aloe vera gel clear drop video
+369. calligraphy ink flow on textured paper video
+370. sorting colored marbles into slots loop video
+371. smooth butter knife spreading frosting video
+372. satisfying foam squeeze rebound slow motion video
+373. 3d printer extruding perfect spiral vase video
+374. pouring molten gold ingot bar mold video
+375. acoustic foam tile installation pattern video
+376. dropping magnet balls chain reaction video
+377. peeling masking tape crisp paint edge video
+378. cutting sponge with sharp razor slice video
+379. sand zen garden rake pattern loop video
+380. water droplets beading off hydrophobic glass video
+381. slicing kinetic clay reveal hidden pattern video
+382. satisfying lock click mechanism internal video
+383. peeling wax seal off envelope intact video
+384. satisfying coin spin endless balance loop video
+385. dripping colorful wax candles slow motion video
+386. sorting colored beads gradient tray video
+387. smooth wood plane shaving curled ribbons video
+388. bubble wrap popping roll roller asmr video
+389. peeling adhesive sticker clean peel video
+390. crushing bath bomb colored water explosion video
+391. slicing fresh bread crust crunch sound video
+392. mesmerizing geometric pendulum sand trace video
+393. smooth oil and water macro bubble division video
+394. ice melting timelapse reverse freezing video
+395. tearing perforated paper clean line video
+396. stacking smooth river stones balance video
+397. satisfying tile grout cleaning reveal video
+398. magnetic slime swallowing iron cube video
+399. peeling tape off fresh canvas painting video
+400. infinite zoom fractal tunnel aesthetic loop video
+
+[MATCHING VIRAL CAPTION HOOKS]
+141. The most satisfying thing you will see all day.
+142. Watching {{business_name}} clean up messy photos is pure therapy.
+143. Why is this so insanely addictive to watch?!
+144. Smooth. Effortless. Exactly how your workflow should feel.
+145. Tell me you watched this loop at least 3 times 😂
+146. The visual definition of precision.
+147. When software works so cleanly it gives you chills.
+148. You can't look away from this.
+149. That crisp feeling when everything just falls into place.
+150. Satisfying results in 1 single tap.
+151. If you love clean aesthetics, this is your home.
+152. Never get tired of seeing this happen.
+153. Pure dopamine for creators.
+154. This is what effortless automation looks like.
+155. It's the precision for me.
+156. The easiest way to fix {{pain_point}} without lifting a finger.
+157. Watch this once. You'll never go back.
+158. The satisfaction of a completed project in record time.
+159. Hypnotic quality. Unbeatable speed.
+160. Try it once and you're hooked.
+
+================================================================================
+CATEGORY 9: RELATABLE EVERYDAY MOMENTS & LIFE REACTIONS
+================================================================================
+
+[PINTEREST / TIKTOK SEARCH QUERIES]
+401. waking up panic looking at clock meme video 9:16
+402. spilling coffee on desk slow motion oops video
+403. looking at phone battery 1 percent panic video
+404. searching frantically through messy bag video
+405. dropping keys trying to unlock door rush video
+406. staring at grocery receipt shock meme video
+407. running to catch bus doors closing meme video
+408. sitting in traffic horn honking annoyed video
+409. pet knocking water off desk funny meme video
+410. yawning at 2 pm afternoon crash desk video
+411. checking weather umbrella inside out wind video
+412. tripping over nothing playing it cool video
+413. forgetting why walked into room confused video
+414. awkward elevator silence looking at ceiling video
+415. waving back at stranger who wasn't waving video
+416. untangling headphones wire knot mess video
+417. clicking send email immediate panic regret video
+418. looking at credit card decline machine meme video
+419. walking wrong direction checking phone turn around
+420. falling asleep sitting up on train head bob video
+421. trying to remember password locked out video
+422. looking at mirror checking teeth spinach meme video
+423. opening fridge staring blankly inside video
+424. dropped toast butter side down slow motion video
+425. phone falling on face laying in bed meme video
+426. awkward handshake turned fist bump meme video
+427. accidentally liking 3 year old photo panic video
+428. looking at screen brightness 100 percent blinding video
+429. sitting through 2 hour meeting that could be email video
+430. trying to open plastic bag grocery store struggle video
+431. running out of toilet paper empty cardboard roll video
+432. sneeze caught in throat funny face meme video
+433. wearing white shirt spilling pasta sauce video
+434. alarm going off 5 am slamming snooze video
+435. printer running out of ink last page video
+436. wifi disconnecting during important download video
+437. checking watch time going backwards slow video
+438. staring at tangled wires behind tv frustration video
+439. phone slipping out of pocket onto couch crevice video
+440. burnt toast smoking toaster panic fan video
+441. looking at luggage scale overweight airline meme video
+442. rain starting right after car wash meme video
+443. opening umbrella inside building bad luck meme video
+444. walking into glass door transparent funny video
+445. ice cream scoop falling off cone slow motion video
+446. battery dying mid phone call silence video
+447. zipper stuck on jacket struggling video
+448. getting stuck in sweater trying to take off video
+449. shoes squeaking on quiet polished floor video
+450. microwave beeping at 3 am trying to stop it video
+
+[MATCHING VIRAL CAPTION HOOKS]
+161. Not all problems can be avoided, but {{pain_point}} definitely can.
+162. We've all been here... except now there's {{business_name}}.
+163. How it feels before vs after finding this 1 app.
+164. The struggle is real. The solution is even more real.
+165. Don't let silly mistakes slow down your business.
+166. That universal moment when you realize you need a better system.
+167. Why do we always learn the hard way before finding the easy way?
+168. Stop making life harder than it needs to be.
+169. Laughing through the pain until {{business_name}} saved the day.
+170. We built {{business_name}} so you never have to deal with this again.
+171. If this has ever happened to you, drop a like.
+172. The ultimate sanity saver for busy humans.
+173. One less thing to stress about today.
+174. It's 2026—why are we still struggling with {{pain_point}}?!
+175. The app your future self will thank you for downloading.
+176. Because you have better things to do with your time.
+177. Less headache. More progress.
+178. Stop letting bad tools ruin your day.
+179. A relatable moment with a modern solution.
+180. The upgrade you've secretly been needing all along.
+
+================================================================================
+CATEGORY 10: HIGH-CONVERTING VIRAL HOOK FORMULAS (PLUG & PLAY)
+================================================================================
+
+[PLUG-AND-PLAY VIRAL FORMULAS]
+451. POV: You found the {{business_name}} that does {{key_benefit}} in 1 tap.
+452. Stop doing {{pain_point}} when {{business_name}} exists for free!
+453. Why is nobody talking about this {{category}} hack?!
+454. The secret weapon {{target_audience}} gatekeep to get {{key_benefit}}.
+455. How I went from {{pain_point}} to {{key_benefit}} in 3 days.
+456. If you're still {{pain_point}}, delete your old apps right now.
+457. This 1 app feature feels completely illegal to know.
+458. The #1 mistake {{target_audience}} make when {{pain_point}}.
+459. Don't buy {{competitor}} until you've tested {{business_name}}.
+460. How to {{key_benefit}} in literally 5 seconds using your phone.
+461. Old way: {{pain_point}}. New way: {{business_name}} in 1 click.
+462. Why photographers and creators are secretly switching to {{business_name}}.
+463. Me testing if {{business_name}} actually works or if it's hype.
+464. Tell me I'm not the only one who hated {{pain_point}} before this...
+465. That moment when an app actually delivers on its promise.
+466. Turn 2 hours of {{pain_point}} into a 3-second tap with {{business_name}}.
+467. The cheat code for {{category}} that saved me 10 hours this week.
+468. Why pay $250/year for Photoshop when {{business_name}} does it on mobile?
+469. If you run a business in 2026, you need this tool on your phone.
+470. Say goodbye to {{pain_point}} forever. Link in bio to try it free!
+471. How I automated my entire marketing without hiring an agency.
+472. The app every solopreneur should install before opening shop.
+473. Stop wasting your nights on {{pain_point}}.
+474. What 1-click {{key_benefit}} actually looks like in real time.
+475. If you love clean results and zero hassle, watch this.
+476. The fastest way to elevate your brand presence today.
+477. Why 10,000+ creators deleted their old tools for {{business_name}}.
+478. The single best investment I made for my creative workflow.
+479. From ruined photo to viral post in under 10 seconds.
+480. Try this once. You will never open your old software again.
+481. The real reason top creators post 3x per day without burnout.
+482. Stop struggling with complicated tools. Simple always wins.
+483. You're 1 tap away from never dealing with {{pain_point}} again.
+484. The feature you'll wish you discovered 2 years ago.
+485. Proof that you don't need expensive gear to get {{key_benefit}}.
+486. How to scale your business without working 14-hour days.
+487. A 5-second hack that replaces 3 paid subscriptions.
+488. The app that turned my phone into an automated ad machine.
+489. Ready to see what effortless content creation looks like?
+490. Why {{business_name}} is taking over social media in 2026.
+491. The secret sauce behind high-converting short-form videos.
+492. How to beat the algorithm without spending a dime on ads.
+493. If you hate {{pain_point}}, this was literally built for you.
+494. A game changer for anyone trying to grow on TikTok and Reels.
+495. The tool that gave me my weekends back.
+496. How to create agency-level marketing on a student budget.
+497. The difference between struggling creators and viral creators.
+498. Tap the link in bio and thank me later.
+499. One click. Zero headache. Maximum results.
+500. Your business deserves to be seen. Let {{business_name}} handle it.
+================================================================================

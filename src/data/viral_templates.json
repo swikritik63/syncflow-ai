@@ -1,0 +1,701 @@
+{
+  "viralTemplates": [
+    {
+      "id": "vt_001",
+      "title": "Unlock Success with This Simple Tech Hack",
+      "category": "tech",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-vertical-aerial-view-of-city-traffic-at-night-41551-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_001.jpg",
+      "duration": 50,
+      "soundName": "Acoustic Indie Folk",
+      "soundAuthor": "SoundWave",
+      "views": "3.8M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#c2c2f6",
+        "bgColor": "#77508e",
+        "fontStyle": "Georgia",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#tech",
+        "#ViralVideo",
+        "#DigitalMarketing",
+        "#ForYouPage",
+        "#curiosityMarketing"
+      ],
+      "viralScore": 99,
+      "marketingAngle": "curiosity"
+    },
+    {
+      "id": "vt_002",
+      "title": "Unlock Growth with This Simple Ecommerce Hack",
+      "category": "ecommerce",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-young-woman-in-a-park-on-a-sunny-day-35105-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_002.jpg",
+      "duration": 48,
+      "soundName": "Energetic Pop Anthem",
+      "soundAuthor": "TuneCrafter",
+      "views": "258K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#3d2a71",
+        "bgColor": "#0df082",
+        "fontStyle": "Helvetica",
+        "position": "center"
+      },
+      "hashtags": [
+        "#ecommerce",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#negativitybiasMarketing"
+      ],
+      "viralScore": 97,
+      "marketingAngle": "negativity_bias"
+    },
+    {
+      "id": "vt_003",
+      "title": "Unlock Productivity with This Simple Saas Hack",
+      "category": "saas",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-exercising-with-a-skipping-rope-in-a-park-5026-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_003.jpg",
+      "duration": 45,
+      "soundName": "Synthwave Retro Groove",
+      "soundAuthor": "BeatMaster",
+      "views": "1.7M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#8a1768",
+        "bgColor": "#101037",
+        "fontStyle": "monospace",
+        "position": "top"
+      },
+      "hashtags": [
+        "#saas",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#fomoMarketing"
+      ],
+      "viralScore": 96,
+      "marketingAngle": "fomo"
+    },
+    {
+      "id": "vt_004",
+      "title": "Unlock Happiness with This Simple Local Biz Hack",
+      "category": "local_biz",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-person-walking-in-a-forest-in-a-foggy-day-47099-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_004.jpg",
+      "duration": 57,
+      "soundName": "Epic Orchestral Drop",
+      "soundAuthor": "AudioGenius",
+      "views": "0.1M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#92ed1b",
+        "bgColor": "#63f064",
+        "fontStyle": "Arial",
+        "position": "center"
+      },
+      "hashtags": [
+        "#local_biz",
+        "#ViralVideo",
+        "#StartupLife",
+        "#ForYouPage",
+        "#speedhackMarketing"
+      ],
+      "viralScore": 86,
+      "marketingAngle": "speed_hack"
+    },
+    {
+      "id": "vt_005",
+      "title": "Unlock Success with This Simple Creative Hack",
+      "category": "creative",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-sitting-on-the-beach-and-listening-to-music-4074-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_005.jpg",
+      "duration": 21,
+      "soundName": "Phonk Drift 02",
+      "soundAuthor": "BeatMaster",
+      "views": "0.8M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#c3574c",
+        "bgColor": "#c2c77d",
+        "fontStyle": "Georgia",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#creative",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#comparisonMarketing"
+      ],
+      "viralScore": 95,
+      "marketingAngle": "comparison"
+    },
+    {
+      "id": "vt_006",
+      "title": "Unlock Growth with This Simple Fitness Hack",
+      "category": "fitness",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-person-walking-through-a-city-street-45919-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_006.jpg",
+      "duration": 34,
+      "soundName": "Smooth Jazz Lounge",
+      "soundAuthor": "AudioGenius",
+      "views": "339K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#f8f96e",
+        "bgColor": "#0029b3",
+        "fontStyle": "Verdana",
+        "position": "top"
+      },
+      "hashtags": [
+        "#fitness",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#curiosityMarketing"
+      ],
+      "viralScore": 97,
+      "marketingAngle": "curiosity"
+    },
+    {
+      "id": "vt_007",
+      "title": "Unlock Productivity with This Simple Tech Hack",
+      "category": "tech",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-man-walking-in-the-city-at-night-41552-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_007.jpg",
+      "duration": 58,
+      "soundName": "Synthwave Retro Groove",
+      "soundAuthor": "MelodyMaker",
+      "views": "3.3M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#6f1165",
+        "bgColor": "#b1f237",
+        "fontStyle": "Arial",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#tech",
+        "#ViralVideo",
+        "#DigitalMarketing",
+        "#ForYouPage",
+        "#negativitybiasMarketing"
+      ],
+      "viralScore": 85,
+      "marketingAngle": "negativity_bias"
+    },
+    {
+      "id": "vt_008",
+      "title": "Unlock Happiness with This Simple Ecommerce Hack",
+      "category": "ecommerce",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-vertical-drone-shot-of-a-beautiful-river-31149-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_008.jpg",
+      "duration": 43,
+      "soundName": "Original Sound - Viral Growth Beat",
+      "soundAuthor": "SoundWave",
+      "views": "2.2M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#3fe2ed",
+        "bgColor": "#a111a8",
+        "fontStyle": "Verdana",
+        "position": "top"
+      },
+      "hashtags": [
+        "#ecommerce",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#fomoMarketing"
+      ],
+      "viralScore": 95,
+      "marketingAngle": "fomo"
+    },
+    {
+      "id": "vt_009",
+      "title": "Unlock Success with This Simple Saas Hack",
+      "category": "saas",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-a-laptop-at-home-41315-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_009.jpg",
+      "duration": 22,
+      "soundName": "TikTok Trend Mix",
+      "soundAuthor": "EchoChamber",
+      "views": "4.9M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#90117b",
+        "bgColor": "#3f14a0",
+        "fontStyle": "monospace",
+        "position": "center"
+      },
+      "hashtags": [
+        "#saas",
+        "#ViralVideo",
+        "#StartupLife",
+        "#ForYouPage",
+        "#speedhackMarketing"
+      ],
+      "viralScore": 89,
+      "marketingAngle": "speed_hack"
+    },
+    {
+      "id": "vt_010",
+      "title": "Unlock Growth with This Simple Local Biz Hack",
+      "category": "local_biz",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-man-with-a-backpack-walking-up-a-mountain-41571-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_010.jpg",
+      "duration": 52,
+      "soundName": "Ambient Study Flow",
+      "soundAuthor": "SonicFlow",
+      "views": "0.4M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#80f68c",
+        "bgColor": "#bbd653",
+        "fontStyle": "Arial",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#local_biz",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#comparisonMarketing"
+      ],
+      "viralScore": 99,
+      "marketingAngle": "comparison"
+    },
+    {
+      "id": "vt_011",
+      "title": "Unlock Productivity with This Simple Creative Hack",
+      "category": "creative",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-womans-hands-typing-on-a-keyboard-41313-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_011.jpg",
+      "duration": 37,
+      "soundName": "Original Sound - Viral Growth Beat",
+      "soundAuthor": "TuneCrafter",
+      "views": "1.3M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#3747aa",
+        "bgColor": "#fcb893",
+        "fontStyle": "Georgia",
+        "position": "top"
+      },
+      "hashtags": [
+        "#creative",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#curiosityMarketing"
+      ],
+      "viralScore": 93,
+      "marketingAngle": "curiosity"
+    },
+    {
+      "id": "vt_012",
+      "title": "Unlock Happiness with This Simple Fitness Hack",
+      "category": "fitness",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-posing-for-a-photo-in-a-flower-field-41584-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_012.jpg",
+      "duration": 29,
+      "soundName": "Synthwave Retro Groove",
+      "soundAuthor": "MelodyMaker",
+      "views": "0.3M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#d34105",
+        "bgColor": "#7f191a",
+        "fontStyle": "Helvetica",
+        "position": "center"
+      },
+      "hashtags": [
+        "#fitness",
+        "#ViralVideo",
+        "#StartupLife",
+        "#ForYouPage",
+        "#negativitybiasMarketing"
+      ],
+      "viralScore": 87,
+      "marketingAngle": "negativity_bias"
+    },
+    {
+      "id": "vt_013",
+      "title": "Unlock Success with This Simple Tech Hack",
+      "category": "tech",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-looking-at-the-ocean-from-a-cliff-41581-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_013.jpg",
+      "duration": 40,
+      "soundName": "Energetic Pop Anthem",
+      "soundAuthor": "SonicFlow",
+      "views": "98K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#03644f",
+        "bgColor": "#78b88d",
+        "fontStyle": "Verdana",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#tech",
+        "#ViralVideo",
+        "#DigitalMarketing",
+        "#ForYouPage",
+        "#fomoMarketing"
+      ],
+      "viralScore": 92,
+      "marketingAngle": "fomo"
+    },
+    {
+      "id": "vt_014",
+      "title": "Unlock Growth with This Simple Ecommerce Hack",
+      "category": "ecommerce",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-man-working-on-a-laptop-in-a-park-41323-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_014.jpg",
+      "duration": 59,
+      "soundName": "TikTok Trend Mix",
+      "soundAuthor": "EchoChamber",
+      "views": "2.8M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#1a6039",
+        "bgColor": "#f5f675",
+        "fontStyle": "monospace",
+        "position": "top"
+      },
+      "hashtags": [
+        "#ecommerce",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#speedhackMarketing"
+      ],
+      "viralScore": 98,
+      "marketingAngle": "speed_hack"
+    },
+    {
+      "id": "vt_015",
+      "title": "Unlock Productivity with This Simple Saas Hack",
+      "category": "saas",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-running-on-a-beach-41579-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_015.jpg",
+      "duration": 18,
+      "soundName": "Acoustic Indie Folk",
+      "soundAuthor": "SoundWave",
+      "views": "0.7M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#c2c77d",
+        "bgColor": "#101037",
+        "fontStyle": "Arial",
+        "position": "center"
+      },
+      "hashtags": [
+        "#saas",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#comparisonMarketing"
+      ],
+      "viralScore": 94,
+      "marketingAngle": "comparison"
+    },
+    {
+      "id": "vt_016",
+      "title": "Unlock Happiness with This Simple Local Biz Hack",
+      "category": "local_biz",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-abstract-blue-lines-on-a-black-background-47123-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_016.jpg",
+      "duration": 47,
+      "soundName": "Phonk Drift 02",
+      "soundAuthor": "BeatMaster",
+      "views": "64K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#41f4b8",
+        "bgColor": "#3d2a71",
+        "fontStyle": "Georgia",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#local_biz",
+        "#ViralVideo",
+        "#StartupLife",
+        "#ForYouPage",
+        "#curiosityMarketing"
+      ],
+      "viralScore": 90,
+      "marketingAngle": "curiosity"
+    },
+    {
+      "id": "vt_017",
+      "title": "Unlock Success with This Simple Creative Hack",
+      "category": "creative",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-drinking-coffee-and-using-her-laptop-41320-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_017.jpg",
+      "duration": 31,
+      "soundName": "Dreamy Lo-Fi Chill",
+      "soundAuthor": "VibeCreator",
+      "views": "1.9M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#4968fb",
+        "bgColor": "#a111a8",
+        "fontStyle": "Helvetica",
+        "position": "top"
+      },
+      "hashtags": [
+        "#creative",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#negativitybiasMarketing"
+      ],
+      "viralScore": 96,
+      "marketingAngle": "negativity_bias"
+    },
+    {
+      "id": "vt_018",
+      "title": "Unlock Growth with This Simple Fitness Hack",
+      "category": "fitness",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-meditating-outdoors-in-a-park-41575-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_018.jpg",
+      "duration": 25,
+      "soundName": "Smooth Jazz Lounge",
+      "soundAuthor": "AudioGenius",
+      "views": "0.2M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#80f68c",
+        "bgColor": "#7f191a",
+        "fontStyle": "Verdana",
+        "position": "center"
+      },
+      "hashtags": [
+        "#fitness",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#fomoMarketing"
+      ],
+      "viralScore": 88,
+      "marketingAngle": "fomo"
+    },
+    {
+      "id": "vt_019",
+      "title": "Unlock Productivity with This Simple Tech Hack",
+      "category": "tech",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-vertical-shot-of-the-sky-at-sunset-30948-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_019.jpg",
+      "duration": 54,
+      "soundName": "Ambient Study Flow",
+      "soundAuthor": "SonicFlow",
+      "views": "377K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#c2c2f6",
+        "bgColor": "#bbd653",
+        "fontStyle": "monospace",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#tech",
+        "#ViralVideo",
+        "#DigitalMarketing",
+        "#ForYouPage",
+        "#speedhackMarketing"
+      ],
+      "viralScore": 91,
+      "marketingAngle": "speed_hack"
+    },
+    {
+      "id": "vt_020",
+      "title": "Unlock Happiness with This Simple Ecommerce Hack",
+      "category": "ecommerce",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-drinking-water-in-the-gym-41573-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_020.jpg",
+      "duration": 39,
+      "soundName": "Epic Orchestral Drop",
+      "soundAuthor": "GrooveGen",
+      "views": "0.6M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#f8f96e",
+        "bgColor": "#3f14a0",
+        "fontStyle": "Arial",
+        "position": "top"
+      },
+      "hashtags": [
+        "#ecommerce",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#comparisonMarketing"
+      ],
+      "viralScore": 97,
+      "marketingAngle": "comparison"
+    },
+    {
+      "id": "vt_021",
+      "title": "Unlock Success with This Simple Saas Hack",
+      "category": "saas",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-working-with-her-laptop-in-a-cafe-41317-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_021.jpg",
+      "duration": 26,
+      "soundName": "Synthwave Retro Groove",
+      "soundAuthor": "BeatMaster",
+      "views": "1.0M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#6f1165",
+        "bgColor": "#c2c77d",
+        "fontStyle": "Georgia",
+        "position": "center"
+      },
+      "hashtags": [
+        "#saas",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#curiosityMarketing"
+      ],
+      "viralScore": 93,
+      "marketingAngle": "curiosity"
+    },
+    {
+      "id": "vt_022",
+      "title": "Unlock Growth with This Simple Local Biz Hack",
+      "category": "local_biz",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-vertical-shot-of-a-girl-looking-at-the-city-47098-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_022.jpg",
+      "duration": 42,
+      "soundName": "Original Sound - Viral Growth Beat",
+      "soundAuthor": "SoundWave",
+      "views": "87K",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#41f4b8",
+        "bgColor": "#0df082",
+        "fontStyle": "Helvetica",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#local_biz",
+        "#ViralVideo",
+        "#StartupLife",
+        "#ForYouPage",
+        "#negativitybiasMarketing"
+      ],
+      "viralScore": 86,
+      "marketingAngle": "negativity_bias"
+    },
+    {
+      "id": "vt_023",
+      "title": "Unlock Productivity with This Simple Creative Hack",
+      "category": "creative",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-vertical-shot-of-a-person-in-the-city-at-night-41553-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_023.jpg",
+      "duration": 53,
+      "soundName": "TikTok Trend Mix",
+      "soundAuthor": "EchoChamber",
+      "views": "2.5M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#c3574c",
+        "bgColor": "#77508e",
+        "fontStyle": "Verdana",
+        "position": "top"
+      },
+      "hashtags": [
+        "#creative",
+        "#ViralVideo",
+        "#BusinessTips",
+        "#ForYouPage",
+        "#fomoMarketing"
+      ],
+      "viralScore": 99,
+      "marketingAngle": "fomo"
+    },
+    {
+      "id": "vt_024",
+      "title": "Unlock Happiness with This Simple Fitness Hack",
+      "category": "fitness",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-person-walking-on-a-road-in-the-mountains-41570-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_024.jpg",
+      "duration": 33,
+      "soundName": "Acoustic Indie Folk",
+      "soundAuthor": "VibeCreator",
+      "views": "0.9M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#3747aa",
+        "bgColor": "#b1f237",
+        "fontStyle": "monospace",
+        "position": "center"
+      },
+      "hashtags": [
+        "#fitness",
+        "#ViralVideo",
+        "#LifeHacks",
+        "#ForYouPage",
+        "#speedhackMarketing"
+      ],
+      "viralScore": 95,
+      "marketingAngle": "speed_hack"
+    },
+    {
+      "id": "vt_025",
+      "title": "Unlock Success with This Simple Tech Hack",
+      "category": "tech",
+      "videoUrl": "https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-a-laptop-at-night-41316-large.mp4",
+      "thumbnail": "https://example.com/thumbnails/vt_025.jpg",
+      "duration": 49,
+      "soundName": "Phonk Drift 02",
+      "soundAuthor": "BeatMaster",
+      "views": "1.5M",
+      "defaultHook": "Tired of {{business_name}} struggles? Here's how to get {{benefit}} in minutes!",
+      "subtitleStyle": {
+        "textColor": "#d34105",
+        "bgColor": "#fcb893",
+        "fontStyle": "Arial",
+        "position": "bottom"
+      },
+      "hashtags": [
+        "#tech",
+        "#ViralVideo",
+        "#DigitalMarketing",
+        "#ForYouPage",
+        "#comparisonMarketing"
+      ],
+      "viralScore": 90,
+      "marketingAngle": "comparison"
+    }
+  ],
+  "viralHookFormulas": [
+    "The #1 mistake {{audience}} make when {{struggle}} (and how to fix it!)",
+    "Don't start {{activity}} without seeing this {{business_name}} secret!",
+    "I tried {{solution_type}} for {{problem}} and this is what happened...",
+    "Hack your {{goal}} with this {{business_name}} {{feature}} – it's a game-changer!",
+    "{{Competitor_Name}} doesn't want you to know this about {{industry_topic}}",
+    "If you're still {{outdated_method}}, you're missing out on {{benefit}} with {{business_name}}.",
+    "Watch me achieve {{impressive_result}} in {{time_frame}} using {{business_name}}.",
+    "The ultimate guide to {{complex_task}} (made easy by {{business_name}}).",
+    "Spoiler alert: {{business_name}} just made {{pain_point}} obsolete.",
+    "Stop wasting time on {{inefficient_task}} – {{business_name}} has a better way.",
+    "Is {{business_name}} the secret weapon for {{industry}} success? You decide.",
+    "How I went from {{negative_state}} to {{positive_state}} thanks to {{business_name}}.",
+    "This {{business_name}} feature is so good, it feels illegal.",
+    "You won't believe how simple {{achieving_goal}} can be with {{business_name}}.",
+    "The one {{product_type}} you need to {{achieve_result}} (it's {{business_name}}).",
+    "Think you know {{industry_topic}}? {{business_name}} will prove you wrong.",
+    "Before you buy {{alternative_product}}, see why {{business_name}} is superior.",
+    "My honest review of {{business_name}} – it's worth every penny for {{benefit}}.",
+    "Unlock {{hidden_potential}} with the power of {{business_name}}.",
+    "The shocking truth about {{common_misconception}} and how {{business_name}} fixes it."
+  ]
+}
