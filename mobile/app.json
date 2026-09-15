@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "business-marketing_engine",
-    "slug": "business-marketing_engine",
+    "name": "business-marketing-engine",
+    "slug": "business-marketing-engine",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -13,7 +13,7 @@ COLLECTION_NAME = "bme_viral_memes"
 
 class BusinessProfileInput(BaseModel):
     name: str = "Swikriti"
-    companyName: str = "business-marketing_engine"
+    companyName: str = "business-marketing-engine"
     productService: str
     audience: str
     problemSolved: str
@@ -201,7 +201,7 @@ if __name__ == "__main__":
     build_or_load_vectorstore()
 
     sample_query = {
-        "companyName": "business-marketing_engine",
+        "companyName": "business-marketing-engine",
         "productService": "Autonomous AI video generator for SaaS customer acquisition",
         "audience": "SaaS founders and growth teams",
         "problemSolved": "Spending 15 hours editing videos that get zero reach",

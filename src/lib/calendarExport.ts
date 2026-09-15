@@ -62,13 +62,13 @@ export function downloadICSFile(post: ScheduledPost, business: BusinessProfile) 
     `Hashtags: ${post.hashtags.join(' ')}`,
     `Video Asset: ${post.videoUrl}`,
     `Target: Instagram Reels (@${brandName.toLowerCase().replace(/[^a-z0-9]/g, '')})`,
-    `\nScheduled via business-marketing_engine`,
+    `\nScheduled via business-marketing-engine`,
   ].join('\\n');
 
   const icsContent = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//business-marketing_engine//Viral Reel Scheduler//EN',
+    'PRODID:-//business-marketing-engine//Viral Reel Scheduler//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'BEGIN:VEVENT',

@@ -10,7 +10,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "business-marketing_engine",
+  title: "business-marketing-engine",
   description: "Autonomous viral video marketing & scheduling engine for businesses",
 };
 

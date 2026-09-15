@@ -6,7 +6,7 @@ from video_rag.langchain_rag import get_recommendations, BusinessProfileInput
 from video_rag.ai_generator import enrich_memes_with_llm, OPENROUTER_MODEL
 
 app = FastAPI(
-    title="business-marketing_engine Multimodal Video RAG Engine",
+    title="business-marketing-engine Multimodal Video RAG Engine",
     description="LangChain + OpenRouter-powered viral meme retrieval & subtitle engine",
     version="1.1.0",
 )

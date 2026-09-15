@@ -1,5 +1,5 @@
 {
-  "name": "business-marketing_engine",
+  "name": "business-marketing-engine",
   "version": "1.0.0",
   "main": "index.ts",
   "dependencies": {

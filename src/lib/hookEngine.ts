@@ -545,7 +545,7 @@ export function adaptTemplatesForBusiness(business: BusinessProfile): ViralTempl
     thumbnail: m.video_url,
     duration: parseInt(m.duration) || 12,
     soundName: 'Original Viral Sound',
-    soundAuthor: business.companyName || 'business-marketing_engine',
+    soundAuthor: business.companyName || 'business-marketing-engine',
     views: '120k',
     defaultHook: m.hook,
     whyRationale: m.whyRationale,

@@ -4,7 +4,7 @@
 
 </div>
 
-# 🚀 business-marketing_engine
+# 🚀 business-marketing-engine
 
 > **RevenueCat Shipaton 2026 Submission**
 > **Theme Collision**: **13. Business** × **07. Productivity**
@@ -25,7 +25,7 @@ Short-form vertical video (TikTok, Instagram Reels, YouTube Shorts) is currently
 - **Founders hate corporate stock footage**: Generic corporate videos flop and get stuck at 200 views.
 - **Viral pacing is hard**: Matching business value props with viral cultural meme timing requires specialized creative direction.
 
-### The Solution: **`business-marketing_engine`**
+### The Solution: **`business-marketing-engine`**
 We collide **Business (13)** with **Productivity (07)**:
 1. **Zero-Login Brand Intake**: A frictionless 4-step questionnaire captures your brand, offer, pain points, and target audience.
 2. **Multimodal Video & Meme RAG**: Vector-searches a curated catalog of **66 battle-tested 9:16 vertical video memes** using LangChain and ChromaDB.

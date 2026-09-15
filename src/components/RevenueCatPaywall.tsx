@@ -82,7 +82,7 @@ export function RevenueCatPaywall({
           </div>
 
           <h2 className="text-xl font-black text-white tracking-tight">
-            business-marketing_engine Pro
+            business-marketing-engine Pro
           </h2>
           <p className="text-xs text-neutral-400 mt-1 max-w-[260px] leading-relaxed">
             Scale your brand with unlimited AI viral hooks, auto-scheduling, and studio exports.

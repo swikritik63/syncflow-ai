@@ -166,7 +166,7 @@ export default function App() {
   const handleLogout = () => {
     Alert.alert(
       'Log Out',
-      'Are you sure you want to log out of business-marketing_engine?',
+      'Are you sure you want to log out of business-marketing-engine?',
       [
         { text: 'Cancel', style: 'cancel' },
         {
@@ -340,7 +340,7 @@ export default function App() {
             <View style={styles.badge}>
               <Text style={styles.badgeText}>✨ Shipaton 2026 Demo Access</Text>
             </View>
-            <Text style={styles.headerTitle}>business-marketing_engine</Text>
+            <Text style={styles.headerTitle}>business-marketing-engine</Text>
             <Text style={styles.headerSubtitle}>
               Autonomous viral video deck, calendar scheduling, and RevenueCat paywall.
             </Text>
@@ -445,7 +445,7 @@ export default function App() {
             <View style={styles.badge}>
               <Text style={styles.badgeText}>✨ Active User: @{currentUser}</Text>
             </View>
-            <Text style={styles.headerTitle}>business-marketing_engine</Text>
+            <Text style={styles.headerTitle}>business-marketing-engine</Text>
             <Text style={styles.headerSubtitle}>
               Autonomous viral marketing & video scheduling engine for your business.
             </Text>
@@ -873,7 +873,7 @@ export default function App() {
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
             <Text style={styles.paywallCrown}>👑</Text>
-            <Text style={styles.modalTitle}>business-marketing_engine Pro</Text>
+            <Text style={styles.modalTitle}>business-marketing-engine Pro</Text>
             <Text style={styles.modalSub}>Unlock unlimited auto-scheduling, 1080p HD clean exports, and AI Green Screen compositing.</Text>
 
             <View style={styles.paywallPlans}>
@@ -882,7 +882,7 @@ export default function App() {
                 onPress={() => {
                   setIsPro(true);
                   setIsPaywallOpen(false);
-                  Alert.alert('Subscribed! 🎉', 'Welcome to business-marketing_engine Pro powered by RevenueCat.');
+                  Alert.alert('Subscribed! 🎉', 'Welcome to business-marketing-engine Pro powered by RevenueCat.');
                 }}
               >
                 <Text style={styles.planName}>Annual (Best Value) - Save 38%</Text>
@@ -894,7 +894,7 @@ export default function App() {
                 onPress={() => {
                   setIsPro(true);
                   setIsPaywallOpen(false);
-                  Alert.alert('Subscribed! 🎉', 'Welcome to business-marketing_engine Pro powered by RevenueCat.');
+                  Alert.alert('Subscribed! 🎉', 'Welcome to business-marketing-engine Pro powered by RevenueCat.');
                 }}
               >
                 <Text style={styles.planName}>Monthly</Text>

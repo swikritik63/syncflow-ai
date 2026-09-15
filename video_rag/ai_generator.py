@@ -63,8 +63,8 @@ def call_openrouter_llm(messages: List[Dict[str, str]], model: str = OPENROUTER_
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://github.com/business-marketing_engine",
-        "X-Title": "business-marketing_engine ReelCat",
+        "HTTP-Referer": "https://github.com/business-marketing-engine",
+        "X-Title": "business-marketing-engine ReelCat",
     }
 
     payload = {
@@ -190,7 +190,7 @@ RETURN FORMAT (JSON):
 
 if __name__ == "__main__":
     test_profile = {
-        "companyName": "business-marketing_engine",
+        "companyName": "business-marketing-engine",
         "productService": "Autonomous AI video generator for SaaS customer acquisition",
         "audience": "SaaS founders and growth teams",
         "problemSolved": "Spending 15 hours editing videos that get zero reach",
