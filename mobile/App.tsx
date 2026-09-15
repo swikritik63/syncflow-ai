@@ -24,16 +24,35 @@ import { defaultProfile, generateMobileMemeDeck } from './src/hookEngine';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-function FeedVideo({ uri }: { uri: string }) {
+function FeedVideo({ uri, isMuted = false }: { uri: string; isMuted?: boolean }) {
   const isImage = /\.(jpg|jpeg|png|webp)/i.test(uri);
   const player = useVideoPlayer(isImage ? null : uri, (videoPlayer) => {
     videoPlayer.loop = true;
-    videoPlayer.muted = true;
+    videoPlayer.muted = isMuted;
+    videoPlayer.volume = 1.0;
+    videoPlayer.audioMixingMode = 'doNotMix';
     videoPlayer.play();
   });
 
+  useEffect(() => {
+    if (player) {
+      player.muted = isMuted;
+      player.volume = 1.0;
+      if (!isMuted) {
+        player.play();
+      }
+    }
+  }, [player, isMuted]);
+
   if (isImage) return <Image source={{ uri }} style={styles.videoPlayer} resizeMode="cover" />;
-  return <VideoView player={player} style={styles.videoPlayer} contentFit="cover" nativeControls={false} />;
+  return (
+    <VideoView
+      player={player}
+      style={styles.videoPlayer}
+      contentFit="cover"
+      nativeControls={false}
+    />
+  );
 }
 
 const PRESETS: { label: string; profile: Partial<BusinessProfile> }[] = [
@@ -132,6 +151,7 @@ export default function App() {
   const [activeMeme, setActiveMeme] = useState<MemeTemplate | null>(null);
   const [showRationale, setShowRationale] = useState(false);
   const [postToInstagram, setPostToInstagram] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   // Swipe Animation State
   const pan = useRef(new Animated.ValueXY()).current;
@@ -776,7 +796,7 @@ export default function App() {
             ]}
           >
             {/* 9:16 Video Player */}
-            <FeedVideo uri={currentCard.video_url} />
+            <FeedVideo uri={currentCard.video_url} isMuted={isMuted} />
 
             {/* Gradient Dimmer for Top Hook Legibility */}
             <LinearGradient
@@ -786,7 +806,16 @@ export default function App() {
 
             {/* Top Badges */}
             <View style={styles.cardTopBar}>
-              <Text style={styles.cardBadge}>🎬 Video Meme</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                <Text style={styles.cardBadge}>🎬 Video Meme</Text>
+                <TouchableOpacity
+                  style={[styles.soundBadge, !isMuted && styles.soundBadgeActive]}
+                  onPress={() => setIsMuted(!isMuted)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={styles.soundBadgeText}>{isMuted ? '🔇' : '🔊'}</Text>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity
                 style={styles.whyBadge}
                 onPress={() => setShowRationale(!showRationale)}
@@ -1049,6 +1078,9 @@ const styles = StyleSheet.create({
   cardGradient: { ...StyleSheet.absoluteFill },
   cardTopBar: { flexDirection: 'row', justifyContent: 'space-between', padding: 16 },
   cardBadge: { backgroundColor: 'rgba(0,0,0,0.65)', color: '#FFF', fontSize: 11, fontWeight: '700', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20 },
+  soundBadge: { backgroundColor: 'rgba(0,0,0,0.65)', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20, borderWidth: 1, borderColor: 'rgba(255,255,255,0.15)' },
+  soundBadgeActive: { backgroundColor: 'rgba(16, 185, 129, 0.25)', borderColor: '#10B981' },
+  soundBadgeText: { color: '#FFF', fontSize: 12, fontWeight: '800' },
   whyBadge: { backgroundColor: 'rgba(16, 185, 129, 0.85)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 20 },
   whyBadgeText: { color: '#FFF', fontSize: 11, fontWeight: '800' },
   rationaleBox: { marginHorizontal: 16, padding: 14, backgroundColor: 'rgba(20,20,20,0.96)', borderRadius: 16, borderWidth: 1, borderColor: '#10B981' },
