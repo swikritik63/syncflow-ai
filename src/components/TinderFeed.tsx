@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
   X,
   Check,
@@ -16,7 +16,7 @@ import {
   RotateCcw,
   Zap,
 } from 'lucide-react';
-import { MemeTemplate, BusinessProfile } from '@/types';
+import { MemeTemplate, BusinessProfile, CarouselSlide } from '@/types';
 
 interface TinderFeedProps {
   memes: MemeTemplate[];
@@ -71,6 +71,37 @@ export function TinderFeed({
     ? customHooks[activeCard.id] || activeCard.hook
     : '';
 
+  // Active slides for photo carousels with guaranteed 3-slide storytelling sequence
+  const activeSlides: CarouselSlide[] = useMemo(() => {
+    if (!activeCard?.is_carousel) return [];
+    if (activeCard.slides && activeCard.slides.length > 0) {
+      return activeCard.slides;
+    }
+    return [
+      {
+        image_url: activeCard.video_url,
+        hook: currentHook,
+      },
+      {
+        image_url: '/videos/photo_005_crying_peace_sign.jpg',
+        hook: `me pretending I'm totally fine while doing this manually until 4 AM ✌️😭`,
+      },
+      {
+        image_url: '/videos/frames/raw_53_f1.jpg',
+        hook: `the exact second you switch to automation and finish in 30 seconds ✨`,
+      },
+    ];
+  }, [activeCard, currentHook]);
+
+  const currentSlideIndex = Math.min(
+    Math.max(0, carouselSlide),
+    Math.max(0, activeSlides.length - 1)
+  );
+
+  const displayedHook = activeCard?.is_carousel && activeSlides.length > 0
+    ? (currentSlideIndex === 0 ? currentHook : (activeSlides[currentSlideIndex]?.hook || currentHook))
+    : currentHook;
+
   // Setup video playback when activeCard changes
   useEffect(() => {
     if (videoRef.current) {
@@ -102,19 +133,29 @@ export function TinderFeed({
 
       if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        handleReject();
+        if (activeCard.is_carousel && currentSlideIndex > 0) {
+          setCarouselSlide((prev) => Math.max(0, prev - 1));
+        } else {
+          handleReject();
+        }
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        handleApprove();
+        if (activeCard.is_carousel && currentSlideIndex < activeSlides.length - 1) {
+          setCarouselSlide((prev) => Math.min(activeSlides.length - 1, prev + 1));
+        } else {
+          handleApprove();
+        }
       } else if (e.key === ' ') {
         e.preventDefault();
-        togglePlayPause();
+        if (!activeCard.is_carousel) {
+          togglePlayPause();
+        }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeCard, isAnimating, showEditModal]);
+  }, [activeCard, isAnimating, showEditModal, currentSlideIndex, activeSlides.length]);
 
   const togglePlayPause = () => {
     if (!videoRef.current) return;
@@ -192,6 +233,41 @@ export function TinderFeed({
 
   const handleTouchEnd = () => {
     if (touchStartX === null || isAnimating) return;
+
+    // For carousels with multiple slides: horizontal swipe flips slides
+    if (activeCard?.is_carousel && activeSlides.length > 1) {
+      if (touchDeltaX < -45) {
+        // Swiped left -> next slide if available
+        if (currentSlideIndex < activeSlides.length - 1) {
+          setCarouselSlide((prev) => Math.min(activeSlides.length - 1, prev + 1));
+          setTouchDeltaX(0);
+          setTouchStartX(null);
+          return;
+        } else if (touchDeltaX < -90) {
+          // On last slide and swiped left strongly -> Reject card
+          handleReject();
+          setTouchStartX(null);
+          return;
+        }
+      } else if (touchDeltaX > 45) {
+        // Swiped right -> prev slide if available
+        if (currentSlideIndex > 0) {
+          setCarouselSlide((prev) => Math.max(0, prev - 1));
+          setTouchDeltaX(0);
+          setTouchStartX(null);
+          return;
+        } else if (touchDeltaX > 90) {
+          // On first slide and swiped right strongly -> Approve card
+          handleApprove();
+          setTouchStartX(null);
+          return;
+        }
+      }
+      setTouchDeltaX(0);
+      setTouchStartX(null);
+      return;
+    }
+
     if (touchDeltaX > 90) {
       handleApprove();
     } else if (touchDeltaX < -90) {
@@ -232,14 +308,22 @@ export function TinderFeed({
     );
   }
 
+  // Keep card steady when user is flipping between carousel slides
+  const isCarouselSlideDrag = Boolean(
+    activeCard?.is_carousel &&
+    activeSlides.length > 1 &&
+    ((touchDeltaX < 0 && currentSlideIndex < activeSlides.length - 1) ||
+     (touchDeltaX > 0 && currentSlideIndex > 0))
+  );
+
   // Calculate dynamic transform based on swipe/drag
-  const rotation = touchDeltaX * 0.08;
+  const rotation = isCarouselSlideDrag ? 0 : touchDeltaX * 0.08;
   const cardStyle: React.CSSProperties = isAnimating && swipeDirection === 'left'
     ? { transform: 'translateX(-130%) rotate(-20deg)', opacity: 0, transition: 'all 280ms ease-out' }
     : isAnimating && swipeDirection === 'right'
     ? { transform: 'translateX(130%) rotate(20deg)', opacity: 0, transition: 'all 280ms ease-out' }
     : touchDeltaX !== 0
-    ? { transform: `translateX(${touchDeltaX}px) rotate(${rotation}deg)`, transition: 'none' }
+    ? { transform: `translateX(${isCarouselSlideDrag ? 0 : touchDeltaX}px) rotate(${rotation}deg)`, transition: 'none' }
     : { transform: 'translateX(0px) rotate(0deg)', transition: 'transform 200ms ease' };
 
   return (
@@ -265,36 +349,56 @@ export function TinderFeed({
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        onClick={togglePlayPause}
+        onClick={activeCard.is_carousel ? undefined : togglePlayPause}
       >
-        {/* Media Player: MP4 Video or Photo Carousel */}
+        {/* Media Player: MP4 Video or Photo Carousel Slideshow */}
         <div className="absolute inset-0 bg-black">
           {activeCard.is_carousel ? (
-            <div className="relative w-full h-full">
-              <img
-                src={activeCard.video_url}
-                alt={activeCard.hook}
-                className="w-full h-full object-cover"
-              />
-              {/* Carousel Navigation Arrows */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCarouselSlide((prev) => Math.max(0, prev - 1));
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60"
+            <div className="relative w-full h-full overflow-hidden bg-black select-none">
+              {/* Horizontal Sliding Reel of Carousel Images */}
+              <div
+                className="flex w-full h-full transition-transform duration-300 ease-out"
+                style={{ transform: `translateX(-${currentSlideIndex * 100}%)` }}
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setCarouselSlide((prev) => prev + 1);
-                }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                {activeSlides.map((slide, idx) => (
+                  <div key={idx} className="w-full h-full flex-shrink-0 relative">
+                    <img
+                      src={slide.image_url}
+                      alt={slide.hook || `Slide ${idx + 1}`}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Carousel Navigation Arrow Buttons (Spacious & Breathable) */}
+              {currentSlideIndex > 0 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCarouselSlide((prev) => Math.max(0, prev - 1));
+                  }}
+                  aria-label="Previous slide"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-neutral-900/80 backdrop-blur-md border border-neutral-700 text-white flex items-center justify-center hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all shadow-xl z-30"
+                >
+                  <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                </button>
+              )}
+              {currentSlideIndex < activeSlides.length - 1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCarouselSlide((prev) => Math.min(activeSlides.length - 1, prev + 1));
+                  }}
+                  aria-label="Next slide"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-neutral-900/80 backdrop-blur-md border border-neutral-700 text-white flex items-center justify-center hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all shadow-xl z-30"
+                >
+                  <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+                </button>
+              )}
             </div>
           ) : (
             <video
@@ -313,12 +417,12 @@ export function TinderFeed({
         </div>
 
         {/* Swipe Indicators (LIKE / NOPE Stamp) */}
-        {touchDeltaX > 40 && (
+        {!isCarouselSlideDrag && touchDeltaX > 40 && (
           <div className="absolute top-16 right-6 border-4 border-emerald-400 text-emerald-400 font-black text-2xl px-4 py-1.5 rounded-2xl rotate-12 uppercase tracking-widest bg-emerald-950/40 backdrop-blur-sm z-30 animate-pulse">
             APPROVE
           </div>
         )}
-        {touchDeltaX < -40 && (
+        {!isCarouselSlideDrag && touchDeltaX < -40 && (
           <div className="absolute top-16 left-6 border-4 border-rose-500 text-rose-500 font-black text-2xl px-4 py-1.5 rounded-2xl -rotate-12 uppercase tracking-widest bg-rose-950/40 backdrop-blur-sm z-30 animate-pulse">
             REJECT
           </div>
@@ -328,8 +432,10 @@ export function TinderFeed({
         <div className="relative z-20 flex items-center justify-between p-3.5">
           <div className="flex items-center gap-1.5 flex-wrap">
             {/* Format Badge */}
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-black/60 backdrop-blur-md text-neutral-200 border border-white/10 shadow-sm flex items-center gap-1">
-              {activeCard.is_carousel ? '📷 Slideshow' : '🎬 Video Meme'}
+            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-neutral-900/80 backdrop-blur-md text-neutral-200 border border-neutral-700 shadow-sm flex items-center gap-1">
+              {activeCard.is_carousel
+                ? `📷 Slideshow (${currentSlideIndex + 1}/${activeSlides.length})`
+                : '🎬 Video Meme'}
             </span>
 
             {/* Category / Model Pill */}
@@ -338,27 +444,29 @@ export function TinderFeed({
             </span>
 
             {/* Deck Counter */}
-            <span className="px-2 py-1 rounded-full text-[10px] font-mono text-neutral-300 bg-black/60 backdrop-blur-md border border-white/10">
+            <span className="px-2 py-1 rounded-full text-[10px] font-mono text-neutral-300 bg-neutral-900/80 backdrop-blur-md border border-neutral-700">
               {currentIndex + 1}/{deck.length}
             </span>
           </div>
 
           <div className="flex items-center gap-1.5">
-            {/* Why This Content? Pill */}
+            {/* Why This Content? Pill (Strictly Emerald + Neutral Palette) */}
             <button
+              type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowRationale(!showRationale);
               }}
-              className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-indigo-600/70 hover:bg-indigo-600 text-white backdrop-blur-md border border-indigo-400/40 shadow-sm flex items-center gap-1 transition-all active:scale-95"
+              className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-neutral-900/80 hover:bg-neutral-800 text-emerald-400 backdrop-blur-md border border-emerald-500/30 shadow-sm flex items-center gap-1 transition-all active:scale-95"
             >
-              <Sparkles className="w-3 h-3 text-indigo-200" />
+              <Sparkles className="w-3 h-3 text-emerald-400" />
               <span>Why This?</span>
             </button>
 
             {/* Sound Toggle */}
             {!activeCard.is_carousel && (
               <button
+                type="button"
                 onClick={toggleMute}
                 className="w-7 h-7 rounded-full bg-black/60 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/80 transition-colors border border-white/10"
               >
@@ -368,30 +476,31 @@ export function TinderFeed({
           </div>
         </div>
 
-        {/* 'Why This Content?' Expandable Glassmorphism Overlay */}
+        {/* 'Why This Content?' Expandable Glassmorphism Overlay (Breathable Spacing) */}
         {showRationale && (
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative z-20 mx-3.5 p-3.5 rounded-2xl bg-neutral-900/90 backdrop-blur-xl border border-indigo-500/30 text-left shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200"
+            className="relative z-20 mx-4 p-4 rounded-2xl bg-neutral-900/95 backdrop-blur-xl border border-emerald-500/30 text-left shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200"
           >
-            <div className="flex items-center justify-between mb-1.5">
-              <div className="flex items-center gap-1.5 text-indigo-400">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-1.5 text-emerald-400">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span className="text-[11px] font-bold uppercase tracking-wider">
                   Algorithmic Rationale
                 </span>
               </div>
               <button
+                type="button"
                 onClick={() => setShowRationale(false)}
                 className="text-neutral-400 hover:text-white"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
             </div>
-            <p className="text-[11px] text-neutral-200 leading-relaxed">
+            <p className="text-xs text-neutral-200 leading-relaxed">
               {activeCard.whyRationale || `Taps into viral visual pacing to position ${business.companyName} directly against your audience's biggest pain points.`}
             </p>
-            <div className="flex items-center gap-2 mt-2 pt-2 border-t border-neutral-800 text-[10px] text-neutral-400">
+            <div className="flex items-center gap-2 mt-2.5 pt-2.5 border-t border-neutral-800 text-[10px] text-neutral-400">
               <span>Viral Score: <strong className="text-emerald-400">{activeCard.viralScore || 94}/100</strong></span>
               <span>•</span>
               <span>Matched to: <strong className="text-white">{business.categories?.join(', ')}</strong></span>
@@ -399,27 +508,40 @@ export function TinderFeed({
           </div>
         )}
 
-        {/* TikTok / Instagram Reels Style Floating Hook (ON TOP OF VIDEO, Natural, Breakable, Watchable) */}
-        <div className="relative z-20 px-5 pt-2 pb-2 text-center pointer-events-none select-text">
+        {/* TikTok / Instagram Reels Style Floating Hook (Breathable, Spacious, Natural) */}
+        <div className="relative z-20 px-6 py-3 text-center pointer-events-none select-text">
           <p
-            className="text-white font-extrabold text-base sm:text-lg leading-snug tracking-tight max-w-[92%] mx-auto whitespace-pre-line"
+            key={`${activeCard.id}-${currentSlideIndex}`}
+            className="text-white font-extrabold text-base sm:text-lg leading-relaxed tracking-tight max-w-[94%] mx-auto whitespace-pre-line animate-in fade-in duration-200"
             style={{
               textShadow:
-                '0 2px 5px rgba(0,0,0,0.95), 0 0 16px rgba(0,0,0,0.85), 0 0 2px rgba(0,0,0,1)',
+                '0 2px 6px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.85), 0 0 2px rgba(0,0,0,1)',
             }}
           >
-            {currentHook}
+            {displayedHook}
           </p>
         </div>
 
-
-        {/* Bottom Area: Clean & Unobstructed for video viewing, only Carousel dots if applicable */}
-        <div className="relative z-20 px-4 pb-3 flex items-center justify-center pointer-events-none">
-          {activeCard.is_carousel && (
-            <div className="flex justify-center gap-1.5 py-1 px-3 rounded-full bg-black/40 backdrop-blur-sm">
-              <div className="w-2 h-2 rounded-full bg-white" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-              <div className="w-2 h-2 rounded-full bg-white/40" />
+        {/* Bottom Area: Interactive, Clickable Carousel Dots */}
+        <div className="relative z-20 px-4 pb-3.5 flex items-center justify-center">
+          {activeCard.is_carousel && activeSlides.length > 0 && (
+            <div className="flex items-center gap-2 py-1.5 px-3.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 shadow-lg">
+              {activeSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCarouselSlide(idx);
+                  }}
+                  aria-label={`Jump to slide ${idx + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    idx === currentSlideIndex
+                      ? 'w-6 bg-emerald-400 shadow-sm shadow-emerald-400/40'
+                      : 'w-2 bg-white/40 hover:bg-white/70'
+                  }`}
+                />
+              ))}
             </div>
           )}
         </div>

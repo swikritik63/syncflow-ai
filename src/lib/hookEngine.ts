@@ -1,4 +1,4 @@
-import { BusinessProfile, MemeTemplate, ViralTemplate } from '@/types';
+import { BusinessProfile, CarouselSlide, MemeTemplate, ViralTemplate } from '@/types';
 import memeCatalogRaw from '@/data/meme_catalog.json';
 
 export const defaultBusinessProfile: BusinessProfile = {
@@ -305,6 +305,89 @@ function generateHooksForMeme(
   return { primaryHook, alternativeHooks, rationale, caption };
 }
 
+// Generate structured 3-slide storytelling sequence for photo carousel ads
+function generateCarouselSlides(
+  meme: RawMemeItem,
+  business: BusinessProfile,
+  primaryHook: string
+): CarouselSlide[] {
+  const brand = business.companyName || business.name || 'our tool';
+  const rawProblem = normalizeSmashedWords(business.problemSolved || 'hours of tedious manual work');
+  const rawBenefit = normalizeSmashedWords(business.keyBenefits || 'finishing in 30 seconds');
+  const shortProblem = cleanClause(rawProblem, 6).toLowerCase();
+  const shortBenefit = formatBenefitStatement(cleanClause(rawBenefit, 6));
+  const pluralAudience = toPluralAudience((business.audience || 'creators').toLowerCase());
+
+  const videoId = meme.video_id || '';
+
+  if (videoId.includes('photo_004_crying_girl') || meme.id.includes('photo_004')) {
+    return [
+      {
+        image_url: '/videos/photo_004_crying_girl_tears.jpg',
+        hook: primaryHook,
+      },
+      {
+        image_url: '/videos/photo_005_crying_peace_sign.jpg',
+        hook: `me pretending I'm totally fine while doing ${shortProblem} manually until 4 AM ✌️😭`,
+      },
+      {
+        image_url: '/videos/frames/raw_53_f1.jpg',
+        hook: `the exact second you switch to ${brand} and ${shortBenefit} in 30 seconds ✨`,
+      },
+    ];
+  }
+
+  if (videoId.includes('photo_005_crying_peace') || meme.id.includes('photo_005')) {
+    return [
+      {
+        image_url: '/videos/photo_005_crying_peace_sign.jpg',
+        hook: primaryHook,
+      },
+      {
+        image_url: '/videos/photo_004_crying_girl_tears.jpg',
+        hook: `behind the scenes when I realized everyone else uses ${brand} to ${shortBenefit} 😭`,
+      },
+      {
+        image_url: '/videos/frames/raw_21_f1.jpg',
+        hook: `never doing it the hard way again. ${brand} is the cheat code for ${pluralAudience} ☕✨`,
+      },
+    ];
+  }
+
+  if (videoId.includes('photo_059_woman_running') || meme.id.includes('photo_059')) {
+    return [
+      {
+        image_url: '/videos/photo_059_woman_running_to_catch_bus_meme.jpg',
+        hook: primaryHook,
+      },
+      {
+        image_url: '/videos/photo_004_crying_girl_tears.jpg',
+        hook: `realizing manual work took 5 hours and the deadline is in 10 minutes 💀`,
+      },
+      {
+        image_url: '/videos/frames/raw_30_f1.jpg',
+        hook: `how ${pluralAudience} scale 10x with ${brand}: automate it once and chill 📈`,
+      },
+    ];
+  }
+
+  // Generic fallback for any other photo carousel meme
+  return [
+    {
+      image_url: meme.video_url || `/videos/${meme.video_id}`,
+      hook: primaryHook,
+    },
+    {
+      image_url: '/videos/photo_005_crying_peace_sign.jpg',
+      hook: `trying to convince myself that manual ${shortProblem} is building character ✌️`,
+    },
+    {
+      image_url: '/videos/frames/raw_53_f1.jpg',
+      hook: `or you could just let ${brand} ${shortBenefit} in 30 seconds ✨`,
+    },
+  ];
+}
+
 // Generate adapted meme deck based on business profile
 export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
   const memes = (memeCatalogRaw as RawMemeItem[]) || [];
@@ -338,6 +421,8 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
     }
 
     const { primaryHook, alternativeHooks, rationale, caption } = generateHooksForMeme(meme, business, idx);
+    const isCarousel = Boolean(meme.is_carousel || meme.video_id.endsWith('.jpg') || meme.video_id.endsWith('.png'));
+    const slides = isCarousel ? generateCarouselSlides(meme, business, primaryHook) : undefined;
 
     const brandClean = (business.companyName || business.name || 'marketing').toLowerCase().replace(/[^a-z0-9]/g, '');
     const hashtags = [
@@ -353,7 +438,8 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
       id: meme.id,
       video_id: meme.video_id,
       video_url: meme.video_url || `/videos/${meme.video_id}`,
-      is_carousel: Boolean(meme.is_carousel || meme.video_id.endsWith('.jpg') || meme.video_id.endsWith('.png')),
+      is_carousel: isCarousel,
+      slides,
       duration: meme.duration || '12s',
       category: meme.category || 'Viral Meme',
       detailed_description: meme.detailed_description || '',
@@ -389,6 +475,7 @@ export function adaptTemplatesForBusiness(business: BusinessProfile): ViralTempl
     defaultHook: m.hook,
     whyRationale: m.whyRationale,
     isCarousel: m.is_carousel,
+    slides: m.slides,
     subtitleStyle: {
       textColor: '#FFFFFF',
       bgColor: 'rgba(0,0,0,0.7)',

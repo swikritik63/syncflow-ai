@@ -758,7 +758,7 @@ export function OnboardingWizard({
         <div className="flex-1 flex flex-col items-center justify-center text-center space-y-7 animate-in fade-in zoom-in-95 duration-300 px-2">
           {/* Glowing Brain */}
           <div className="relative">
-            <div className="absolute -inset-6 rounded-full bg-gradient-to-tr from-emerald-500 to-indigo-600 opacity-30 blur-2xl animate-pulse" />
+            <div className="absolute -inset-6 rounded-full bg-emerald-500/20 opacity-40 blur-2xl animate-pulse" />
             <div className="relative w-22 h-22 rounded-3xl bg-neutral-900 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-2xl">
               <Brain className="w-11 h-11 animate-bounce" />
             </div>
@@ -776,7 +776,7 @@ export function OnboardingWizard({
           {/* Progress Bar */}
           <div className="w-full max-w-xs bg-neutral-900 rounded-full h-2 overflow-hidden border border-neutral-800">
             <div
-              className="bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 h-full transition-all duration-150 ease-out"
+              className="bg-emerald-500 h-full transition-all duration-150 ease-out"
               style={{ width: `${cookingProgress}%` }}
             />
           </div>

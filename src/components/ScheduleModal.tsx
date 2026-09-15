@@ -201,12 +201,12 @@ export function ScheduleModal({
               onClick={() => setPostToInstagram(!postToInstagram)}
               className={`flex items-center justify-between p-3 rounded-2xl border cursor-pointer transition-all ${
                 postToInstagram
-                  ? 'bg-pink-500/10 border-pink-500/30 text-white'
+                  ? 'bg-emerald-500/10 border-emerald-500/30 text-white'
                   : 'bg-neutral-800/40 border-neutral-800 text-neutral-400'
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${postToInstagram ? 'bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-sm' : 'bg-neutral-800 text-neutral-400'}`}>
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${postToInstagram ? 'bg-emerald-500 text-neutral-950 shadow-sm' : 'bg-neutral-800 text-neutral-400'}`}>
                   <InstagramIcon className="w-5 h-5" />
                 </div>
                 <div>
@@ -224,7 +224,7 @@ export function ScheduleModal({
               <div
                 className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
                   postToInstagram
-                    ? 'bg-pink-500 border-pink-500 text-white'
+                    ? 'bg-emerald-500 border-emerald-500 text-neutral-950'
                     : 'border-neutral-600 bg-neutral-800'
                 }`}
               >
@@ -340,7 +340,7 @@ export function ScheduleModal({
             type="button"
             disabled={isPublishing}
             onClick={() => handleConfirm('instagram')}
-            className="flex-1 py-3 px-3 rounded-2xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 font-bold text-xs text-white flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-pink-600/20 active:scale-95 disabled:opacity-50"
+            className="flex-1 py-3 px-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 font-bold text-xs text-neutral-950 flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-emerald-500/20 active:scale-95 disabled:opacity-50"
           >
             {isPublishing ? (
               <span className="flex items-center gap-1">

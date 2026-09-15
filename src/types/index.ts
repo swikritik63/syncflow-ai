@@ -43,11 +43,18 @@ export interface SubtitleStyle {
   position: 'center' | 'top' | 'bottom';
 }
 
+export interface CarouselSlide {
+  image_url: string;
+  hook: string;
+  caption?: string;
+}
+
 export interface MemeTemplate {
   id: string;
   video_id: string;
   video_url: string;
   is_carousel: boolean;
+  slides?: CarouselSlide[];
   duration: string;
   category: string;
   detailed_description: string;
@@ -81,6 +88,7 @@ export interface ViralTemplate {
   marketingAngle: MarketingAngle;
   whyRationale?: string;
   isCarousel?: boolean;
+  slides?: CarouselSlide[];
 }
 
 export interface ScheduledPost {

@@ -115,6 +115,8 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
   // Video UGC state
   const [referenceUrl, setReferenceUrl] = useState(SAMPLE_AVATARS[0].url);
   const [referenceName, setReferenceName] = useState(SAMPLE_AVATARS[0].name);
+  const [videoMode, setVideoMode] = useState<'ugc' | 'product'>('ugc');
+  const [referenceData, setReferenceData] = useState<{ data: string; mimeType: string } | null>(null);
   const [isRenderingVideo, setIsRenderingVideo] = useState(false);
   const [renderStage, setRenderStage] = useState(0);
   const [ad, setAd] = useState<UgcAd | null>(null);
@@ -194,17 +196,14 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
     setRenderStage(0);
 
     try {
-      for (let i = 0; i < UGC_STAGES.length; i++) {
-        setRenderStage(i);
-        await new Promise((res) => setTimeout(res, 700));
-      }
-
-      const brand = business.companyName || business.name || 'Marketing Engine';
-      const newAd: UgcAd = {
-        id: `ugc_${Date.now()}`,
-        videoUrl: '/videos/video_001_ibai_whiteboard_explaining.mp4',
-        caption: `Honestly, I never used to take ${brand} that seriously.\n\nI thought it was just another tool making promises while I was still stuck doing everything manually.\n\nThen ${brand} handled it in seconds. Now ${business.keyBenefits || 'our entire workflow is automated'}.\n\nTry it free → link in bio 🚀`,
-      };
+      setRenderStage(0);
+      const response = await fetch('/api/generate-video', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ business, mode: videoMode, imageData: referenceData?.data, mimeType: referenceData?.mimeType }),
+      });
+      const generated = await response.json();
+      if (!response.ok) throw new Error(generated.error || 'Video generation failed');
+      const newAd: UgcAd = { id: `generated_${Date.now()}`, videoUrl: generated.videoData, caption: generated.prompt };
 
       setAd(newAd);
       confetti({
@@ -267,7 +266,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
       <div className="flex items-center justify-between pt-1">
         <div>
           <h1 className="text-lg font-extrabold text-white flex items-center gap-2">
-            <Wand2 className="w-5 h-5 text-purple-400" />
+            <Wand2 className="w-5 h-5 text-emerald-400" />
             AI Creative Studio
           </h1>
           <p className="text-xs text-neutral-400">
@@ -277,9 +276,9 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
 
         <button
           onClick={onOpenPaywall}
-          className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/40 text-[10px] font-bold text-purple-300"
+          className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-[10px] font-bold text-emerald-300 hover:bg-emerald-500/25 transition-all"
         >
-          <Sparkles className="w-3 h-3 text-purple-400" />
+          <Sparkles className="w-3 h-3 text-emerald-400" />
           {isPro ? 'UNLIMITED' : 'UPGRADE'}
         </button>
       </div>
@@ -290,11 +289,11 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           onClick={() => setActiveTab('video')}
           className={`flex items-center justify-center gap-1.5 py-2 rounded-xl transition-all ${
             activeTab === 'video'
-              ? 'bg-neutral-800 text-white shadow-md'
+              ? 'bg-neutral-800 text-emerald-400 shadow-md border border-neutral-700'
               : 'text-neutral-400 hover:text-white'
           }`}
         >
-          <Video className="w-4 h-4 text-purple-400" />
+          <Video className="w-4 h-4 text-emerald-400" />
           15s UGC Hero Ad
         </button>
 
@@ -302,7 +301,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           onClick={() => setActiveTab('photo')}
           className={`flex items-center justify-center gap-1.5 py-2 rounded-xl transition-all ${
             activeTab === 'photo'
-              ? 'bg-neutral-800 text-white shadow-md'
+              ? 'bg-neutral-800 text-emerald-400 shadow-md border border-neutral-700'
               : 'text-neutral-400 hover:text-white'
           }`}
         >
@@ -317,7 +316,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           <div>
             <h2 className="font-extrabold text-sm text-white flex items-center gap-1.5">
               <span>Your Next Ad Starts with 1 Upload</span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                 NO PROMPT NEEDED
               </span>
             </h2>
@@ -328,10 +327,19 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
             </p>
           </div>
 
+          <div className="grid grid-cols-2 gap-2">
+            <button type="button" onClick={() => setVideoMode('ugc')} className={`p-2.5 rounded-xl border text-left transition-all ${videoMode === 'ugc' ? 'border-emerald-500 bg-emerald-500/10 text-white' : 'border-neutral-800 bg-neutral-900 text-neutral-400'}`}>
+              <span className="text-xs font-bold block">UGC Ad</span><span className="block text-[10px] text-neutral-400 mt-0.5">Avatar + business context</span>
+            </button>
+            <button type="button" onClick={() => setVideoMode('product')} className={`p-2.5 rounded-xl border text-left transition-all ${videoMode === 'product' ? 'border-emerald-500 bg-emerald-500/10 text-white' : 'border-neutral-800 bg-neutral-900 text-neutral-400'}`}>
+              <span className="text-xs font-bold block">Product Hero</span><span className="block text-[10px] text-neutral-400 mt-0.5">Product image + ad prompt</span>
+            </button>
+          </div>
+
           {/* Quick Select Preset Avatars */}
           <div>
             <label className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider block mb-1.5">
-              Select Reference Avatar (or upload custom)
+              {videoMode === 'ugc' ? 'Select Reference Avatar (or upload custom)' : 'Upload Product Image'}
             </label>
             <div className="grid grid-cols-3 gap-2">
               {SAMPLE_AVATARS.map((avatar) => (
@@ -345,7 +353,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
                   }}
                   className={`relative p-1.5 rounded-xl border transition-all flex flex-col items-center gap-1 ${
                     referenceName === avatar.name
-                      ? 'border-purple-500 bg-purple-500/10 text-white shadow-sm'
+                      ? 'border-emerald-500 bg-emerald-500/10 text-white shadow-sm'
                       : 'border-neutral-800 bg-neutral-900 text-neutral-400 hover:border-neutral-700'
                   }`}
                 >
@@ -363,7 +371,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           </div>
 
           {/* Custom Upload Dropzone */}
-          <label className="p-3.5 rounded-2xl border border-dashed border-purple-500/50 hover:border-purple-500 bg-purple-500/5 cursor-pointer transition-all flex flex-col items-center justify-center text-center">
+          <label className="p-3.5 rounded-2xl border border-dashed border-emerald-500/40 hover:border-emerald-500 bg-emerald-500/5 cursor-pointer transition-all flex flex-col items-center justify-center text-center">
             <input
               type="file"
               accept="image/jpeg,image/png,image/webp,video/mp4,video/webm"
@@ -375,12 +383,15 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
                 const url = URL.createObjectURL(file);
                 setReferenceUrl(url);
                 setReferenceName(file.name);
+                const reader = new FileReader();
+                reader.onload = () => setReferenceData({ data: String(reader.result), mimeType: file.type || 'image/jpeg' });
+                reader.readAsDataURL(file);
                 setAd(null);
                 setScheduledAt('');
               }}
             />
-            <span className="text-xs font-bold text-purple-300">
-              📁 Tap to Upload Custom Avatar Photo or Product Clip
+            <span className="text-xs font-bold text-emerald-300">
+              📁 Tap to Upload {videoMode === 'ugc' ? 'Custom Avatar Photo' : 'Product Image'}
             </span>
             <span className="text-[10px] text-neutral-400 mt-0.5">
               JPG, PNG, WebP, MP4 · Used as visual ingredient reference
@@ -395,7 +406,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
                 alt="Selected reference"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 text-[10px] font-bold text-purple-300 border border-purple-500/30">
+              <div className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-black/80 text-[10px] font-bold text-emerald-300 border border-emerald-500/30">
                 Visual Ingredient: {referenceName}
               </div>
             </div>
@@ -404,15 +415,15 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           {/* 3-Clip UGC Structure Badges (≤10s per clip, ≤20s total) */}
           <div className="grid grid-cols-3 gap-2 text-center">
             <div className="p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
-              <span className="text-[10px] font-bold text-purple-400 block">CLIP 1 (5s)</span>
+              <span className="text-[10px] font-bold text-emerald-400 block">CLIP 1 (5s)</span>
               <span className="text-[9px] text-neutral-300">Admission Hook</span>
             </div>
             <div className="p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
-              <span className="text-[10px] font-bold text-purple-400 block">CLIP 2 (6s)</span>
+              <span className="text-[10px] font-bold text-emerald-400 block">CLIP 2 (6s)</span>
               <span className="text-[9px] text-neutral-300">Core Friction</span>
             </div>
             <div className="p-2.5 rounded-xl bg-neutral-900/90 border border-neutral-800">
-              <span className="text-[10px] font-bold text-purple-400 block">CLIP 3 (6s)</span>
+              <span className="text-[10px] font-bold text-emerald-400 block">CLIP 3 (6s)</span>
               <span className="text-[9px] text-neutral-300">Breakthrough</span>
             </div>
           </div>
@@ -428,7 +439,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
             className="flex items-center justify-between px-3 py-2 bg-neutral-900 hover:bg-neutral-850 rounded-xl border border-neutral-800 text-[11px] font-semibold text-neutral-300"
           >
             <div className="flex items-center gap-1.5">
-              <FileText className="w-3.5 h-3.5 text-purple-400" />
+              <FileText className="w-3.5 h-3.5 text-emerald-400" />
               <span>Inspect Gemini Omni Flash Prompt Pack</span>
             </div>
             {showPromptDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -442,9 +453,9 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
 
           {/* Progress Visualizer */}
           {isRenderingVideo && (
-            <div role="status" className="rounded-2xl bg-neutral-900 p-4 text-xs border border-purple-500/30 shadow-lg">
+            <div role="status" className="rounded-2xl bg-neutral-900 p-4 text-xs border border-emerald-500/30 shadow-lg">
               <div className="flex items-center gap-2 mb-2">
-                <RefreshCw className="w-5 h-5 animate-spin text-purple-400" />
+                <RefreshCw className="w-5 h-5 animate-spin text-emerald-400" />
                 <span className="font-bold text-white">{UGC_STAGES[renderStage]}</span>
               </div>
               <ol className="mt-2 space-y-1.5">
@@ -452,7 +463,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
                   <li
                     key={stage}
                     className={`flex items-center gap-1.5 text-[11px] ${
-                      idx <= renderStage ? 'text-purple-300 font-semibold' : 'text-neutral-500'
+                      idx <= renderStage ? 'text-emerald-300 font-semibold' : 'text-neutral-500'
                     }`}
                   >
                     <span>{idx < renderStage ? '✓' : idx === renderStage ? '⚡' : '·'}</span>
@@ -497,10 +508,10 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
           <button
             onClick={handleGenerateVideo}
             disabled={isRenderingVideo || scheduling}
-            className="w-full py-3.5 bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 text-white font-extrabold text-xs rounded-xl shadow-lg shadow-purple-500/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-xs rounded-xl shadow-lg shadow-emerald-500/20 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>{isRenderingVideo ? 'Synthesizing 15s UGC Campaign...' : 'Generate 15s UGC Hero Ad'}</span>
+            <Sparkles className="w-4 h-4 text-neutral-950" />
+            <span>{isRenderingVideo ? 'Generating with Agent Platform…' : `Generate ${videoMode === 'ugc' ? 'UGC Ad' : 'Product Hero Ad'}`}</span>
           </button>
 
           {/* Instagram Post Button */}
@@ -509,7 +520,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
               <button
                 onClick={handleSchedule}
                 disabled={scheduling || !!scheduledAt}
-                className="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-bold text-xs rounded-xl shadow-md transition-all active:scale-95 disabled:opacity-50"
+                className="w-full py-3 bg-neutral-800 hover:bg-neutral-750 border border-emerald-500/40 text-emerald-300 font-bold text-xs rounded-xl shadow-md transition-all active:scale-95 disabled:opacity-50"
               >
                 {scheduledAt
                   ? '✓ Scheduled to @swikritik483'
