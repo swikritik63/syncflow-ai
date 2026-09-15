@@ -51,13 +51,22 @@ async function adcToken() {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json() as { business: BusinessProfile; mode: Mode; imageData?: string; mimeType?: string };
+    const body = await request.json() as { business: BusinessProfile; mode: Mode; imageData?: string; mimeType?: string; imageUrl?: string };
     if (!body.business || !['product', 'ugc'].includes(body.mode)) {
       return NextResponse.json({ error: 'business and mode are required' }, { status: 400 });
     }
     const prompt = await draftPrompt(body.business, body.mode);
     const parts: Array<Record<string, string>> = [];
-    if (body.imageData) parts.push({ type: 'image', data: body.imageData.replace(/^data:[^;]+;base64,/, ''), mime_type: body.mimeType || 'image/jpeg' });
+    let imageData = body.imageData?.replace(/^data:[^;]+;base64,/, '');
+    let imageMimeType = body.mimeType || 'image/jpeg';
+    if (!imageData && body.imageUrl) {
+      const imageResponse = await fetch(new URL(body.imageUrl, request.url));
+      if (imageResponse.ok) {
+        imageMimeType = imageResponse.headers.get('content-type') || imageMimeType;
+        imageData = Buffer.from(await imageResponse.arrayBuffer()).toString('base64');
+      }
+    }
+    if (imageData) parts.push({ type: 'image', data: imageData, mime_type: imageMimeType });
     parts.push({ type: 'text', text: prompt });
     const token = await adcToken();
     const project = process.env.GOOGLE_CLOUD_PROJECT || 'myfafa';

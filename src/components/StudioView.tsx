@@ -80,10 +80,10 @@ export interface UgcAd {
 
 const SAMPLE_AVATARS = [
   {
-    id: 'founder_male',
-    name: 'Tech Founder',
-    url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
-    type: 'image/jpeg',
+    id: 'office_presenter',
+    name: 'Office Presenter',
+    url: '/avatars/office-presenter.webp',
+    type: 'image/webp',
   },
   {
     id: 'creator_female',
@@ -199,7 +199,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
       setRenderStage(0);
       const response = await fetch('/api/generate-video', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ business, mode: videoMode, imageData: referenceData?.data, mimeType: referenceData?.mimeType }),
+        body: JSON.stringify({ business, mode: videoMode, imageData: referenceData?.data, mimeType: referenceData?.mimeType, imageUrl: referenceUrl }),
       });
       const generated = await response.json();
       if (!response.ok) throw new Error(generated.error || 'Video generation failed');
