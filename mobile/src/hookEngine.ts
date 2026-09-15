@@ -1,5 +1,6 @@
 import { BusinessProfile, MemeTemplate } from './types';
 import memeCatalogRaw from '../assets/meme_catalog.json';
+const MEDIA_BASE_URL = process.env.EXPO_PUBLIC_MEDIA_BASE_URL || 'http://192.168.1.79:3000';
 
 export const defaultProfile: BusinessProfile = {
   name: 'Swikriti',
@@ -155,7 +156,7 @@ export function generateMobileMemeDeck(business: BusinessProfile): MemeTemplate[
     return {
       id: meme.id,
       video_id: meme.video_id,
-      video_url: `http://localhost:3000${meme.video_url}`,
+      video_url: `${MEDIA_BASE_URL}${meme.video_url}`,
       is_carousel: Boolean(meme.is_carousel),
       duration: meme.duration || '12s',
       category: meme.category || 'Viral Meme',

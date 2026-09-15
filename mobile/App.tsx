@@ -14,6 +14,7 @@ import {
   Platform,
   Alert,
   Modal,
+  Image,
 } from 'react-native';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -24,12 +25,14 @@ import { defaultProfile, generateMobileMemeDeck } from './src/hookEngine';
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 function FeedVideo({ uri }: { uri: string }) {
-  const player = useVideoPlayer(uri, (videoPlayer) => {
+  const isImage = /\.(jpg|jpeg|png|webp)/i.test(uri);
+  const player = useVideoPlayer(isImage ? null : uri, (videoPlayer) => {
     videoPlayer.loop = true;
     videoPlayer.muted = true;
     videoPlayer.play();
   });
 
+  if (isImage) return <Image source={{ uri }} style={styles.videoPlayer} resizeMode="cover" />;
   return <VideoView player={player} style={styles.videoPlayer} contentFit="cover" nativeControls={false} />;
 }
 
