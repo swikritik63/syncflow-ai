@@ -161,7 +161,7 @@ export function ReelItem({
           <div className="mt-1 flex items-center justify-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
             <span className="text-[10px] font-semibold text-emerald-400 uppercase tracking-wider">
-              {business.name} Viral Overlay
+              {business.companyName || business.name} Viral Overlay
             </span>
           </div>
         </div>
@@ -252,16 +252,22 @@ export function ReelItem({
       {/* BOTTOM INFO PANEL: Business, Caption, Hashtags & Sound Ticker */}
       <div className="absolute left-4 right-16 bottom-4 z-20 flex flex-col gap-1 pointer-events-auto">
         <div className="flex items-center gap-2">
-          <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold">
-            @{business.name.toLowerCase().replace(/[^a-z0-9]/g, '')}
+          <div className="w-7 h-7 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
+            <span className="text-[10px] font-black text-emerald-400">
+              {(business.companyName || 'B')[0].toUpperCase()}
+            </span>
+          </div>
+          <span className="text-xs font-bold text-white/90">
+            @{(business.companyName || business.name).toLowerCase().replace(/[^a-z0-9]/g, '')}
           </span>
-          <span className="text-[10px] text-neutral-400 font-medium truncate max-w-[150px]">
+          <span className="text-[10px] text-emerald-400 font-semibold">✓</span>
+          <span className="text-[10px] text-neutral-400 font-medium truncate max-w-[120px]">
             {business.category}
           </span>
         </div>
 
         <p className="text-xs text-neutral-200 line-clamp-2 leading-relaxed">
-          {activeHook} Check out {business.name}!{' '}
+          {activeHook} Check out {business.companyName || business.name}!{' '}
           <span className="text-emerald-400 font-medium">Link in bio.</span>
         </p>
 

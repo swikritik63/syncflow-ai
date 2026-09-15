@@ -47,10 +47,13 @@ export default function Home() {
   const handleLogout = () => {
     try {
       localStorage.removeItem('bme_current_user');
+      localStorage.removeItem('bme_business_profile');
+      localStorage.removeItem('fastlane_business_profile');
     } catch (e) {
       console.warn('Storage warning:', e);
     }
     setCurrentUser(null);
+    setBusiness(defaultBusinessProfile); // Reset to default so next login shows onboarding
     setLogoutMessage('Logged out of demo account. You can log back in anytime with 1 tap!');
   };
 
