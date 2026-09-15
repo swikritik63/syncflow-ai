@@ -30,7 +30,7 @@ async function draftPrompt(business: BusinessProfile, mode: Mode) {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini',
+      model: process.env.OPENROUTER_MODEL || 'openai/gpt-5.6-terra',
       temperature: 0.7,
       max_tokens: 450,
       messages: [

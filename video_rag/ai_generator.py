@@ -5,7 +5,7 @@ import urllib.request
 from typing import List, Dict, Any
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
-OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
+OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-5.6-terra")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
