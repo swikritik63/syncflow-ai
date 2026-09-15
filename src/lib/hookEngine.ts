@@ -108,7 +108,7 @@ function normalizeSmashedWords(text: string): string {
   return cleaned;
 }
 
-// Creative Gen-Z Hook Director: every hook MUST include business context so any viewer understands
+// Hook Director: every hook markets the FEATURES/BENEFITS. Meme = reaction to benefit statement.
 function generateHooksForMeme(
   meme: RawMemeItem,
   business: BusinessProfile,
@@ -123,59 +123,62 @@ function generateHooksForMeme(
   const action = meme.actions?.[0] || 'reacting';
   const mood = (meme.mood_and_vibe || 'viral').toLowerCase();
 
-  // Short versions for hooks (keep them punchy)
+  // Short punchy versions
   const shortProblem = cleanClause(rawProblem, 7).toLowerCase();
   const shortBenefit = cleanClause(rawBenefit, 7).toLowerCase();
   const shortProduct = cleanClause(rawProduct, 8).toLowerCase();
   const shortAudience = cleanClause(rawAudience, 4).toLowerCase();
 
-  // Every hook MUST include what the business does so viewers understand
+  // Every hook = a feature/benefit STATEMENT. Meme video = the emotional reaction.
+  // No "watch this" / "here's proof" — the meme IS the vibe, the text sells the feature.
   const creativeHooks: string[] = [
-    `POV: ${shortAudience} discovering ${brand} — ${shortProduct} — for the first time`,
-    `"there's no way an app can ${shortBenefit}" ... watch what ${brand} does:`,
-    `me before ${brand}: wasting hours on ${shortProblem}\nme after ${brand}: done in 2 minutes`,
-    `${brand} literally ${shortBenefit} and I'm never going back to doing it manually`,
-    `showing my team ${brand} tomorrow — it's ${shortProduct} and it changes everything`,
-    `how ${brand} went from "never heard of it" to my most-used app. it ${shortBenefit}.`,
-    `the app that ${shortBenefit} while you sleep? it's called ${brand} and it's real.`,
-    `still dealing with ${shortProblem}? ${brand} solves that in seconds, not hours.`,
-    `every ${shortAudience} needs ${brand} — it ${shortBenefit} without the stress`,
-    `POV: you stop ${shortProblem} forever because ${brand} exists`,
-    `unpopular opinion: ${shortProblem} is optional in 2026. ${brand} handles it.`,
-    `why are ${shortAudience} not talking about ${brand}? it ${shortBenefit} in one tap.`,
-    `before ${brand}: stressed, overwhelmed, behind.\nafter ${brand}: ${shortBenefit}. done.`,
-    `${brand} is ${shortProduct}. if you're still doing this manually, watch this.`,
-    `real talk: ${brand} just ${shortBenefit} for me in 30 seconds. here's proof:`,
+    `${brand} ${shortBenefit} — so you never have to deal with ${shortProblem} again`,
+    `me after ${brand} handled ${shortProblem} in 2 minutes instead of 3 hours`,
+    `${brand}: ${shortProduct}.\n${shortAudience} are switching and never looking back.`,
+    `${shortProblem}? ${brand} ${shortBenefit} automatically. welcome to 2026.`,
+    `every ${shortAudience} who still struggles with ${shortProblem} needs to know about ${brand}`,
+    `${brand} ${shortBenefit} while you focus on what actually matters`,
+    `me explaining to my team that ${brand} ${shortBenefit} and we never have to ${shortProblem} again`,
+    `${shortAudience} before ${brand}: stressed about ${shortProblem}\nafter ${brand}: ${shortBenefit}. done.`,
+    `${brand} turned ${shortProblem} into a 30-second task.\nthis is what ${shortProduct} looks like.`,
+    `when ${brand} ${shortBenefit} and you realize you've been doing it the hard way this whole time`,
+    `imagine if ${shortProblem} just... wasn't a problem anymore.\nthat's ${brand}. ${shortProduct}.`,
+    `${brand} = ${shortProduct}.\nno more ${shortProblem}. just results.`,
+    `why ${shortAudience} are obsessed with ${brand}: it ${shortBenefit} without the hassle`,
+    `${brand} doesn't just help with ${shortProblem} — it ${shortBenefit} completely`,
+    `me the second I found out ${brand} ${shortBenefit} and I never had to worry about ${shortProblem} again`,
   ];
 
-  // Mood-specific hooks that still include brand context
+  // Mood-specific hooks that market features through the emotion
   if (mood.includes('cry') || action.includes('cry') || action.includes('sad')) {
-    creativeHooks.unshift(`me realizing I spent years on ${shortProblem} when ${brand} does it instantly 😭`);
+    creativeHooks.unshift(`me realizing I wasted years on ${shortProblem} when ${brand} ${shortBenefit} this whole time 😭`);
   } else if (mood.includes('dance') || action.includes('dance') || action.includes('celebrat')) {
-    creativeHooks.unshift(`how it feels when ${brand} ${shortBenefit} and you're finally free 🕺`);
+    creativeHooks.unshift(`${brand} ${shortBenefit} and now ${shortProblem} is someone else's problem 🕺`);
   } else if (mood.includes('angry') || mood.includes('frustrat')) {
-    creativeHooks.unshift(`still dealing with ${shortProblem} in 2026?? ${brand} fixed this ages ago.`);
+    creativeHooks.unshift(`${shortProblem} in 2026?? ${brand} ${shortBenefit} — there's literally no excuse anymore`);
+  } else if (mood.includes('shock') || mood.includes('surprise') || mood.includes('mind')) {
+    creativeHooks.unshift(`${brand} ${shortBenefit} in seconds. ${shortAudience} finding this out for the first time:`);
   }
 
   const primaryHook = creativeHooks[index % creativeHooks.length];
   const alternativeHooks = creativeHooks.filter((h) => h !== primaryHook).slice(0, 3);
 
-  // Captions — each one MUST explain what the brand does for someone who's never heard of it
+  // Captions — explain what the brand DOES for someone who's never heard of it
   const captions = [
-    `${brand} is ${shortProduct}. if you've been struggling with ${shortProblem}, this is your sign to switch. link in bio to try it free! 🚀`,
-    `here's why ${shortAudience} are switching to ${brand} — it ${shortBenefit} in minutes, not hours. save this and thank me later 👇`,
-    `stop wasting time on ${shortProblem}. ${brand} ${shortBenefit} automatically. I tested it. it works. link in bio ⚡`,
-    `POV: you find out ${brand} — ${shortProduct} — exists and your whole workflow changes. link in bio!`,
-    `honestly ${brand} should be illegal for how fast it ${shortBenefit}. try it free at the link in bio 🔥`,
-    `${shortAudience}, meet ${brand}. it's ${shortProduct} and it's about to save you so much time. link in bio!`,
-    `${brand} ${shortBenefit} while you focus on what matters. no more ${shortProblem}. link in bio to start free ✨`,
-    `I was skeptical too but ${brand} genuinely ${shortBenefit}. perfect for ${shortAudience} who are tired of ${shortProblem}. link in bio!`,
-    `the future of ${rawCategory || 'productivity'} is here. ${brand} ${shortBenefit} in seconds. link in bio 👇`,
-    `real talk: ${brand} replaced my entire ${shortProblem} workflow. it's ${shortProduct}. link in bio to try it!`,
+    `${brand} is ${shortProduct} that ${shortBenefit}. if ${shortProblem} sounds familiar, try it free → link in bio 🚀`,
+    `${shortAudience} are switching to ${brand} because it ${shortBenefit} — no more wasting hours on ${shortProblem}. link in bio 👇`,
+    `tired of ${shortProblem}? ${brand} ${shortBenefit} automatically so you don't have to. link in bio ⚡`,
+    `${brand} = ${shortProduct}. it ${shortBenefit} and it's free to try. link in bio!`,
+    `${brand} ${shortBenefit} in minutes, not hours. built for ${shortAudience} who are done with ${shortProblem}. link in bio 🔥`,
+    `meet ${brand} — ${shortProduct} that ${shortBenefit}. perfect for ${shortAudience}. link in bio!`,
+    `${brand} ${shortBenefit} while you focus on growing your business. no more ${shortProblem}. link in bio ✨`,
+    `built for ${shortAudience}: ${brand} is ${shortProduct} that ${shortBenefit}. try it free → link in bio!`,
+    `${brand} makes ${shortProblem} a thing of the past. it ${shortBenefit} in seconds. link in bio 👇`,
+    `${shortAudience}, this one's for you: ${brand} ${shortBenefit} so you never deal with ${shortProblem} again. link in bio!`,
   ];
 
   const caption = captions[index % captions.length];
-  const rationale = `Viral Angle: This visual (${action}, ${mood}) creates pattern interruption. The hook positions ${brand} as the solution to "${shortProblem}" — connecting the meme emotion to your product.`;
+  const rationale = `Viral Angle: The meme emotion (${action}, ${mood}) becomes the reaction to ${brand}'s benefit — "${shortBenefit}". Viewers see the emotion first, then the feature text sells the product.`;
 
   return { primaryHook, alternativeHooks, rationale, caption };
 }
