@@ -3,8 +3,9 @@ import json
 import glob
 import sqlite3
 
-DB_PATH = "./video_rag/videos.db"
-SCRIPTS_DIR = "./scripts"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DB_PATH = os.path.join(BASE_DIR, "video_rag", "videos.db")
+SCRIPTS_DIR = os.path.join(BASE_DIR, "scripts")
 
 def index_memes():
     conn = sqlite3.connect(DB_PATH)

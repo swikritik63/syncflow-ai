@@ -32,7 +32,7 @@ To deliver an exceptional, award-winning hackathon submission for RevenueCat Shi
 - **Responsibilities**:
   1. Author and maintain all architectural documentation in `./docs/`.
   2. Index all 66 JSON metadata scripts into `./video_rag/videos.db` with SQLite FTS5.
-  3. Ensure `/public/videos/` correctly serves all 66 video/photo meme assets.
+  3. Ensure `./public/videos/` correctly serves all 66 video/photo meme assets.
   4. Generate calibrated prompts for Hermes and Codex Astra.
   5. Execute integration testing and end-to-end QA.
 

@@ -6,8 +6,9 @@ from pydantic import BaseModel
 from langchain_core.documents import Document
 from langchain_community.vectorstores import Chroma
 
-CHROMA_DIR = "./video_rag/chroma_db"
-SCRIPTS_DIR = "./scripts"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CHROMA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chroma_db")
+SCRIPTS_DIR = os.path.join(BASE_DIR, "scripts")
 COLLECTION_NAME = "bme_viral_memes"
 
 class BusinessProfileInput(BaseModel):

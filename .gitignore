@@ -50,3 +50,14 @@ venv/
 
 # Scratch duplicate folder (assets are in public/videos/)
 /videos/
+
+# Prompts & internal specs (not for submission repo)
+prompts/
+video_rag/prompts/
+ANTIGRAVITY_VIDEO_CATALOGING_SPEC.md
+
+# Mobile native build outputs
+mobile/dist-android/
+mobile/dist-ios/
+mobile/dist/
+

@@ -37,9 +37,8 @@ We collide **Business (13)** with **Photo & Video (17)**:
 | **Web Frontend** | Next.js 16 (React 19), Tailwind CSS, Lucide | 9:16 mobile simulator frame, `.no-scrollbar`, responsive desktop/mobile view |
 | **Native Mobile App** | React Native, Expo SDK 57, `expo-av`, `expo-linear-gradient` | PanResponder Tinder swipe gesture physics, native video playback |
 | **Monetization** | Official `react-native-purchases` SDK (RevenueCat) | Entitlement `pro_access`, Annual ($149.99/yr) & Monthly ($19.99/mo) tiers |
-| **RAG & Vector Search** | Python 3, LangChain, ChromaDB, SQLite FTS5 | Semantic similarity retrieval matching brand attributes to 66 video scripts |
-| **AI LLM Enrichment** | OpenRouter (`openai/gpt-4o-mini`) | Generates kinetic hooks, alternative subtitles, captions, and algorithmic rationales |
-| **Prompt Architecture** | Hermes 5-Formula Algorithm + Codex Astra Directives | Centrally logged in [`prompts/`](prompts/) |
+| **AI LLM Enrichment** | OpenRouter (`openai/gpt-5.6-terra`) | Generates kinetic hooks, alternative subtitles, captions, and algorithmic rationales |
+| **Hook Architecture** | 4-Part Viral Hook Engine | Cost anchor, concrete deliverable, extreme contrast, and B-roll cues |
 
 ---
 
@@ -94,14 +93,7 @@ We collide **Business (13)** with **Photo & Video (17)**:
 ├── video_rag/                     # Python LangChain + ChromaDB Retrieval Service
 │   ├── server.py                  # FastAPI server exposing /api/recommend
 │   ├── langchain_rag.py           # ChromaDB vectorstore & semantic query pipeline
-│   └── ai_generator.py            # OpenRouter GPT-4o-mini enrichment
-│
-├── prompts/                       # Master Prompt Catalog
-│   ├── 00_MASTER_PROMPT_INDEX.md
-│   ├── 01_HERMES_COPYWRITING_AND_DIRECTOR_PROMPTS.md
-│   ├── 02_CODEX_ASTRA_ENGINEERING_PROMPTS.md
-│   ├── 03_OPENROUTER_LLM_PROMPTS.md
-│   └── 04_RAG_VECTOR_SEARCH_PROMPTS.md
+│   └── ai_generator.py            # OpenRouter GPT-5.6-terra enrichment
 │
 ├── public/videos/                 # 66 vertical 9:16 video memes and photos
 ├── scripts/                       # 66 JSON metadata scripts (actions, moods, keywords)
