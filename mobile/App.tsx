@@ -15,13 +15,23 @@ import {
   Alert,
   Modal,
 } from 'react-native';
-import { Video, ResizeMode } from 'expo-av';
+import { VideoView, useVideoPlayer } from 'expo-video';
 import { LinearGradient } from 'expo-linear-gradient';
 import Purchases from 'react-native-purchases';
 import { BusinessProfile, BusinessModel, BusinessCategory, MemeTemplate, ScheduledPost } from './src/types';
 import { defaultProfile, generateMobileMemeDeck } from './src/hookEngine';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+
+function FeedVideo({ uri }: { uri: string }) {
+  const player = useVideoPlayer(uri, (videoPlayer) => {
+    videoPlayer.loop = true;
+    videoPlayer.muted = true;
+    videoPlayer.play();
+  });
+
+  return <VideoView player={player} style={styles.videoPlayer} contentFit="cover" nativeControls={false} />;
+}
 
 const PRESETS: { label: string; profile: Partial<BusinessProfile> }[] = [
   {
@@ -761,14 +771,7 @@ export default function App() {
             ]}
           >
             {/* 9:16 Video Player */}
-            <Video
-              source={{ uri: currentCard.video_url }}
-              style={styles.videoPlayer}
-              resizeMode={ResizeMode.COVER}
-              isLooping
-              shouldPlay
-              isMuted
-            />
+            <FeedVideo uri={currentCard.video_url} />
 
             {/* Gradient Dimmer for Top Hook Legibility */}
             <LinearGradient
