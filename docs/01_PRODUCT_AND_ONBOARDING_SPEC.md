@@ -2,10 +2,10 @@
 
 ## 1. Product Vision & Category Collision
 - **Hackathon**: RevenueCat Shipaton 2026.
-- **Theme Collision**: **13. Business** × **17. Photo & Video**.
+- **Theme Collision**: **13. Business** × **07. Productivity**.
 - **The Core Value Proposition**:
   Most businesses, SaaS founders, e-commerce stores, and mobile app developers struggle with short-form video marketing (TikTok, Instagram Reels, YouTube Shorts). Creating viral videos is slow, expensive, and intimidating.
-  
+
   **Fastlane** transforms viral video marketing into a high-frequency, Tinder-style swipe experience:
   1. **Zero Login Friction**: The user enters immediately into a high-converting brand intake questionnaire.
   2. **Multimodal Meme & Video RAG**: Instantly matches the user's business model, audience, problem, and benefits with a catalog of 66 battle-tested viral meme templates.

@@ -399,7 +399,7 @@ export default function App() {
           </View>
 
           <Text style={styles.authFootnote}>
-            RevenueCat Shipaton 2026 • Business × Photo & Video
+            RevenueCat Shipaton 2026 • Business × Productivity
           </Text>
         </ScrollView>
       </SafeAreaView>

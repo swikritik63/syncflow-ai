@@ -209,7 +209,7 @@ export function AuthScreen({ onLoginSuccess, logoutMessage }: AuthScreenProps) {
             <span>All accounts post to <strong className="text-neutral-400">@business_marketing_engine</strong></span>
           </div>
           <p className="text-[10px] text-neutral-600 text-center">
-            Shipaton 2026 • Collision: Business × Photo & Video
+            Shipaton 2026 • Collision: Business × Productivity
           </p>
         </div>
       </div>
@@ -338,7 +338,7 @@ export function AuthScreen({ onLoginSuccess, logoutMessage }: AuthScreenProps) {
       </div>
 
       <p className="text-[10px] text-neutral-600 text-center pt-4">
-        Shipaton 2026 • Collision: Business × Photo & Video
+        Shipaton 2026 • Collision: Business × Productivity
       </p>
     </div>
   );

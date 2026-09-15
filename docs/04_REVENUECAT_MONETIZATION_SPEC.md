@@ -1,7 +1,7 @@
 # Fastlane - RevenueCat Monetization & Paywall Specification
 
 ## 1. Hackathon Category Collision
-- **Categories**: **13. Business** × **17. Photo & Video**
+- **Categories**: **13. Business** × **07. Productivity**
 - **The Monetization Thesis**:
   Businesses and creators will gladly pay for automated short-form video generation if it saves them 10+ hours a week of video editing and social scheduling. Fastlane uses **RevenueCat** to power its subscription paywall.
 

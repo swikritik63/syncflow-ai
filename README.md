@@ -1,7 +1,7 @@
 # 🚀 business-marketing_engine
 
-> **RevenueCat Shipaton 2026 Submission**  
-> **Theme Collision**: **13. Business** × **17. Photo & Video**  
+> **RevenueCat Shipaton 2026 Submission**
+> **Theme Collision**: **13. Business** × **07. Productivity**
 > Autonomous viral short-form video generation & scheduling engine for businesses, SaaS founders, and creators.
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3.5-black?style=flat-square&logo=next.js)](https://nextjs.org/)
@@ -20,7 +20,7 @@ Short-form vertical video (TikTok, Instagram Reels, YouTube Shorts) is currently
 - **Viral pacing is hard**: Matching business value props with viral cultural meme timing requires specialized creative direction.
 
 ### The Solution: **`business-marketing_engine`**
-We collide **Business (13)** with **Photo & Video (17)**:
+We collide **Business (13)** with **Productivity (07)**:
 1. **Zero-Login Brand Intake**: A frictionless 4-step questionnaire captures your brand, offer, pain points, and target audience.
 2. **Multimodal Video & Meme RAG**: Vector-searches a curated catalog of **66 battle-tested 9:16 vertical video memes** using LangChain and ChromaDB.
 3. **Tinder-Style Swipe Deck**: Founders swipe right (`Approve`) or swipe left (`Reject`) on generated video concepts.
@@ -143,7 +143,7 @@ python3 -m uvicorn video_rag.server:app --port 8000 --host 127.0.0.1
 
 ## 🏆 RevenueCat Shipaton 2026 Checklist
 
-- [x] **Theme Collision**: Business (13) × Photo & Video (17).
+- [x] **Theme Collision**: Business (13) × Productivity (07).
 - [x] **RevenueCat Integration**: Configured with `react-native-purchases`, active entitlement checking (`pro_access`), and annual/monthly packages.
 - [x] **Zero-Login User Experience**: Instant onboarding saving to `localStorage` (`bme_business_profile`).
 - [x] **Authentic UI/UX**: TikTok/Reels top floating hook typography, Tinder swipe physics, and loose breathing layout.
