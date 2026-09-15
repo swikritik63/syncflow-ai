@@ -8,7 +8,6 @@ import { OnboardingWizard } from '@/components/OnboardingWizard';
 import { ScheduleModal } from '@/components/ScheduleModal';
 import { CalendarView } from '@/components/CalendarView';
 import { StudioView } from '@/components/StudioView';
-import { BusinessModal } from '@/components/BusinessModal';
 import { RevenueCatPaywall } from '@/components/RevenueCatPaywall';
 import { AuthScreen } from '@/components/AuthScreen';
 import { BusinessProfile, ScheduledPost, MemeTemplate } from '@/types';
@@ -19,7 +18,6 @@ export default function Home() {
   const [logoutMessage, setLogoutMessage] = useState<string>('');
   const [activeTab, setActiveTab] = useState<TabType>('feed');
   const [business, setBusiness] = useState<BusinessProfile>(defaultBusinessProfile);
-  const [isBusinessModalOpen, setIsBusinessModalOpen] = useState(false);
   const [isPaywallOpen, setIsPaywallOpen] = useState(false);
   const [isPro, setIsPro] = useState(false);
 
@@ -135,7 +133,17 @@ export default function Home() {
   return (
     <MobileFrame
       businessName={business.companyName || business.name}
-      onOpenBusinessModal={() => setIsBusinessModalOpen(true)}
+      onAddNewCustomer={() => {
+        // Reset business profile to trigger full onboarding from scratch
+        setBusiness(defaultBusinessProfile);
+        setActiveTab('feed');
+        try {
+          localStorage.removeItem('bme_business_profile');
+          localStorage.removeItem('fastlane_business_profile');
+        } catch (e) {
+          console.warn('Storage warning:', e);
+        }
+      }}
       onOpenPaywall={() => setIsPaywallOpen(true)}
       isPro={isPro}
       currentUser={currentUser}
@@ -219,14 +227,6 @@ export default function Home() {
         onOpenPaywall={() => setIsPaywallOpen(true)}
         isPro={isPro}
         currentScheduledCount={scheduledPosts.length}
-      />
-
-      {/* Business Profile Modal */}
-      <BusinessModal
-        isOpen={isBusinessModalOpen}
-        onClose={() => setIsBusinessModalOpen(false)}
-        currentBusiness={business}
-        onSelectBusiness={(b) => setBusiness(b)}
       />
 
       {/* RevenueCat Paywall Modal */}

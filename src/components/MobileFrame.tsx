@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Wifi, BatteryMedium, Sparkles, LogOut } from 'lucide-react';
+import { Wifi, BatteryMedium, UserPlus, LogOut } from 'lucide-react';
 
 interface MobileFrameProps {
   children: React.ReactNode;
-  onOpenBusinessModal: () => void;
+  onAddNewCustomer: () => void;
   businessName: string;
   onOpenPaywall: () => void;
   isPro?: boolean;
@@ -16,7 +16,7 @@ interface MobileFrameProps {
 
 export function MobileFrame({
   children,
-  onOpenBusinessModal,
+  onAddNewCustomer,
   businessName,
   onOpenPaywall,
   isPro = false,
@@ -36,19 +36,16 @@ export function MobileFrame({
             9:41
           </span>
 
-          {/* Center: Dynamic Island Pill (Only when onboarded) */}
-          {isOnboarded ? (
+          {/* Center: Dynamic Island Pill */}
+          {currentUser ? (
             <button
-              onClick={onOpenBusinessModal}
-              className="flex items-center gap-1.5 px-3 py-1 bg-neutral-900/90 hover:bg-neutral-800 border border-neutral-700/60 rounded-full shadow-lg transition-all active:scale-95"
-              title="Click to edit business profile"
+              onClick={onAddNewCustomer}
+              className="flex items-center gap-1.5 px-3 py-1 bg-neutral-900/90 hover:bg-neutral-800 border border-emerald-500/30 rounded-full shadow-lg transition-all active:scale-95"
+              title="Add a new customer — start fresh onboarding"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[11px] font-medium text-neutral-200 truncate max-w-[110px]">
-                {businessName || 'Brand'}
-              </span>
-              <span className="text-[9px] text-emerald-400 font-bold uppercase tracking-wider">
-                EDIT
+              <UserPlus className="w-3 h-3 text-emerald-400" />
+              <span className="text-[11px] font-semibold text-emerald-400 uppercase tracking-wider">
+                + New Customer
               </span>
             </button>
           ) : (
