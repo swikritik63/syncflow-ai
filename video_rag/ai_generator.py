@@ -1,11 +1,63 @@
 import os
 import json
+import re
 import urllib.request
 from typing import List, Dict, Any
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "openai/gpt-4o-mini")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+
+
+def repair_json(raw: str) -> dict:
+    """Attempt to parse JSON, repairing common LLM truncation issues."""
+    # Strip markdown fences if present
+    raw = raw.strip()
+    if raw.startswith("```"):
+        raw = re.sub(r"^```(?:json)?\s*", "", raw)
+        raw = re.sub(r"\s*```$", "", raw)
+
+    # First try direct parse
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        pass
+
+    # Fix unterminated strings: close any dangling quote
+    repaired = raw
+    # Remove trailing incomplete key-value pairs
+    repaired = re.sub(r',\s*"[^"]*$', '', repaired)
+    # Close any unclosed strings
+    if repaired.count('"') % 2 == 1:
+        repaired += '"'
+    # Close unclosed arrays and objects
+    open_braces = repaired.count('{') - repaired.count('}')
+    open_brackets = repaired.count('[') - repaired.count(']')
+    # Remove trailing commas before closing
+    repaired = re.sub(r',\s*$', '', repaired.rstrip())
+    repaired += ']' * max(0, open_brackets)
+    repaired += '}' * max(0, open_braces)
+
+    try:
+        return json.loads(repaired)
+    except json.JSONDecodeError:
+        # Last resort: extract just the results array
+        match = re.search(r'"results"\s*:\s*\[', raw)
+        if match:
+            start = match.start()
+            # Find a valid JSON subset
+            for end_pos in range(len(raw), start, -1):
+                try:
+                    subset = '{' + raw[start:end_pos]
+                    if subset.count('[') > subset.count(']'):
+                        subset += ']'
+                    if subset.count('{') > subset.count('}'):
+                        subset += '}'
+                    return json.loads(subset)
+                except json.JSONDecodeError:
+                    continue
+        raise ValueError(f"Could not repair JSON: {raw[:200]}...")
+
 
 def call_openrouter_llm(messages: List[Dict[str, str]], model: str = OPENROUTER_MODEL, temperature: float = 0.7) -> str:
     headers = {
@@ -19,12 +71,12 @@ def call_openrouter_llm(messages: List[Dict[str, str]], model: str = OPENROUTER_
         "model": model,
         "messages": messages,
         "temperature": temperature,
-        "max_tokens": 800,
+        "max_tokens": 1500,
         "response_format": {"type": "json_object"},
     }
 
     req = urllib.request.Request(OPENROUTER_URL, data=json.dumps(payload).encode("utf-8"), headers=headers)
-    with urllib.request.urlopen(req, timeout=12) as response:
+    with urllib.request.urlopen(req, timeout=20) as response:
         res_data = json.loads(response.read().decode("utf-8"))
         return res_data["choices"][0]["message"]["content"]
 
@@ -48,41 +100,41 @@ def enrich_memes_with_llm(profile: Dict[str, Any], memes: List[Dict[str, Any]]) 
     ]
 
     system_prompt = (
-        "You are an elite viral short-form video director and copywriter for TikTok and Instagram Reels.\n"
-        "Your task is to analyze a business questionnaire and write punchy, high-retention video hooks, subtitles, "
-        "and captions for matched meme templates.\n\n"
-        "STRICT HOOK RULES:\n"
-        "1. Max 14 words per primary hook. Must trigger curiosity, pattern interruption, or deep relatability within 1.5 seconds.\n"
-        "2. Directly incorporate the brand name, audience struggle, and core benefit.\n"
-        "3. Strictly adhere to the brand's 'tonePositioning' and avoid anything listed in 'thingsToAvoid'.\n"
-        "4. Output MUST be valid JSON with a 'results' array of objects corresponding to each meme ID."
+        "You are an elite viral Gen-Z short-form video director and trend researcher for TikTok and Instagram Reels.\n"
+        "Your superpower is analyzing raw, simple, or shorthand business inputs and turning them into creative, "
+        "relatable, high-retention viral hooks and unique captions that blow up on the algorithm.\n\n"
+        "CREATIVE GEN-Z HOOK GUIDELINES:\n"
+        "1. DO NOT just mechanically repeat user input words. Analyze the underlying emotional struggle and create clever angles.\n"
+        "2. Use viral Gen-Z / Reels formats: 'POV', 'my toxic trait', 'unpopular opinion', 'gatekeeping this', 'cheat code', 'no bc why did nobody tell me', 'bestie wake up'.\n"
+        "3. Max 14 words per hook. Natural, breakable lines that match the physical emotion of the meme (crying, frantically explaining, dancing, nodding in disbelief).\n"
+        "4. EVERY meme MUST have a COMPLETELY UNIQUE caption with micro-storytelling and CTA. NEVER repeat the same caption across videos!\n"
+        "5. Output MUST be valid JSON with a 'results' array of objects corresponding to each meme ID."
     )
 
     user_prompt = f"""
-BUSINESS QUESTIONNAIRE:
-- Company Name: {profile.get('companyName', 'Marketing Engine')}
-- Product/Service: {profile.get('productService', '')}
-- Target Audience: {profile.get('audience', '')}
-- Problem Solved: {profile.get('problemSolved', '')}
-- Key Benefits: {profile.get('keyBenefits', '')}
-- Tone / Positioning: {profile.get('tonePositioning', 'Witty, relatable')}
-- Things to Avoid: {profile.get('thingsToAvoid', 'Corporate jargon')}
+BUSINESS QUESTIONNAIRE (Analyze deeply & elevate creatively):
+- Brand / Company Name: {profile.get('companyName', profile.get('name', 'Marketing Engine'))}
+- Product / Service: {profile.get('productService', profile.get('category', 'AI Tool'))}
+- Target Audience: {profile.get('audience', 'creators & students')}
+- Problem Solved: {profile.get('problemSolved', profile.get('painPoint', 'wasting hours on manual work'))}
+- Key Benefits: {profile.get('keyBenefits', 'saving time in 1 tap')}
+- Tone / Positioning: {profile.get('tonePositioning', 'Witty, edgy Gen-Z humor, high-conversion')}
+- Things to Avoid: {profile.get('thingsToAvoid', 'Boring corporate jargon, repetitive generic copy')}
 - Business Model: {profile.get('businessModel', 'B2B')}
-- Categories: {', '.join(profile.get('categories', []))}
 
-MATCHED MEME TEMPLATES TO ENRICH:
+MATCHED MEME TEMPLATES TO DIRECT:
 {json.dumps(simplified_memes, indent=2)}
 
 RETURN FORMAT (JSON):
 {{
-  "business_analysis": "Brief 1-sentence breakdown of the core psychological buying trigger",
+  "business_analysis": "Brief 1-sentence breakdown of the core psychological Gen-Z hook angle",
   "results": [
     {{
       "id": "<meme_id>",
-      "primaryHook": "<Punchy headline hook text under 14 words>",
-      "alternativeHooks": ["<Alternative hook 1>", "<Alternative hook 2>", "<Alternative hook 3>"],
-      "whyRationale": "<2 sentences explaining why this visual meme's mood and physical action hooks this specific audience and solves their problem>",
-      "caption": "<High-converting Instagram Reel caption ending with link in bio CTA>",
+      "primaryHook": "<Ultra-creative Gen-Z hook under 14 words matching this meme's action>",
+      "alternativeHooks": ["<Creative alt 1>", "<Creative alt 2>", "<Creative alt 3>"],
+      "whyRationale": "<Why this visual meme's physical energy hooks this audience and converts them>",
+      "caption": "<Unique, conversational Gen-Z Instagram Reel caption ending with CTA>",
       "hashtags": ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5"]
     }}
   ]
@@ -97,7 +149,8 @@ RETURN FORMAT (JSON):
             ],
             model=OPENROUTER_MODEL,
         )
-        parsed = json.loads(raw_response)
+        print(f"[OpenRouter] Raw response length: {len(raw_response)} chars")
+        parsed = repair_json(raw_response)
         results_map = {r["id"]: r for r in parsed.get("results", []) if "id" in r}
 
         enriched_memes = []
@@ -113,6 +166,7 @@ RETURN FORMAT (JSON):
                 m["aiModel"] = OPENROUTER_MODEL
             enriched_memes.append(m)
 
+        print(f"[OpenRouter] Successfully enriched {sum(1 for m in enriched_memes if m.get('aiEnriched'))} / {len(enriched_memes)} memes")
         return enriched_memes
     except Exception as e:
         print(f"[OpenRouter LLM Error] {e}. Falling back to deterministic Hermes rules.")

@@ -69,84 +69,84 @@ export function RevenueCatPaywall({
         </button>
 
         {/* Hero Visual Gradient with Floating Cat / RevenueCat Theme */}
-        <div className="relative p-6 pt-8 bg-gradient-to-b from-amber-500/20 via-purple-500/10 to-transparent flex flex-col items-center text-center">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-600 p-0.5 shadow-xl shadow-amber-500/30 mb-2 flex items-center justify-center">
+        <div className="relative p-6 pt-8 bg-gradient-to-b from-emerald-500/15 via-emerald-500/5 to-transparent flex flex-col items-center text-center">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 p-0.5 shadow-xl shadow-emerald-500/20 mb-2.5 flex items-center justify-center">
             <div className="w-full h-full rounded-[14px] bg-neutral-950 flex items-center justify-center">
-              <Crown className="w-7 h-7 text-amber-400" />
+              <Crown className="w-7 h-7 text-emerald-400" />
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-[10px] font-bold text-amber-400 mb-1">
-            <Zap className="w-3 h-3" />
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-bold text-emerald-400 mb-2">
+            <Zap className="w-3.5 h-3.5" />
             Powered by RevenueCat
           </div>
 
           <h2 className="text-xl font-black text-white tracking-tight">
-            Unlock HookForge Pro
+            business-marketing_engine Pro
           </h2>
-          <p className="text-xs text-neutral-400 mt-1 max-w-[240px]">
-            Scale your business with unlimited viral video hooks and AI studio exports.
+          <p className="text-xs text-neutral-400 mt-1 max-w-[260px] leading-relaxed">
+            Scale your brand with unlimited AI viral hooks, auto-scheduling, and studio exports.
           </p>
         </div>
 
         {/* Feature Highlights */}
-        <div className="px-6 py-2 flex flex-col gap-2.5">
+        <div className="px-6 py-2.5 flex flex-col gap-2.5">
           {[
-            'Unlimited AI Viral Hook generation & 200+ video library',
-            'One-Click Automated Instagram & TikTok scheduling',
-            'Amazon-Ready E-Commerce Photo Shoot Studio',
-            'Wan 2.1 & Gemini Omni Flash talking-head digital humans',
-            'Custom business branding & priority rendering queue',
+            'Unlimited AI Viral Hook generation & 66+ meme templates',
+            'One-Click Automated Instagram Reels scheduling',
+            'Gen-Z algorithmic retention formulas & micro-stories',
+            'E-Commerce & SaaS custom creative positioning',
+            'Priority rendering queue & full commercial license',
           ].map((feat, i) => (
             <div key={i} className="flex items-center gap-2.5 text-xs text-neutral-200">
               <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
                 <Check className="w-2.5 h-2.5 text-emerald-400" />
               </div>
-              <span className="font-medium text-[11px]">{feat}</span>
+              <span className="font-semibold text-xs text-neutral-200">{feat}</span>
             </div>
           ))}
         </div>
 
         {/* Plan Cards */}
-        <div className="px-6 py-3 flex flex-col gap-2">
+        <div className="px-6 py-3 flex flex-col gap-2.5">
           {/* Yearly Plan (Best Value) */}
           <div
             onClick={() => setSelectedPlan('yearly')}
-            className={`relative p-3 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
+            className={`relative p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
               selectedPlan === 'yearly'
-                ? 'border-amber-400 bg-amber-400/10 shadow-lg shadow-amber-500/10'
+                ? 'border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/10'
                 : 'border-neutral-800 bg-neutral-900/60 hover:border-neutral-700'
             }`}
           >
-            <div className="absolute -top-2 right-4 px-2 py-0.2 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-black text-[9px] font-extrabold tracking-wider uppercase">
+            <div className="absolute -top-2 right-4 px-2 py-0.5 rounded-full bg-emerald-500 text-black text-[9px] font-black tracking-wider uppercase">
               SAVE 48% • BEST VALUE
             </div>
             <div>
-              <span className="text-xs font-bold text-white block">Annual Unlimited</span>
-              <span className="text-[10px] text-neutral-400">$11.99 / month (billed $144/yr)</span>
+              <span className="text-sm font-bold text-white block">Annual Unlimited</span>
+              <span className="text-xs text-neutral-400">$11.99 / mo (billed $144/yr)</span>
             </div>
             <div className="text-right">
-              <span className="text-sm font-extrabold text-amber-400">$144</span>
-              <span className="text-[10px] text-neutral-400 block">/ year</span>
+              <span className="text-base font-black text-emerald-400">$144</span>
+              <span className="text-xs text-neutral-400 block">/ year</span>
             </div>
           </div>
 
           {/* Monthly Plan */}
           <div
             onClick={() => setSelectedPlan('monthly')}
-            className={`p-3 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
+            className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
               selectedPlan === 'monthly'
-                ? 'border-amber-400 bg-amber-400/10 shadow-lg shadow-amber-500/10'
+                ? 'border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/10'
                 : 'border-neutral-800 bg-neutral-900/60 hover:border-neutral-700'
             }`}
           >
             <div>
-              <span className="text-xs font-bold text-white block">Monthly Access</span>
-              <span className="text-[10px] text-neutral-400">Cancel anytime</span>
+              <span className="text-sm font-bold text-white block">Monthly Access</span>
+              <span className="text-xs text-neutral-400">Cancel anytime</span>
             </div>
             <div className="text-right">
-              <span className="text-sm font-extrabold text-white">$19.99</span>
-              <span className="text-[10px] text-neutral-400 block">/ month</span>
+              <span className="text-base font-black text-white">$19.99</span>
+              <span className="text-xs text-neutral-400 block">/ month</span>
             </div>
           </div>
         </div>
@@ -156,7 +156,7 @@ export function RevenueCatPaywall({
           <button
             onClick={handlePurchase}
             disabled={isProcessing}
-            className="w-full py-3 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-black font-black text-xs rounded-2xl shadow-xl shadow-amber-500/30 active:scale-95 transition-all flex items-center justify-center gap-2 hover:brightness-105"
+            className="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 text-black font-black text-sm rounded-2xl shadow-xl shadow-emerald-500/20 active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             {isProcessing ? (
               <RefreshCw className="w-4 h-4 animate-spin text-black" />
@@ -168,7 +168,7 @@ export function RevenueCatPaywall({
             )}
           </button>
 
-          <div className="flex items-center justify-between text-[10px] text-neutral-500 pt-1">
+          <div className="flex items-center justify-between text-[11px] text-neutral-500 pt-1">
             <button
               onClick={handleRestore}
               disabled={restoring}

@@ -33,18 +33,18 @@ export function NavigationBar({
       id: 'studio' as TabType,
       label: 'AI Studio',
       icon: Wand2,
-      badge: 'NEW',
+      badge: null,
     },
     {
       id: 'pro' as TabType,
-      label: 'RevenueCat',
+      label: 'Upgrade',
       icon: Crown,
-      badge: null,
+      badge: 'PRO',
     },
   ];
 
   return (
-    <nav className="absolute bottom-0 left-0 right-0 z-40 bg-neutral-950/90 backdrop-blur-md border-t border-neutral-800/80 px-4 py-2 flex items-center justify-around">
+    <nav className="absolute bottom-0 left-0 right-0 z-40 bg-neutral-950/95 backdrop-blur-md border-t border-neutral-800/80 px-4 py-2.5 flex items-center justify-around">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = activeTab === tab.id;
@@ -53,7 +53,7 @@ export function NavigationBar({
           <button
             key={tab.id}
             onClick={() => onChangeTab(tab.id)}
-            className={`relative flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all duration-200 active:scale-90 ${
+            className={`relative flex flex-col items-center justify-center py-1 px-3.5 rounded-xl transition-all duration-200 active:scale-95 ${
               isActive ? 'text-white' : 'text-neutral-500 hover:text-neutral-300'
             }`}
           >
@@ -64,20 +64,14 @@ export function NavigationBar({
                 }`}
               />
               {tab.badge && (
-                <span
-                  className={`absolute -top-1.5 -right-2.5 px-1 py-0.2 rounded-full text-[9px] font-bold leading-none ${
-                    tab.badge === 'NEW'
-                      ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-sm'
-                      : 'bg-emerald-500 text-black shadow-sm'
-                  }`}
-                >
+                <span className="absolute -top-1.5 -right-3 px-1.5 py-0.5 rounded-full text-[9px] font-black leading-none bg-emerald-500 text-black shadow-sm">
                   {tab.badge}
                 </span>
               )}
             </div>
             <span
-              className={`text-[10px] mt-1 font-medium tracking-tight ${
-                isActive ? 'text-neutral-100 font-semibold' : 'text-neutral-500'
+              className={`text-[11px] mt-1 font-semibold tracking-tight ${
+                isActive ? 'text-white font-bold' : 'text-neutral-500'
               }`}
             >
               {tab.label}

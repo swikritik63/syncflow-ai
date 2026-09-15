@@ -108,12 +108,12 @@ export function AuthScreen({ onLoginSuccess, logoutMessage }: AuthScreenProps) {
         </div>
 
         {/* Shared Instagram Demo API Banner */}
-        <div className="p-3.5 rounded-2xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-indigo-500/10 border border-pink-500/20 space-y-1.5">
-          <div className="flex items-center gap-2 text-pink-400 text-xs font-bold">
-            <InstagramIcon className="w-4 h-4" />
+        <div className="p-3.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 space-y-1.5">
+          <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold">
+            <InstagramIcon className="w-4 h-4 text-emerald-400" />
             <span>Shared Instagram Demo API</span>
           </div>
-          <p className="text-[11px] text-neutral-300 leading-normal">
+          <p className="text-xs text-neutral-300 leading-normal">
             For demo convenience, all accounts automatically post to the shared Instagram handle{' '}
             <strong className="text-white">@business_marketing_engine</strong> via our live sandbox endpoint.
           </p>
@@ -122,13 +122,13 @@ export function AuthScreen({ onLoginSuccess, logoutMessage }: AuthScreenProps) {
         {/* Quick 1-Tap Demo Credentials Card */}
         <div className="p-4 rounded-2xl bg-neutral-900/90 border border-neutral-800 space-y-2.5">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-xs font-bold uppercase tracking-wider text-neutral-400 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
               Demo Credentials (Saved)
             </span>
-            <span className="text-[10px] text-emerald-400 font-mono font-bold">READY</span>
+            <span className="text-xs text-emerald-400 font-mono font-black">READY</span>
           </div>
-          <div className="flex items-center justify-between text-xs bg-neutral-950 p-2.5 rounded-xl border border-neutral-800/80 font-mono">
+          <div className="flex items-center justify-between text-xs bg-neutral-950 p-3 rounded-xl border border-neutral-800 font-mono">
             <div>
               <span className="text-neutral-500">user: </span>
               <span className="text-white font-bold">demo_creator</span>
@@ -142,10 +142,10 @@ export function AuthScreen({ onLoginSuccess, logoutMessage }: AuthScreenProps) {
             type="button"
             onClick={handleQuickDemoFill}
             disabled={isLoading}
-            className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500/20 to-amber-600/20 hover:from-amber-500/30 hover:to-amber-600/30 border border-amber-500/40 text-amber-300 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-98"
+            className="w-full py-2.5 px-3 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 font-bold text-xs flex items-center justify-center gap-1.5 transition-all active:scale-98"
           >
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
-            <span>1-Tap Demo Login</span>
+            <Zap className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Instant 1-Tap Demo Sign In</span>
           </button>
         </div>
 

@@ -55,28 +55,15 @@ export function MobileFrame({
             <div className="w-20 h-4 bg-neutral-900/80 rounded-full border border-neutral-800/60" />
           )}
 
-          {/* Right: Status Icons + Pro Badge */}
+          {/* Right: Status Icons + Exit button */}
           <div className="flex items-center gap-2">
-            {isOnboarded && (
-              <button
-                onClick={onOpenPaywall}
-                className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 transition-transform active:scale-90 ${
-                  isPro
-                    ? 'bg-gradient-to-r from-amber-400 to-amber-600 text-black'
-                    : 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white'
-                }`}
-              >
-                <Sparkles className="w-2.5 h-2.5" />
-                {isPro ? 'PRO' : 'UPGRADE'}
-              </button>
-            )}
             {currentUser && onLogout && (
               <button
                 onClick={onLogout}
                 title={`Logged in as @${currentUser}. Click to sign out.`}
-                className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-neutral-900/90 hover:bg-rose-950/40 border border-neutral-700/60 hover:border-rose-500/40 text-neutral-300 hover:text-rose-400 flex items-center gap-1 transition-all active:scale-90"
+                className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-400 hover:text-white flex items-center gap-1 transition-all active:scale-95"
               >
-                <LogOut className="w-2.5 h-2.5" />
+                <LogOut className="w-3 h-3" />
                 <span>Exit</span>
               </button>
             )}

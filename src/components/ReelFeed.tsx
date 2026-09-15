@@ -24,6 +24,17 @@ export function ReelFeed({
   // Keyboard navigation for power testing
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
       if (e.key === 'ArrowDown') {
         scrollToIndex(currentIndex + 1);
       } else if (e.key === 'ArrowUp') {
