@@ -1,6 +1,10 @@
 <div align="center">
 
-# <a href="https://new.express.adobe.com/publishedV2/urn:aaid:sc:US:2fd81a94-f40e-5051-b50d-156116cc496f?promoid=Y69SGM5H&sdid=C4SZ2FYJ&mv=other">🎬 DEMO PRESENTATION SLIDES</a> &nbsp;|&nbsp; <a href="./demo/syncflow_demo_walkthrough.mp4">📹 DEMO VIDEO WALKTHROUGH</a>
+# 🎬 DEMO WALKTHROUGH & PRESENTATION
+
+[![Watch SyncFlow AI Demo Walkthrough](./demo/demo_thumbnail.jpg)](./demo/syncflow_demo_walkthrough.mp4)
+
+### [▶️ **Click to Watch Full Video Walkthrough (MP4, 4:38)**](./demo/syncflow_demo_walkthrough.mp4) &nbsp;•&nbsp; [📑 **Interactive Presentation Slides**](https://new.express.adobe.com/publishedV2/urn:aaid:sc:US:2fd81a94-f40e-5051-b50d-156116cc496f?sdid=C4SZ2FYJ&category=search)
 
 </div>
 
@@ -63,10 +67,15 @@ We collide **Business (13)** with **Productivity (07)**:
 - Unobstructed viewing: The middle and lower 65% of the video are clear to watch the meme action.
 - Zero robotic word slicing: Clean phrase boundaries prevent mid-word cutoffs.
 
-### 3. RevenueCat Monetization & Paywall
+### 3. AI Creative Studio & OpenAI Avatar Generator
+- **Photorealistic Presenter Avatars**: Generate charismatic corporate office presenters on demand via OpenRouter using OpenAI's image model (`openai/gpt-5-image-mini`) locked to 9:16 vertical portrait format.
+- **E-Commerce Product Studio**: 1-click professional background synthesis (Amazon Pure White, Luxury Italian Marble, Neon Cyberpunk, Minimalist Studio).
+- **Gemini Omni Flash UGC Ad Director**: Directs and renders 3-clip high-retention video campaigns with 1.40X spoken audio dialogue and zero robotic cuts.
+
+### 4. RevenueCat Monetization & Paywall
 - Free tier allows testing and scheduling up to 3 posts.
 - Upon approving the 4th post (or tapping the Pro pill in the header), the **RevenueCat Paywall Modal** triggers.
-- Fully wired with `react-native-purchases` using the `pro_access` entitlement.
+- Fully wired with `react-native-purchases` using the `pro_access` entitlement ($149.99/yr Annual & $19.99/mo Monthly).
 
 ---
 
