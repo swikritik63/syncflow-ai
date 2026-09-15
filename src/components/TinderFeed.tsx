@@ -412,25 +412,6 @@ export function TinderFeed({
           </p>
         </div>
 
-        {/* Brand Name Watermark — like TikTok @handle */}
-        <div className="relative z-20 px-5 pb-1 pointer-events-none">
-          <div className="flex items-center gap-1.5">
-            <div className="w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
-              <span className="text-[9px] font-black text-emerald-400">
-                {(business.companyName || 'B')[0].toUpperCase()}
-              </span>
-            </div>
-            <span
-              className="text-xs font-bold text-white/90 tracking-tight"
-              style={{
-                textShadow: '0 1px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.7)',
-              }}
-            >
-              @{(business.companyName || 'brand').toLowerCase().replace(/\s+/g, '')}
-            </span>
-            <span className="text-[10px] text-emerald-400 font-semibold">✓</span>
-          </div>
-        </div>
 
         {/* Bottom Area: Clean & Unobstructed for video viewing, only Carousel dots if applicable */}
         <div className="relative z-20 px-4 pb-3 flex items-center justify-center pointer-events-none">
