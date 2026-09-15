@@ -54,7 +54,7 @@ export default function Home() {
     }
     setCurrentUser(null);
     setBusiness(defaultBusinessProfile); // Reset to default so next login shows onboarding
-    setLogoutMessage('Logged out of demo account. You can log back in anytime with 1 tap!');
+    setLogoutMessage('Signed out successfully. Create a new account or log back in!');
   };
 
   // Scheduled posts state (seeded with 2 high-converting examples)
@@ -144,9 +144,19 @@ export default function Home() {
       {/* 0. If not logged in, show AuthScreen */}
       {!currentUser ? (
         <AuthScreen
-          onLoginSuccess={(u) => {
+          onLoginSuccess={(u, isNewUser) => {
             setCurrentUser(u);
             setLogoutMessage('');
+            if (isNewUser) {
+              // New user — reset business to force full onboarding from scratch
+              setBusiness(defaultBusinessProfile);
+              try {
+                localStorage.removeItem('bme_business_profile');
+                localStorage.removeItem('fastlane_business_profile');
+              } catch (e) {
+                console.warn('Storage warning:', e);
+              }
+            }
           }}
           logoutMessage={logoutMessage}
         />
