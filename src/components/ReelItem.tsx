@@ -185,8 +185,8 @@ export function ReelItem({
               className={`w-5 h-5 ${hasLiked ? 'fill-rose-500 stroke-rose-500' : ''}`}
             />
           </div>
-          <span className="text-[10px] font-bold text-neutral-200">
-            {(likes / 1000).toFixed(1)}k
+          <span className="text-[10px] font-medium text-neutral-300">
+            {hasLiked ? 'Liked' : 'Like'}
           </span>
         </button>
 

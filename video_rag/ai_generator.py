@@ -100,15 +100,17 @@ def enrich_memes_with_llm(profile: Dict[str, Any], memes: List[Dict[str, Any]]) 
     ]
 
     system_prompt = (
-        "You are an elite viral Gen-Z short-form video director and trend researcher for TikTok and Instagram Reels.\n"
-        "Your superpower is analyzing raw, simple, or shorthand business inputs and turning them into creative, "
-        "relatable, high-retention viral hooks and unique captions that blow up on the algorithm.\n\n"
-        "CREATIVE GEN-Z HOOK GUIDELINES:\n"
-        "1. DO NOT just mechanically repeat user input words. Analyze the underlying emotional struggle and create clever angles.\n"
-        "2. Use viral Gen-Z / Reels formats: 'POV', 'my toxic trait', 'unpopular opinion', 'gatekeeping this', 'cheat code', 'no bc why did nobody tell me', 'bestie wake up'.\n"
-        "3. Max 14 words per hook. Natural, breakable lines that match the physical emotion of the meme (crying, frantically explaining, dancing, nodding in disbelief).\n"
-        "4. EVERY meme MUST have a COMPLETELY UNIQUE caption with micro-storytelling and CTA. NEVER repeat the same caption across videos!\n"
-        "5. Output MUST be valid JSON with a 'results' array of objects corresponding to each meme ID."
+        "You are an elite viral Gen-Z short-form video director and ad copywriter for TikTok and Instagram Reels.\n"
+        "Your superpower is analyzing simple or shorthand business inputs and turning them into creative, "
+        "relatable, high-retention viral hooks and beautifully spaced captions that blow up on the algorithm.\n\n"
+        "CREATIVE GEN-Z GUIDELINES:\n"
+        "1. DO NOT just mechanically copy-paste user input words. Expand creatively into real-world hyperscale scenarios: "
+        "e.g. monetization/side-hustles, gym/workout routines, automating workflows in 5 seconds, late-night study hacks, high-performance routines.\n"
+        "2. GRAMMAR MUST BE FLAWLESS: use proper articles ('an AI search engine', 'a workflow tool'), subject-verb agreement ('every creator who struggles', not 'every creators'), and natural English cadence.\n"
+        "3. Use viral formats: 'POV', 'my toxic trait was thinking I had to...', 'unpopular opinion:', 'why nobody is talking about this', 'the exact second you stop...'.\n"
+        "4. Max 14 words per hook. Breakable lines that match the physical emotion of the meme.\n"
+        "5. CAPTIONS MUST HAVE MULTI-LINE SPACING (use \\n\\n between paragraphs!). Format with visual breathing room, emojis, bullet points, and a direct CTA ('Link in bio!'). NEVER output a single cram of text!\n"
+        "6. Output MUST be valid JSON with a 'results' array of objects corresponding to each meme ID."
     )
 
     user_prompt = f"""
@@ -119,7 +121,7 @@ BUSINESS QUESTIONNAIRE (Analyze deeply & elevate creatively):
 - Problem Solved: {profile.get('problemSolved', profile.get('painPoint', 'wasting hours on manual work'))}
 - Key Benefits: {profile.get('keyBenefits', 'saving time in 1 tap')}
 - Tone / Positioning: {profile.get('tonePositioning', 'Witty, edgy Gen-Z humor, high-conversion')}
-- Things to Avoid: {profile.get('thingsToAvoid', 'Boring corporate jargon, repetitive generic copy')}
+- Things to Avoid: {profile.get('thingsToAvoid', 'Boring corporate jargon, repetitive generic copy, grammatical errors')}
 - Business Model: {profile.get('businessModel', 'B2B')}
 
 MATCHED MEME TEMPLATES TO DIRECT:
@@ -131,10 +133,10 @@ RETURN FORMAT (JSON):
   "results": [
     {{
       "id": "<meme_id>",
-      "primaryHook": "<Ultra-creative Gen-Z hook under 14 words matching this meme's action>",
+      "primaryHook": "<Grammatically flawless Gen-Z hook under 14 words matching this meme's emotion and a specific real-world scenario>",
       "alternativeHooks": ["<Creative alt 1>", "<Creative alt 2>", "<Creative alt 3>"],
       "whyRationale": "<Why this visual meme's physical energy hooks this audience and converts them>",
-      "caption": "<Unique, conversational Gen-Z Instagram Reel caption ending with CTA>",
+      "caption": "<Multi-line spaced Instagram caption with \\n\\n between paragraphs, bullet points, and clear CTA>",
       "hashtags": ["#tag1", "#tag2", "#tag3", "#tag4", "#tag5"]
     }}
   ]

@@ -86,7 +86,7 @@ interface RawMemeItem {
   search_keywords?: string[];
 }
 
-function cleanClause(text: string, maxWords: number = 10): string {
+function cleanClause(text: string, maxWords: number = 8): string {
   if (!text) return '';
   const trimmed = text.trim().replace(/[.,;!?]+$/, '');
   const words = trimmed.split(/\s+/);
@@ -94,10 +94,9 @@ function cleanClause(text: string, maxWords: number = 10): string {
   return words.slice(0, maxWords).join(' ');
 }
 
-// Creative Gen-Z Text Normalizer & Semantic Extractor
+// Normalizer for user text to fix mashed strings or lowercase run-ons
 function normalizeSmashedWords(text: string): string {
   if (!text) return '';
-  // Split camelCase or run-on lowercase words if no spaces exist
   let cleaned = text.trim();
   if (!cleaned.includes(' ') && cleaned.length > 15) {
     cleaned = cleaned.replace(
@@ -108,77 +107,200 @@ function normalizeSmashedWords(text: string): string {
   return cleaned;
 }
 
-// Hook Director: every hook markets the FEATURES/BENEFITS. Meme = reaction to benefit statement.
+// Intelligent grammatical article insertion (a vs an)
+function withArticle(noun: string): string {
+  if (!noun) return 'a tool';
+  const trimmed = noun.trim();
+  const lower = trimmed.toLowerCase();
+  if (
+    lower.startsWith('a ') ||
+    lower.startsWith('an ') ||
+    lower.startsWith('the ') ||
+    lower.startsWith('our ')
+  ) {
+    return trimmed;
+  }
+  const firstWord = lower.split(/\s+/)[0];
+  const vowelRegex = /^(a|e|i|o|u|ai|hour|honest)/i;
+  const article = vowelRegex.test(firstWord) ? 'an' : 'a';
+  return `${article} ${trimmed}`;
+}
+
+// Singular and plural audience harmonizers to prevent "every developers" grammar bugs
+function toSingularAudience(aud: string): string {
+  if (!aud) return 'creator';
+  const cleaned = aud.trim().toLowerCase();
+  if (cleaned.endsWith('ies')) return cleaned.slice(0, -3) + 'y';
+  if (cleaned.endsWith('ses')) return cleaned.slice(0, -2);
+  if (cleaned.endsWith('s') && !cleaned.endsWith('ss')) return cleaned.slice(0, -1);
+  return cleaned;
+}
+
+function toPluralAudience(aud: string): string {
+  if (!aud) return 'creators';
+  const cleaned = aud.trim().toLowerCase();
+  if (cleaned === 'people' || cleaned === 'anyone' || cleaned === 'everyone') return 'creators';
+  if (cleaned.endsWith('s')) return cleaned;
+  if (cleaned.endsWith('y') && !/[aeiou]y$/.test(cleaned)) return cleaned.slice(0, -1) + 'ies';
+  return cleaned + 's';
+}
+
+// Natural verb phrasing for benefit statements
+function formatBenefitStatement(benefit: string): string {
+  if (!benefit) return 'saves hours of manual work';
+  const clean = benefit.trim().replace(/^[.,;!?]+|[.,;!?]+$/g, '');
+  const lower = clean.toLowerCase();
+
+  // If already starts with a verb in 3rd person singular (e.g. "finds", "automates", "delivers")
+  if (/^(finds|automates|generates|solves|gives|delivers|eliminates|recovers|turns|cuts|boosts)\b/.test(lower)) {
+    return clean;
+  }
+  // If starts with base verb (e.g. "find anything fast", "automate video")
+  if (/^(find|automate|generate|solve|give|deliver|eliminate|recover|turn|cut|boost)\b/.test(lower)) {
+    return clean.replace(/^([a-z]+)/i, '$1s');
+  }
+  // Otherwise prefix with "lets you"
+  return `lets you ${clean.replace(/^(lets? you|allows you to)\s*/i, '')}`;
+}
+
+// Hyperscale Gen-Z Hook & Multi-line Spaced Caption Director
 function generateHooksForMeme(
   meme: RawMemeItem,
   business: BusinessProfile,
   index: number
 ): { primaryHook: string; alternativeHooks: string[]; rationale: string; caption: string } {
   const brand = business.companyName || business.name || 'Marketing Engine';
-  const rawProblem = normalizeSmashedWords(business.problemSolved || 'hours of repetitive work');
-  const rawBenefit = normalizeSmashedWords(business.keyBenefits || 'finishing in 2 minutes');
-  const rawProduct = normalizeSmashedWords(business.productService || 'an AI tool that saves you time');
+  const rawProblem = normalizeSmashedWords(business.problemSolved || 'hours of tedious manual work');
+  const rawBenefit = normalizeSmashedWords(business.keyBenefits || 'finishing in 30 seconds');
+  const rawProduct = normalizeSmashedWords(business.productService || 'AI workflow engine');
   const rawCategory = (business.category || business.categories?.[0] || '').toLowerCase();
-  const rawAudience = (business.audience || 'people').toLowerCase();
+  const rawAudience = (business.audience || 'creators and founders').toLowerCase();
+
   const action = meme.actions?.[0] || 'reacting';
   const mood = (meme.mood_and_vibe || 'viral').toLowerCase();
 
-  // Short punchy versions
-  const shortProblem = cleanClause(rawProblem, 7).toLowerCase();
-  const shortBenefit = cleanClause(rawBenefit, 7).toLowerCase();
-  const shortProduct = cleanClause(rawProduct, 8).toLowerCase();
-  const shortAudience = cleanClause(rawAudience, 4).toLowerCase();
+  const shortProblem = cleanClause(rawProblem, 6).toLowerCase();
+  const shortBenefit = formatBenefitStatement(cleanClause(rawBenefit, 6));
+  const productWithArticle = withArticle(cleanClause(rawProduct, 6));
+  const singularAudience = toSingularAudience(rawAudience);
+  const pluralAudience = toPluralAudience(rawAudience);
 
-  // Every hook = a feature/benefit STATEMENT. Meme video = the emotional reaction.
-  // No "watch this" / "here's proof" — the meme IS the vibe, the text sells the feature.
-  const creativeHooks: string[] = [
-    `${brand} ${shortBenefit} — so you never have to deal with ${shortProblem} again`,
-    `me after ${brand} handled ${shortProblem} in 2 minutes instead of 3 hours`,
-    `${brand}: ${shortProduct}.\n${shortAudience} are switching and never looking back.`,
-    `${shortProblem}? ${brand} ${shortBenefit} automatically. welcome to 2026.`,
-    `every ${shortAudience} who still struggles with ${shortProblem} needs to know about ${brand}`,
-    `${brand} ${shortBenefit} while you focus on what actually matters`,
-    `me explaining to my team that ${brand} ${shortBenefit} and we never have to ${shortProblem} again`,
-    `${shortAudience} before ${brand}: stressed about ${shortProblem}\nafter ${brand}: ${shortBenefit}. done.`,
-    `${brand} turned ${shortProblem} into a 30-second task.\nthis is what ${shortProduct} looks like.`,
-    `when ${brand} ${shortBenefit} and you realize you've been doing it the hard way this whole time`,
-    `imagine if ${shortProblem} just... wasn't a problem anymore.\nthat's ${brand}. ${shortProduct}.`,
-    `${brand} = ${shortProduct}.\nno more ${shortProblem}. just results.`,
-    `why ${shortAudience} are obsessed with ${brand}: it ${shortBenefit} without the hassle`,
-    `${brand} doesn't just help with ${shortProblem} — it ${shortBenefit} completely`,
-    `me the second I found out ${brand} ${shortBenefit} and I never had to worry about ${shortProblem} again`,
-  ];
+  // Detect domain for ultra-creative, scenario-based hyperscale hooks (Monetization, Gym, Workflows, College, etc.)
+  const isSearchOrAI =
+    rawProduct.includes('search') ||
+    rawCategory.includes('search') ||
+    rawProduct.includes('engine') ||
+    rawProduct.includes('ai') ||
+    brand.toLowerCase().includes('google') ||
+    brand.toLowerCase().includes('googel') ||
+    brand.toLowerCase().includes('search');
 
-  // Mood-specific hooks that market features through the emotion
+  const isPhotoOrVideo =
+    rawCategory.includes('photo') ||
+    rawCategory.includes('video') ||
+    rawProduct.includes('photo') ||
+    rawProduct.includes('video') ||
+    rawProblem.includes('photobomb') ||
+    rawProblem.includes('tourist') ||
+    rawProblem.includes('edit');
+
+  const isStudyOrNotes =
+    rawCategory.includes('note') ||
+    rawProduct.includes('note') ||
+    rawProblem.includes('lecture') ||
+    rawAudience.includes('student') ||
+    rawProblem.includes('study');
+
+  // Creative Pool of Hyperscale Hooks tailored to real scenarios
+  let creativeHooks: string[] = [];
+
+  if (isSearchOrAI) {
+    // Creative real-world angles: Monetization, Workout split, Instant workflows, College research
+    creativeHooks = [
+      `POV: using ${brand} to turn 40 science papers into my exact gym split in 4 seconds`,
+      `me watching people open 35 Google tabs while ${brand} found the exact answer in 0.2s`,
+      `how people are lowkey using ${brand} to automate $5k/mo research workflows while sleeping`,
+      `my gym buddy asked how I optimized our progressive overload so fast...\nI just used ${brand} 🤫`,
+      `unpopular opinion: digging through 50 links in 2026 is self-inflicted pain when ${brand} exists`,
+      `the exact second you stop ${shortProblem} forever because ${brand} ${shortBenefit}`,
+      `POV: you ask ${brand} one question and it connects your entire workflow instantly`,
+      `every ${singularAudience} still doing this manually is literally funding their competitors`,
+      `me showing my team how ${brand} ${shortBenefit} in 30 seconds instead of 4 hours`,
+      `my toxic trait was thinking I had to search manually when ${brand} is literally free`,
+      `why ${pluralAudience} are obsessed with ${brand}: it's ${productWithArticle} that actually works`,
+      `how it feels walking into the presentation knowing ${brand} organized everything 🕺`,
+    ];
+  } else if (isPhotoOrVideo) {
+    creativeHooks = [
+      `POV: a tourist almost ruined my favorite vacation photo until ${brand} erased them in 1 tap`,
+      `no bc why does ${brand} look better than 4 hours in Photoshop 💀`,
+      `my friend said "you can't fix blurry lighting without losing quality"...\nwatch what ${brand} does:`,
+      `gatekeeping ${brand} from my group chat because my photos look like Vogue now`,
+      `unpopular opinion: bad photos aren't the problem in 2026, not using ${brand} is`,
+      `me watching people pay $50 on Fiverr while I use ${brand} in 3 seconds:`,
+      `${brand} ${shortBenefit} — so you never stress over ${shortProblem} again`,
+      `POV: you finally found ${productWithArticle} that edits photos like magic`,
+    ];
+  } else if (isStudyOrNotes) {
+    creativeHooks = [
+      `POV: everyone else is on hour 5 of panic while ${brand} summarized the entire syllabus`,
+      `my toxic trait was thinking I'd actually re-watch a 3-hour lecture 😭`,
+      `the professor said "this won't be on the slides" so I let ${brand} cook`,
+      `gatekeeping ${brand} because my GPA just jumped two whole letter grades`,
+      `how ${brand} turned 4 weeks of lecture chaos into bullet points while I made coffee`,
+      `every ${singularAudience} who struggles with ${shortProblem} needs ${brand} right now`,
+    ];
+  } else {
+    // General high-conversion SaaS / Business
+    creativeHooks = [
+      `POV: you finally stopped ${shortProblem} because ${brand} ${shortBenefit}`,
+      `showing this to my team tomorrow so they finally let us automate our workflow with ${brand}`,
+      `unpopular opinion: working 14 hours a day isn't a flex when ${brand} does it in 2 minutes`,
+      `every ${singularAudience} needs to know: ${brand} is ${productWithArticle} that ${shortBenefit}`,
+      `me after ${brand} solved ${shortProblem} before my morning coffee was even ready ☕`,
+      `how ${pluralAudience} are scaling 10x faster in 2026: they stopped ${shortProblem} and switched to ${brand}`,
+      `imagine if ${shortProblem} just... wasn't a problem anymore.\nthat's ${brand}.`,
+      `when ${brand} ${shortBenefit} and you realize you were doing it the hard way for months`,
+    ];
+  }
+
+  // Emotion/physical meme adjustments
   if (mood.includes('cry') || action.includes('cry') || action.includes('sad')) {
-    creativeHooks.unshift(`me realizing I wasted years on ${shortProblem} when ${brand} ${shortBenefit} this whole time 😭`);
+    creativeHooks.unshift(`me realizing I wasted months on ${shortProblem} when ${brand} ${shortBenefit} this whole time 😭`);
   } else if (mood.includes('dance') || action.includes('dance') || action.includes('celebrat')) {
-    creativeHooks.unshift(`${brand} ${shortBenefit} and now ${shortProblem} is someone else's problem 🕺`);
+    creativeHooks.unshift(`how it feels when ${brand} ${shortBenefit} and you're finally free 🕺`);
   } else if (mood.includes('angry') || mood.includes('frustrat')) {
-    creativeHooks.unshift(`${shortProblem} in 2026?? ${brand} ${shortBenefit} — there's literally no excuse anymore`);
-  } else if (mood.includes('shock') || mood.includes('surprise') || mood.includes('mind')) {
-    creativeHooks.unshift(`${brand} ${shortBenefit} in seconds. ${shortAudience} finding this out for the first time:`);
+    creativeHooks.unshift(`still dealing with ${shortProblem} in 2026?? ${brand} ${shortBenefit} — no more excuses.`);
+  } else if (mood.includes('type') || action.includes('typing')) {
+    creativeHooks.unshift(`me prompting ${brand} to ${shortBenefit} in 10 seconds flat:`);
   }
 
   const primaryHook = creativeHooks[index % creativeHooks.length];
   const alternativeHooks = creativeHooks.filter((h) => h !== primaryHook).slice(0, 3);
 
-  // Captions — explain what the brand DOES for someone who's never heard of it
+  // Creative Gen-Z Multi-line Spaced Captions (Distinct formatting per archetype with real breathing room)
   const captions = [
-    `${brand} is ${shortProduct} that ${shortBenefit}. if ${shortProblem} sounds familiar, try it free → link in bio 🚀`,
-    `${shortAudience} are switching to ${brand} because it ${shortBenefit} — no more wasting hours on ${shortProblem}. link in bio 👇`,
-    `tired of ${shortProblem}? ${brand} ${shortBenefit} automatically so you don't have to. link in bio ⚡`,
-    `${brand} = ${shortProduct}. it ${shortBenefit} and it's free to try. link in bio!`,
-    `${brand} ${shortBenefit} in minutes, not hours. built for ${shortAudience} who are done with ${shortProblem}. link in bio 🔥`,
-    `meet ${brand} — ${shortProduct} that ${shortBenefit}. perfect for ${shortAudience}. link in bio!`,
-    `${brand} ${shortBenefit} while you focus on growing your business. no more ${shortProblem}. link in bio ✨`,
-    `built for ${shortAudience}: ${brand} is ${shortProduct} that ${shortBenefit}. try it free → link in bio!`,
-    `${brand} makes ${shortProblem} a thing of the past. it ${shortBenefit} in seconds. link in bio 👇`,
-    `${shortAudience}, this one's for you: ${brand} ${shortBenefit} so you never deal with ${shortProblem} again. link in bio!`,
+    // Format 1: The "Breakdown & Feature Value" Ad
+    `POV: You just unlocked the ultimate cheat code for ${pluralAudience}. 🤯\n\nMost people spend hours on ${shortProblem}, but ${brand} does it in seconds:\n⚡ Instant intelligent workflows\n🎯 Zero manual clutter\n🚀 ${shortBenefit}\n\nIf you haven't tested ${brand} yet, you're playing life on hard mode.\n\n👉 Try it free at the link in bio!`,
+
+    // Format 2: The "Real-world Side Hustle / Hack" Story
+    `real talk: why is nobody talking about this workflow yet??\n\nInstead of wasting half your day on ${shortProblem}, you can let ${brand} handle the heavy lifting.\n\nPeople are literally using this to automate research, plan workout splits, and build $5k/mo side workflows in record time.\n\nDrop a 🔥 if you need this setup, or tap the link in bio to try it free!`,
+
+    // Format 3: The "Unpopular Opinion" Hook
+    `unpopular opinion: if you're still doing ${shortProblem} manually in 2026, you're choosing to suffer. 💀\n\n${brand} is ${productWithArticle} that ${shortBenefit}.\n\nSave this post so you don't forget when you need it 📌\n\nLink in bio to get instant access 👇`,
+
+    // Format 4: The "Before vs After" Transformation
+    `before ${brand}:\n❌ Stressed out\n❌ Hours wasted on ${shortProblem}\n❌ Overwhelmed with 50 open tabs\n\nafter ${brand}:\n✅ Done in 30 seconds\n✅ ${shortBenefit}\n✅ Free time back\n\nWork smarter, not harder besties. Link in bio! ✨`,
+
+    // Format 5: The "Lifestyle / Gym / High-Performance" Angle
+    `My favorite productivity hack right now:\n\nWhether it's optimizing research, generating exact workout splits, or handling ${shortProblem}—${brand} pulls the exact result in 2 clicks.\n\nStop burning your energy on tedious tasks.\n\n⚡ Tap the link in bio to see it in action!`,
+
+    // Format 6: The "Quick Punch" Minimalist Drop
+    `the exact moment you realize ${brand} ${shortBenefit} in literally one tap.\n\ngoodbye ${shortProblem}, hello freedom 🚀\n\nlink in bio to start free!`,
   ];
 
   const caption = captions[index % captions.length];
-  const rationale = `Viral Angle: The meme emotion (${action}, ${mood}) becomes the reaction to ${brand}'s benefit — "${shortBenefit}". Viewers see the emotion first, then the feature text sells the product.`;
+  const rationale = `Viral Strategy: ${brand} positions against "${shortProblem}" by framing ${shortBenefit} through the visual emotion of ${action} (${mood}).`;
 
   return { primaryHook, alternativeHooks, rationale, caption };
 }
@@ -187,9 +309,8 @@ function generateHooksForMeme(
 export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
   const memes = (memeCatalogRaw as RawMemeItem[]) || [];
 
-  // Relevance scoring: match keywords, business category, and problem
   const scoredMemes = memes.map((meme, idx) => {
-    let score = 75; // base score
+    let score = 75;
     const searchable = [
       meme.category,
       meme.mood_and_vibe,
@@ -198,12 +319,10 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
       ...(meme.search_keywords || []),
     ].join(' ').toLowerCase();
 
-    // Match categories
     for (const cat of business.categories || []) {
       if (searchable.includes(cat.toLowerCase())) score += 12;
     }
 
-    // Match business model
     if (business.businessModel === 'B2B' && (searchable.includes('explaining') || searchable.includes('pitch') || searchable.includes('coding') || searchable.includes('whiteboard'))) {
       score += 15;
     }
@@ -211,8 +330,7 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
       score += 15;
     }
 
-    // Match words from problem and benefits
-    const words = `${business.problemSolved} ${business.keyBenefits}`.toLowerCase().split(/\s+/);
+    const words = `${business.problemSolved} ${business.keyBenefits} ${business.productService}`.toLowerCase().split(/\s+/);
     for (const w of words) {
       if (w.length > 4 && searchable.includes(w)) {
         score += 4;
@@ -227,7 +345,7 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
       '#viralreels',
       '#genzhacks',
       '#growthhack',
-      '#lifehacks',
+      '#productivity',
       '#fyp',
     ];
 
@@ -252,7 +370,6 @@ export function generateMemeFeed(business: BusinessProfile): MemeTemplate[] {
     };
   });
 
-  // Sort by score descending
   return scoredMemes.sort((a, b) => (b.viralScore || 0) - (a.viralScore || 0));
 }
 
@@ -268,7 +385,7 @@ export function adaptTemplatesForBusiness(business: BusinessProfile): ViralTempl
     duration: parseInt(m.duration) || 12,
     soundName: 'Original Viral Sound',
     soundAuthor: business.companyName || 'business-marketing_engine',
-    views: `${Math.floor(80 + Math.random() * 220)}k`,
+    views: '120k',
     defaultHook: m.hook,
     whyRationale: m.whyRationale,
     isCarousel: m.is_carousel,
