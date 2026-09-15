@@ -23,6 +23,9 @@ import { BusinessProfile, BusinessModel, BusinessCategory, MemeTemplate, Schedul
 import { defaultProfile, generateMobileMemeDeck } from './src/hookEngine';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+// Strict 9:16 mobile constraints (never expand on iPad/tablets)
+const CARD_WIDTH = Math.min(SCREEN_WIDTH - 30, 390);
+const CARD_HEIGHT = Math.min(SCREEN_HEIGHT * 0.68, CARD_WIDTH * (16 / 9));
 
 function FeedVideo({ uri, isMuted = false }: { uri: string; isMuted?: boolean }) {
   const isImage = /\.(jpg|jpeg|png|webp)/i.test(uri);
@@ -348,7 +351,8 @@ export default function App() {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <ScrollView contentContainerStyle={styles.authScroll} showsVerticalScrollIndicator={false}>
+        <View style={styles.appWrapper}>
+          <ScrollView contentContainerStyle={styles.authScroll} showsVerticalScrollIndicator={false}>
           {logoutNotice ? (
             <View style={styles.authLogoutBanner}>
               <Text style={styles.authLogoutText}>✓ {logoutNotice}</Text>
@@ -431,6 +435,7 @@ export default function App() {
             RevenueCat Shipaton 2026 • Business × Productivity
           </Text>
         </ScrollView>
+        </View>
       </SafeAreaView>
     );
   }
@@ -442,6 +447,7 @@ export default function App() {
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
+        <View style={styles.appWrapper}>
 
         {/* Top Progress Bar for Steps 1-4 */}
         {onboardingStep <= 4 && (
@@ -735,6 +741,7 @@ export default function App() {
             </View>
           </View>
         )}
+        </View>
       </SafeAreaView>
     );
   }
@@ -745,6 +752,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
+      <View style={styles.appWrapper}>
 
       {/* Top App Header */}
       <View style={styles.topHeader}>
@@ -781,7 +789,7 @@ export default function App() {
                   { translateY: pan.y },
                   {
                     rotate: pan.x.interpolate({
-                      inputRange: [-SCREEN_WIDTH, 0, SCREEN_WIDTH],
+                      inputRange: [-CARD_WIDTH, 0, CARD_WIDTH],
                       outputRange: ['-18deg', '0deg', '18deg'],
                     }),
                   },
@@ -936,12 +944,14 @@ export default function App() {
           </View>
         </View>
       </Modal>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#0A0A0A' },
+  container: { flex: 1, backgroundColor: '#000000', alignItems: 'center' },
+  appWrapper: { flex: 1, width: '100%', maxWidth: 430, backgroundColor: '#0A0A0A' },
   topProgressContainer: { paddingHorizontal: 24, paddingTop: 12, paddingBottom: 10 },
   progressLabelRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
   stepIndicatorText: { color: '#10B981', fontSize: 11, fontWeight: '800', letterSpacing: 1 },
@@ -1067,7 +1077,7 @@ const styles = StyleSheet.create({
   proPill: { backgroundColor: '#F59E0B', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 12 },
   proPillText: { color: '#000', fontSize: 10, fontWeight: '900' },
   deckContainer: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 15 },
-  card: { width: SCREEN_WIDTH - 30, height: SCREEN_HEIGHT * 0.65, borderRadius: 28, overflow: 'hidden', backgroundColor: '#000', borderWidth: 1, borderColor: '#262626' },
+  card: { width: CARD_WIDTH, height: CARD_HEIGHT, borderRadius: 28, overflow: 'hidden', backgroundColor: '#000', borderWidth: 1, borderColor: '#262626' },
   videoPlayer: { ...StyleSheet.absoluteFill },
   cardGradient: { ...StyleSheet.absoluteFill },
   cardTopBar: { flexDirection: 'row', justifyContent: 'space-between', padding: 16 },

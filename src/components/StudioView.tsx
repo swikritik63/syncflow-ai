@@ -118,6 +118,7 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
   const [videoMode, setVideoMode] = useState<'ugc' | 'product'>('ugc');
   const [referenceData, setReferenceData] = useState<{ data: string; mimeType: string } | null>(null);
   const [isRenderingVideo, setIsRenderingVideo] = useState(false);
+  const [isGeneratingAvatar, setIsGeneratingAvatar] = useState(false);
   const [renderStage, setRenderStage] = useState(0);
   const [ad, setAd] = useState<UgcAd | null>(null);
   const [error, setError] = useState('');
@@ -216,6 +217,40 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
       setError(err instanceof Error ? err.message : 'Generation failed');
     } finally {
       setIsRenderingVideo(false);
+    }
+  };
+
+  const handleGenerateAvatar = async () => {
+    if (isGeneratingAvatar || isRenderingVideo) return;
+    setIsGeneratingAvatar(true);
+    setError('');
+    try {
+      const response = await fetch('/api/generate-avatar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: `Photorealistic vertical 9:16 portrait of a charismatic professional corporate office presenter in a sleek modern tech office for ${business.companyName || business.name || 'a modern business'}, looking directly into camera with a friendly confident smile, natural studio lighting, ultra high detail, cinematic UGC creator style, 8k resolution.`,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok || !data.imageUrl) {
+        throw new Error(data.error || 'Failed to generate avatar');
+      }
+      setReferenceUrl(data.imageUrl);
+      setReferenceName('AI Office Presenter (OpenAI)');
+      setReferenceData({ data: data.imageUrl, mimeType: 'image/png' });
+      setAd(null);
+      setScheduledAt('');
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { y: 0.5 },
+        colors: ['#10B981', '#3B82F6', '#F59E0B'],
+      });
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Avatar generation failed');
+    } finally {
+      setIsGeneratingAvatar(false);
     }
   };
 
@@ -369,6 +404,32 @@ export function StudioView({ business, onOpenPaywall, isPro = false }: StudioVie
               ))}
             </div>
           </div>
+
+          {/* OpenAI Avatar Generator via OpenRouter */}
+          {videoMode === 'ugc' && (
+            <button
+              type="button"
+              disabled={isGeneratingAvatar || isRenderingVideo || scheduling}
+              onClick={handleGenerateAvatar}
+              className="w-full py-3 px-4 rounded-2xl border border-emerald-500/40 hover:border-emerald-400 bg-gradient-to-r from-emerald-950/40 via-neutral-900 to-emerald-950/30 hover:from-emerald-950/60 transition-all flex items-center justify-center gap-2 text-center disabled:opacity-50 shadow-sm"
+            >
+              {isGeneratingAvatar ? (
+                <>
+                  <RefreshCw className="w-4 h-4 text-emerald-400 animate-spin" />
+                  <span className="text-xs font-bold text-emerald-300">
+                    Generating Office Presenter with OpenAI (OpenRouter)...
+                  </span>
+                </>
+              ) : (
+                <>
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-bold text-emerald-300">
+                    ✨ Generate Office Presenter Avatar (OpenAI via OpenRouter)
+                  </span>
+                </>
+              )}
+            </button>
+          )}
 
           {/* Custom Upload Dropzone */}
           <label className="p-3.5 rounded-2xl border border-dashed border-emerald-500/40 hover:border-emerald-500 bg-emerald-500/5 cursor-pointer transition-all flex flex-col items-center justify-center text-center">
