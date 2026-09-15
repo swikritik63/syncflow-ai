@@ -10,10 +10,13 @@ import { CalendarView } from '@/components/CalendarView';
 import { StudioView } from '@/components/StudioView';
 import { BusinessModal } from '@/components/BusinessModal';
 import { RevenueCatPaywall } from '@/components/RevenueCatPaywall';
+import { AuthScreen } from '@/components/AuthScreen';
 import { BusinessProfile, ScheduledPost, MemeTemplate } from '@/types';
 import { defaultBusinessProfile, generateMemeFeed } from '@/lib/hookEngine';
 
 export default function Home() {
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  const [logoutMessage, setLogoutMessage] = useState<string>('');
   const [activeTab, setActiveTab] = useState<TabType>('feed');
   const [business, setBusiness] = useState<BusinessProfile>(defaultBusinessProfile);
   const [isBusinessModalOpen, setIsBusinessModalOpen] = useState(false);
@@ -24,9 +27,13 @@ export default function Home() {
   const [activeMemeToSchedule, setActiveMemeToSchedule] = useState<MemeTemplate | null>(null);
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
 
-  // Load persisted profile on mount
+  // Load persisted user & profile on mount
   useEffect(() => {
     try {
+      const savedUser = localStorage.getItem('bme_current_user');
+      if (savedUser) {
+        setCurrentUser(savedUser);
+      }
       const saved = localStorage.getItem('bme_business_profile') || localStorage.getItem('fastlane_business_profile');
       if (saved) {
         const parsed = JSON.parse(saved);
@@ -36,6 +43,16 @@ export default function Home() {
       console.warn('Could not read saved profile:', err);
     }
   }, []);
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem('bme_current_user');
+    } catch (e) {
+      console.warn('Storage warning:', e);
+    }
+    setCurrentUser(null);
+    setLogoutMessage('Logged out of demo account. You can log back in anytime with 1 tap!');
+  };
 
   // Scheduled posts state (seeded with 2 high-converting examples)
   const [scheduledPosts, setScheduledPosts] = useState<ScheduledPost[]>([
@@ -118,9 +135,19 @@ export default function Home() {
       onOpenBusinessModal={() => setIsBusinessModalOpen(true)}
       onOpenPaywall={() => setIsPaywallOpen(true)}
       isPro={isPro}
+      currentUser={currentUser}
+      onLogout={handleLogout}
     >
-      {/* 1. If not yet onboarded, show the Onboarding Wizard (Screen 1, 2, 3) */}
-      {!business.onboarded ? (
+      {/* 0. If not logged in, show AuthScreen */}
+      {!currentUser ? (
+        <AuthScreen
+          onLoginSuccess={(u) => {
+            setCurrentUser(u);
+            setLogoutMessage('');
+          }}
+          logoutMessage={logoutMessage}
+        />
+      ) : !business.onboarded ? (
         <OnboardingWizard
           initialProfile={business}
           onComplete={handleOnboardingComplete}

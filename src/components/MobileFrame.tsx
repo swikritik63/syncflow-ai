@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Wifi, BatteryMedium, Sparkles } from 'lucide-react';
+import { Wifi, BatteryMedium, Sparkles, LogOut } from 'lucide-react';
 
 interface MobileFrameProps {
   children: React.ReactNode;
@@ -10,6 +10,8 @@ interface MobileFrameProps {
   onOpenPaywall: () => void;
   isPro?: boolean;
   isOnboarded?: boolean;
+  currentUser?: string | null;
+  onLogout?: () => void;
 }
 
 export function MobileFrame({
@@ -19,6 +21,8 @@ export function MobileFrame({
   onOpenPaywall,
   isPro = false,
   isOnboarded = true,
+  currentUser = null,
+  onLogout,
 }: MobileFrameProps) {
   return (
     <div className="min-h-screen w-full bg-neutral-950 text-white flex flex-col items-center justify-center p-0 sm:p-4 select-none">
@@ -64,6 +68,16 @@ export function MobileFrame({
               >
                 <Sparkles className="w-2.5 h-2.5" />
                 {isPro ? 'PRO' : 'UPGRADE'}
+              </button>
+            )}
+            {currentUser && onLogout && (
+              <button
+                onClick={onLogout}
+                title={`Logged in as @${currentUser}. Click to sign out.`}
+                className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-neutral-900/90 hover:bg-rose-950/40 border border-neutral-700/60 hover:border-rose-500/40 text-neutral-300 hover:text-rose-400 flex items-center gap-1 transition-all active:scale-90"
+              >
+                <LogOut className="w-2.5 h-2.5" />
+                <span>Exit</span>
               </button>
             )}
             <Wifi className="w-3.5 h-3.5 text-neutral-400" />

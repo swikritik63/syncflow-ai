@@ -123,6 +123,55 @@ export default function App() {
   // Swipe Animation State
   const pan = useRef(new Animated.ValueXY()).current;
 
+  // Auth & Shared Instagram State
+  const [currentUser, setCurrentUser] = useState<string | null>(null);
+  const [authUsername, setAuthUsername] = useState('demo_creator');
+  const [authPassword, setAuthPassword] = useState('shipaton2026');
+  const [authShowPassword, setAuthShowPassword] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [logoutNotice, setLogoutNotice] = useState('');
+
+  const handleLogin = () => {
+    if (!authUsername.trim()) {
+      setAuthError('Please enter a username');
+      return;
+    }
+    if (!authPassword.trim()) {
+      setAuthError('Please enter a password');
+      return;
+    }
+    setAuthError('');
+    setLogoutNotice('');
+    setCurrentUser(authUsername.trim());
+  };
+
+  const handleQuickDemoLogin = () => {
+    setAuthUsername('demo_creator');
+    setAuthPassword('shipaton2026');
+    setAuthError('');
+    setLogoutNotice('');
+    setCurrentUser('demo_creator');
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Log Out',
+      'Are you sure you want to log out of business-marketing_engine?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Log Out',
+          style: 'destructive',
+          onPress: () => {
+            const prev = currentUser;
+            setCurrentUser(null);
+            setLogoutNotice(`Logged out from @${prev || 'demo_creator'}`);
+          },
+        },
+      ]
+    );
+  };
+
   // Initialize RevenueCat SDK
   useEffect(() => {
     async function initRevenueCat() {
@@ -238,7 +287,10 @@ export default function App() {
       setIsScheduleModalOpen(false);
       setCurrentIndex((prev) => prev + 1);
       setShowRationale(false);
-      Alert.alert('Post Scheduled! 🚀', `Your viral reel has been scheduled for @${business.companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}.`);
+      Alert.alert(
+        'Published to Instagram Reels! 🚀',
+        `Reel with hook "${activeMeme.hook}" published to shared demo account @business_marketing_engine via sandbox endpoint.`
+      );
     }
   };
 
@@ -261,6 +313,100 @@ export default function App() {
   const currentCard = deck[currentIndex];
 
   // ============================================================
+  // SCREEN: AUTH / LOGIN SCREEN
+  // ============================================================
+  if (!currentUser) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
+        <ScrollView contentContainerStyle={styles.authScroll} showsVerticalScrollIndicator={false}>
+          {logoutNotice ? (
+            <View style={styles.authLogoutBanner}>
+              <Text style={styles.authLogoutText}>✓ {logoutNotice}</Text>
+            </View>
+          ) : null}
+
+          <View style={styles.authHeader}>
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>✨ Shipaton 2026 Demo Access</Text>
+            </View>
+            <Text style={styles.headerTitle}>business-marketing_engine</Text>
+            <Text style={styles.headerSubtitle}>
+              Autonomous viral video deck, calendar scheduling, and RevenueCat paywall.
+            </Text>
+          </View>
+
+          {/* Shared Instagram Demo API Banner */}
+          <View style={styles.sharedIgCard}>
+            <Text style={styles.sharedIgTitle}>📸 Shared Instagram Demo API</Text>
+            <Text style={styles.sharedIgSub}>
+              For demo convenience, all accounts automatically post to the shared Instagram handle{' '}
+              <Text style={{ color: '#FFF', fontWeight: '800' }}>@business_marketing_engine</Text> via our live sandbox endpoint.
+            </Text>
+          </View>
+
+          {/* Quick 1-Tap Demo Credentials Card */}
+          <View style={styles.demoCredsCard}>
+            <View style={styles.demoCredsRow}>
+              <Text style={styles.demoCredsLabel}>DEMO CREDENTIALS (SAVED)</Text>
+              <Text style={styles.demoCredsReady}>READY</Text>
+            </View>
+            <View style={styles.demoCredsBox}>
+              <Text style={styles.demoCredsText}>Username: <Text style={{ color: '#FFF', fontWeight: '700' }}>demo_creator</Text></Text>
+              <Text style={styles.demoCredsText}>Password: <Text style={{ color: '#FFF', fontWeight: '700' }}>shipaton2026</Text></Text>
+            </View>
+            <TouchableOpacity style={styles.quickLoginButton} onPress={handleQuickDemoLogin}>
+              <Text style={styles.quickLoginText}>⚡ Instant 1-Tap Demo Sign In</Text>
+            </TouchableOpacity>
+          </View>
+
+          {/* Manual Login Form */}
+          <View style={styles.inputCard}>
+            <Text style={styles.inputLabel}>Username</Text>
+            <TextInput
+              style={styles.textInput}
+              value={authUsername}
+              onChangeText={(t) => { setAuthUsername(t); setAuthError(''); }}
+              placeholder="e.g. demo_creator"
+              placeholderTextColor="#666"
+              autoCapitalize="none"
+            />
+
+            <Text style={styles.inputLabel}>Password</Text>
+            <View style={styles.passwordRow}>
+              <TextInput
+                style={[styles.textInput, { flex: 1 }]}
+                value={authPassword}
+                onChangeText={(t) => { setAuthPassword(t); setAuthError(''); }}
+                placeholder="Enter password"
+                placeholderTextColor="#666"
+                secureTextEntry={!authShowPassword}
+                autoCapitalize="none"
+              />
+              <TouchableOpacity
+                style={styles.showPasswordBtn}
+                onPress={() => setAuthShowPassword(!authShowPassword)}
+              >
+                <Text style={styles.showPasswordText}>{authShowPassword ? 'Hide' : 'Show'}</Text>
+              </TouchableOpacity>
+            </View>
+
+            {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
+
+            <TouchableOpacity style={[styles.primaryButton, { marginTop: 12 }]} onPress={handleLogin}>
+              <Text style={styles.primaryButtonText}>Sign In to Engine →</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.authFootnote}>
+            RevenueCat Shipaton 2026 • Business × Photo & Video
+          </Text>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  // ============================================================
   // SCREEN: ONBOARDING FLOW (LOOSE, AIRY, BREATHING)
   // ============================================================
   if (!isOnboarded) {
@@ -273,12 +419,9 @@ export default function App() {
           <View style={styles.topProgressContainer}>
             <View style={styles.progressLabelRow}>
               <Text style={styles.stepIndicatorText}>STEP {onboardingStep} OF 4</Text>
-              <Text style={styles.stepNameText}>
-                {onboardingStep === 1 && 'Brand Identity'}
-                {onboardingStep === 2 && 'Your Offer'}
-                {onboardingStep === 3 && 'Positioning'}
-                {onboardingStep === 4 && 'Category'}
-              </Text>
+              <TouchableOpacity onPress={handleLogout}>
+                <Text style={styles.logoutLink}>Exit (@{currentUser})</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.progressTrack}>
               <View style={[styles.progressBarFill, { width: `${(onboardingStep / 4) * 100}%` }]} />
@@ -290,7 +433,7 @@ export default function App() {
         {onboardingStep === 1 && (
           <ScrollView contentContainerStyle={styles.onboardScroll} showsVerticalScrollIndicator={false}>
             <View style={styles.badge}>
-              <Text style={styles.badgeText}>✨ Zero-Login Creator Engine</Text>
+              <Text style={styles.badgeText}>✨ Active User: @{currentUser}</Text>
             </View>
             <Text style={styles.headerTitle}>business-marketing_engine</Text>
             <Text style={styles.headerSubtitle}>
@@ -578,14 +721,22 @@ export default function App() {
       <View style={styles.topHeader}>
         <View>
           <Text style={styles.brandTitle}>{business.companyName}</Text>
-          <Text style={styles.brandSub}>{business.businessModel} • {business.categories[0] || 'Viral'}</Text>
+          <Text style={styles.brandSub}>{business.businessModel} • @{currentUser}</Text>
         </View>
-        <TouchableOpacity
-          style={styles.proPill}
-          onPress={() => setIsPaywallOpen(true)}
-        >
-          <Text style={styles.proPillText}>{isPro ? '⭐ PRO ACTIVE' : '👑 UPGRADE PRO'}</Text>
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <TouchableOpacity
+            style={styles.proPill}
+            onPress={() => setIsPaywallOpen(true)}
+          >
+            <Text style={styles.proPillText}>{isPro ? '⭐ PRO ACTIVE' : '👑 UPGRADE PRO'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.exitPill}
+            onPress={handleLogout}
+          >
+            <Text style={styles.exitPillText}>Exit</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Center 9:16 Card Stack */}
@@ -691,7 +842,7 @@ export default function App() {
               style={[styles.checkboxRow, postToInstagram && styles.checkboxRowActive]}
               onPress={() => setPostToInstagram(!postToInstagram)}
             >
-              <Text style={styles.checkboxLabel}>📸 Instagram Reels (@{business.companyName.toLowerCase().replace(/[^a-z0-9]/g, '')})</Text>
+              <Text style={styles.checkboxLabel}>📸 Instagram Reels (@business_marketing_engine - Shared Demo)</Text>
               <Text style={styles.checkboxCheck}>{postToInstagram ? '✓' : ''}</Text>
             </TouchableOpacity>
 
@@ -940,4 +1091,71 @@ const styles = StyleSheet.create({
   planCardSelected: { padding: 16, backgroundColor: 'rgba(245, 158, 11, 0.15)', borderRadius: 16, borderWidth: 1.5, borderColor: '#F59E0B' },
   planName: { color: '#FFF', fontWeight: '800', fontSize: 14 },
   planPrice: { color: '#F59E0B', fontWeight: '900', fontSize: 16, marginTop: 4 },
+  authScroll: { paddingHorizontal: 24, paddingVertical: 24, paddingBottom: 48 },
+  authHeader: { marginTop: 12, marginBottom: 18 },
+  authLogoutBanner: {
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(16, 185, 129, 0.3)',
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    marginBottom: 16,
+  },
+  authLogoutText: { color: '#34D399', fontSize: 12, fontWeight: '700' },
+  sharedIgCard: {
+    padding: 16,
+    borderRadius: 18,
+    backgroundColor: '#17121E',
+    borderWidth: 1,
+    borderColor: 'rgba(236, 72, 153, 0.25)',
+    marginBottom: 16,
+    gap: 6,
+  },
+  sharedIgTitle: { color: '#F472B6', fontSize: 13, fontWeight: '800' },
+  sharedIgSub: { color: '#D4D4D4', fontSize: 12, lineHeight: 17 },
+  demoCredsCard: {
+    padding: 16,
+    borderRadius: 18,
+    backgroundColor: '#141414',
+    borderWidth: 1,
+    borderColor: '#262626',
+    marginBottom: 16,
+    gap: 10,
+  },
+  demoCredsRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  demoCredsLabel: { fontSize: 10, fontWeight: '800', color: '#737373', letterSpacing: 1 },
+  demoCredsReady: { fontSize: 10, fontWeight: '900', color: '#10B981', letterSpacing: 0.5 },
+  demoCredsBox: { backgroundColor: '#1C1C1C', borderRadius: 12, padding: 10, gap: 4 },
+  demoCredsText: { fontSize: 12, color: '#A3A3A3', fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace' },
+  quickLoginButton: {
+    backgroundColor: 'rgba(16, 185, 129, 0.15)',
+    borderWidth: 1,
+    borderColor: 'rgba(16, 185, 129, 0.3)',
+    borderRadius: 14,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  quickLoginText: { color: '#34D399', fontSize: 13, fontWeight: '800' },
+  passwordRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  showPasswordBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    backgroundColor: '#1C1C1C',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#2D2D2D',
+  },
+  showPasswordText: { color: '#A3A3A3', fontSize: 12, fontWeight: '700' },
+  authFootnote: { textAlign: 'center', color: '#525252', fontSize: 11, marginTop: 16 },
+  logoutLink: { color: '#EF4444', fontSize: 11, fontWeight: '700' },
+  exitPill: {
+    backgroundColor: '#1F1F1F',
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+  exitPillText: { color: '#EF4444', fontSize: 11, fontWeight: '700' },
 });

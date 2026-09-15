@@ -106,6 +106,16 @@ export function ScheduleModal({
       }, 700);
     } else {
       setIsPublishing(true);
+      fetch('/api/instagram/publish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: localStorage.getItem('bme_current_user') || 'demo_creator',
+          post: newPost,
+          business,
+        }),
+      }).catch((e) => console.warn('Instagram publish note:', e));
+
       confetti({
         particleCount: 100,
         spread: 80,
@@ -187,9 +197,14 @@ export function ScheduleModal({
                   <InstagramIcon className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-white">Instagram Reels</p>
+                  <div className="flex items-center gap-1.5">
+                    <p className="text-xs font-bold text-white">Instagram Reels</p>
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-300 font-semibold border border-pink-500/30">
+                      Shared Demo API
+                    </span>
+                  </div>
                   <p className="text-[10px] text-neutral-400">
-                    @{business.companyName.toLowerCase().replace(/[^a-z0-9]/g, '')}_app (Connected)
+                    @business_marketing_engine (Connected Live)
                   </p>
                 </div>
               </div>
