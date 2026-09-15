@@ -6,7 +6,6 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView,
   StatusBar,
   Animated,
   PanResponder,
@@ -16,6 +15,7 @@ import {
   Modal,
   Image,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { VideoView, useVideoPlayer } from 'expo-video';
 import { LinearGradient } from 'expo-linear-gradient';
 import Purchases from 'react-native-purchases';
@@ -190,17 +190,19 @@ export default function App() {
     async function initRevenueCat() {
       try {
         Purchases.setLogLevel(Purchases.LOG_LEVEL.DEBUG);
-        if (Platform.OS === 'ios') {
-          await Purchases.configure({ apiKey: 'appl_mock_shipaton26_bme' });
-        } else if (Platform.OS === 'android') {
-          await Purchases.configure({ apiKey: 'goog_mock_shipaton26_bme' });
-        }
+        // In Expo Go, RevenueCat Test Store requires a key starting with 'test_'
+        const apiKey = Platform.select({
+          ios: 'test_shipaton26_bme_ios',
+          android: 'test_shipaton26_bme_android',
+          default: 'test_shipaton26_bme',
+        });
+        await Purchases.configure({ apiKey });
         const customerInfo = await Purchases.getCustomerInfo();
-        if (customerInfo.entitlements.active['pro_access']) {
+        if (customerInfo?.entitlements?.active?.['pro_access']) {
           setIsPro(true);
         }
       } catch (e) {
-        console.log('RevenueCat init note (demo mode active):', e);
+        console.log('RevenueCat demo mode active (Expo Go Test Store fallback):', (e as Error)?.message || e);
       }
     }
     initRevenueCat();
